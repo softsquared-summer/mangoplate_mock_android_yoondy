@@ -1,10 +1,13 @@
-package com.example.mangoplate;
+package com.example.mangoplate.src.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.mangoplate.R;
+import com.example.mangoplate.src.BaseActivity;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
