@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MangoPlate</string>
+    <string name="item0">맛집찾기</string>
+    <string name="item1">할인</string>
+    <string name="item2"></string>
+    <string name="item3">소식</string>
+    <string name="item4">내정보</string>
 </resources>
