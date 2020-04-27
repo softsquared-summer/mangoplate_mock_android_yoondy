@@ -6,27 +6,163 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".src.main.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_frame_layout"
+    <it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator
+        android:id="@+id/main_anim_center_btn_animator"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/main_bot_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    </FrameLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_bot_nav"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@android:color/white"
-        app:labelVisibilityMode="unlabeled"
-        app:itemIconSize="40dp"
-        app:menu="@menu/menu_bot_nav"/>
+        android:animationDuration="@android:integer/config_mediumAnimTime"
+        app:vra_hideBeforeReveal="false"
+        android:measureAllChildren="true"
+        android:animateFirstView="true"
+        android:outAnimation="@anim/out_animation"
+        android:inAnimation="@anim/in_animation"
+        android:interpolator="@android:interpolator/accelerate_decelerate">
+
+        <!-- Main View -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <FrameLayout
+                android:id="@+id/main_frame_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/main_bot_nav"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            </FrameLayout>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/main_bot_nav"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@android:color/white"
+                app:labelVisibilityMode="unlabeled"
+                app:itemIconSize="40dp"
+                app:menu="@menu/menu_bot_nav"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- on clicked center addition button -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/orange">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/main_tv_go_to_eat_deal"
+                app:layout_constraintBottom_toBottomOf="@+id/main_tv_go_to_eat_deal"
+                app:layout_constraintEnd_toStartOf="@+id/main_tv_go_to_eat_deal"
+                android:layout_marginEnd="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_discount_white"/>
+
+            <TextView
+                android:id="@+id/main_tv_go_to_eat_deal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/main_tv_indicate_retaurant"
+                app:layout_constraintStart_toStartOf="@+id/main_tv_add_restaurant"
+                android:layout_marginBottom="40dp"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                android:text="@string/go_to_eat_deal"/>
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/main_tv_indicate_retaurant"
+                app:layout_constraintBottom_toBottomOf="@+id/main_tv_indicate_retaurant"
+                app:layout_constraintEnd_toStartOf="@+id/main_tv_indicate_retaurant"
+                android:layout_marginEnd="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_pin_white" />
+
+            <TextView
+                android:id="@+id/main_tv_indicate_retaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/main_tv_write_review"
+                app:layout_constraintStart_toStartOf="@+id/main_tv_add_restaurant"
+                android:layout_marginBottom="40dp"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                android:text="@string/indicate_retaurant"/>
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/main_tv_write_review"
+                app:layout_constraintBottom_toBottomOf="@+id/main_tv_write_review"
+                app:layout_constraintEnd_toStartOf="@+id/main_tv_write_review"
+                android:layout_marginEnd="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_pencil_white" />
+
+            <TextView
+                android:id="@+id/main_tv_write_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/main_tv_add_restaurant"
+                app:layout_constraintStart_toStartOf="@+id/main_tv_add_restaurant"
+                android:layout_marginBottom="40dp"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                android:text="@string/write_review"/>
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/main_tv_add_restaurant"
+                app:layout_constraintBottom_toBottomOf="@+id/main_tv_add_restaurant"
+                app:layout_constraintEnd_toStartOf="@+id/main_tv_add_restaurant"
+                android:layout_marginEnd="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_restaurant_white" />
+
+            <TextView
+                android:id="@+id/main_tv_add_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/main_btn_close_addition"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="40dp"
+                android:layout_marginEnd="74dp"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                android:text="@string/add_restaurant"/>
+
+            <ImageButton
+                android:id="@+id/main_btn_close_addition"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="3dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_addition_white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

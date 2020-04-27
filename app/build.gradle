@@ -30,6 +30,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // https://github.com/sephiroth74/ViewRevealAnimator
+    implementation 'it.sephiroth.android.library.viewrevealanimator:view-reveal-animator:+'
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 

@@ -5,4 +5,8 @@
     <string name="item2"></string>
     <string name="item3">소식</string>
     <string name="item4">내정보</string>
+    <string name="go_to_eat_deal">EAT딜 보러가기</string>
+    <string name="indicate_retaurant">가봤어요</string>
+    <string name="write_review">리뷰 쓰기</string>
+    <string name="add_restaurant">식당 등록하기</string>
 </resources>
