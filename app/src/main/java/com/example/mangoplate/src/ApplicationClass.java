@@ -3,6 +3,7 @@ package com.example.mangoplate.src;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.DisplayMetrics;
 
 import com.example.mangoplate.config.XAccessTokenInterceptor;
 
@@ -38,12 +39,20 @@ public class ApplicationClass extends Application {
     // Retrofit 인스턴스
     public static Retrofit retrofit;
 
+    // screen size
+    public static int screenWidth;
+    public static int screenHeight;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         if(sSharedPreferences == null)
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
     }
 
     public static Retrofit getRetrofit() {
