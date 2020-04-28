@@ -19,8 +19,8 @@
         app:vra_hideBeforeReveal="false"
         android:measureAllChildren="true"
         android:animateFirstView="true"
-        android:outAnimation="@anim/out_animation"
-        android:inAnimation="@anim/in_animation"
+        android:outAnimation="@anim/anim_fab_close_rotate"
+        android:inAnimation="@anim/anim_fab_open_rotate"
         android:interpolator="@android:interpolator/accelerate_decelerate">
 
         <!-- Main View -->
@@ -47,7 +47,21 @@
                 android:background="@android:color/white"
                 app:labelVisibilityMode="unlabeled"
                 app:itemIconSize="40dp"
-                app:menu="@menu/menu_bot_nav"/>
+                app:menu="@menu/menu_bot_nav">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_btn_addition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="1dp"
+                    android:backgroundTint="@color/orange"
+                    android:src="@drawable/ic_addition_square_orange"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabSize="mini"/>
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -147,18 +161,20 @@
                 android:textSize="23sp"
                 android:text="@string/add_restaurant"/>
 
-            <ImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/main_btn_close_addition"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="3dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_addition_white" />
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="@android:color/white"
+                android:src="@drawable/ic_cancel_square_white"
+                app:borderWidth="0dp"
+                app:elevation="0dp"
+                app:fabSize="mini"
+                app:rippleColor="@android:color/transparent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

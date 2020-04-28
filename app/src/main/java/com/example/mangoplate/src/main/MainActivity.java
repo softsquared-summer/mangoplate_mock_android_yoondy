@@ -1,33 +1,32 @@
 package com.example.mangoplate.src.main;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.RotateAnimation;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.ApplicationClass;
 import com.example.mangoplate.src.BaseActivity;
-import com.example.mangoplate.src.main.discount.DiscountFragment;
 import com.example.mangoplate.src.main.models.MainFragmentStateAdapter;
-import com.example.mangoplate.src.main.my_info.MyInfoFragment;
-import com.example.mangoplate.src.main.search_restaurant.SearchRestaurantFragment;
-import com.example.mangoplate.src.main.timeline.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
 public class MainActivity extends BaseActivity {
-    private MainFragmentStateAdapter vp2MainScreenAdapter;
     private ViewRevealAnimator viewRevealAnimator;
     private BottomNavigationView botNav;
     private ViewPager2 vp2MainScreen;
+    private FloatingActionButton btnOpenAddition, btnCloseAddition;
+    private AlphaAnimation fadeIn, fadeOut;
+    private RotateAnimation rotateCw, rotateCcw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setVp2() {
-        vp2MainScreenAdapter = new MainFragmentStateAdapter(this, 4);
+        MainFragmentStateAdapter vp2MainScreenAdapter = new MainFragmentStateAdapter(this, 4);
         vp2MainScreen = findViewById(R.id.main_vp2_main_screen);
         vp2MainScreen.setAdapter(vp2MainScreenAdapter);
         vp2MainScreen.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
@@ -62,17 +61,33 @@ public class MainActivity extends BaseActivity {
 
         viewRevealAnimator = findViewById(R.id.main_anim_center_btn_animator);
 
-        ImageButton btnCloseAddition = findViewById(R.id.main_btn_close_addition);
-        btnCloseAddition.setOnClickListener(new ImageButton.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewRevealAnimator.setDisplayedChild(
-                        viewRevealAnimator.getDisplayedChild() + 1,
-                        true,
-                        new Point(ApplicationClass.screenWidth/2,
-                                ApplicationClass.screenHeight - botNav.getHeight())
-                );
-            }
+        btnOpenAddition = findViewById(R.id.main_btn_addition);
+        btnCloseAddition = findViewById(R.id.main_btn_close_addition);
+        fadeIn = new AlphaAnimation(0.5f, 1.0f);
+        fadeOut = new AlphaAnimation(1.0f, 0.5f);
+        rotateCw = new RotateAnimation(-45, 0, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateCcw = new RotateAnimation(0, -45, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        fadeIn.setDuration(400);
+        fadeOut.setDuration(400);
+        rotateCw.setDuration(400);
+        rotateCcw.setDuration(400);
+
+        btnCloseAddition.setOnClickListener(v -> {
+            btnOpenAddition.startAnimation(fadeIn);
+
+            AnimationSet closeAnimationSet = new AnimationSet(true);
+            closeAnimationSet.addAnimation(fadeOut);
+            closeAnimationSet.addAnimation(rotateCcw);
+            btnCloseAddition.startAnimation(closeAnimationSet);
+
+            viewRevealAnimator.setDisplayedChild(
+                    viewRevealAnimator.getDisplayedChild() + 1,
+                    true,
+                    new Point(ApplicationClass.screenWidth/2,
+                            ApplicationClass.screenHeight - botNav.getHeight())
+            );
         });
     }
 
@@ -89,6 +104,13 @@ public class MainActivity extends BaseActivity {
                     break;
                 }
                 case R.id.item_addition: {
+                    btnOpenAddition.startAnimation(fadeOut);
+
+                    AnimationSet openAnimationSet = new AnimationSet(true);
+                    openAnimationSet.addAnimation(fadeIn);
+                    openAnimationSet.addAnimation(rotateCw);
+                    btnCloseAddition.startAnimation(openAnimationSet);
+
                     viewRevealAnimator.setDisplayedChild(
                             viewRevealAnimator.getDisplayedChild() + 1,
                             true,

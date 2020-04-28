@@ -10,7 +10,6 @@
         android:title="@string/item1" />
     <item
         android:id="@+id/item_addition"
-        android:icon="@drawable/selector_ic_addition"
         android:title="@string/item2" />
     <item
         android:id="@+id/item_timeline"
