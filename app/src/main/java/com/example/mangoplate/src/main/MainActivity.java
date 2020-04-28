@@ -3,10 +3,10 @@ package com.example.mangoplate.src.main;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,6 +15,7 @@ import com.example.mangoplate.R;
 import com.example.mangoplate.src.ApplicationClass;
 import com.example.mangoplate.src.BaseActivity;
 import com.example.mangoplate.src.main.discount.DiscountFragment;
+import com.example.mangoplate.src.main.models.MainFragmentStateAdapter;
 import com.example.mangoplate.src.main.my_info.MyInfoFragment;
 import com.example.mangoplate.src.main.search_restaurant.SearchRestaurantFragment;
 import com.example.mangoplate.src.main.timeline.TimelineFragment;
@@ -23,16 +24,35 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
 public class MainActivity extends BaseActivity {
-    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private MainFragmentStateAdapter vp2MainScreenAdapter;
     private ViewRevealAnimator viewRevealAnimator;
     private BottomNavigationView botNav;
+    private ViewPager2 vp2MainScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setVp2();
         initView();
+    }
+
+    private void setVp2() {
+        vp2MainScreenAdapter = new MainFragmentStateAdapter(this, 4);
+        vp2MainScreen = findViewById(R.id.main_vp2_main_screen);
+        vp2MainScreen.setAdapter(vp2MainScreenAdapter);
+        vp2MainScreen.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        vp2MainScreen.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                if(position == 0) botNav.setSelectedItemId(R.id.item_search_restaurant);
+                else if(position == 1) botNav.setSelectedItemId(R.id.item_discount);
+                else if(position == 2) botNav.setSelectedItemId(R.id.item_timeline);
+                else if(position == 3) botNav.setSelectedItemId(R.id.item_my_info);
+            }
+        });
     }
 
     private void initView() {
@@ -59,19 +79,13 @@ public class MainActivity extends BaseActivity {
     private class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-
             switch (item.getItemId()) {
                 case R.id.item_search_restaurant: {
-                    transaction.replace(R.id.main_frame_layout, SearchRestaurantFragment.newInstance())
-                            .commitAllowingStateLoss();
-
+                    vp2MainScreen.setCurrentItem(0);
                     break;
                 }
                 case R.id.item_discount: {
-                    transaction.replace(R.id.main_frame_layout, DiscountFragment.newInstance())
-                            .commitAllowingStateLoss();
-
+                    vp2MainScreen.setCurrentItem(1);
                     break;
                 }
                 case R.id.item_addition: {
@@ -84,15 +98,11 @@ public class MainActivity extends BaseActivity {
                     break;
                 }
                 case R.id.item_timeline: {
-                    transaction.replace(R.id.main_frame_layout, TimelineFragment.newInstance())
-                            .commitAllowingStateLoss();
-
+                    vp2MainScreen.setCurrentItem(2);
                     break;
                 }
                 case R.id.item_my_info: {
-                    transaction.replace(R.id.main_frame_layout, MyInfoFragment.newInstance())
-                            .commitAllowingStateLoss();
-
+                    vp2MainScreen.setCurrentItem(3);
                     break;
                 }
             }
