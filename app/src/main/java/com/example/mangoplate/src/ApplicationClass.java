@@ -28,7 +28,7 @@ public class ApplicationClass extends Application {
     public static SharedPreferences sSharedPreferences = null;
 
     // SharedPreferences 키 값
-    public static String TAG = "TEMPLATE_APP";
+    public static String TAG = "MANGO_PLATE_BY_YOONDY";
 
     // JWT Token 값
     public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
