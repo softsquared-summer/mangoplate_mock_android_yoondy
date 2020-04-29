@@ -72,6 +72,7 @@
             android:background="@color/orange">
 
             <ImageView
+                android:id="@+id/main_iv_ic_go_to_eat_deal"
                 android:layout_width="24dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/main_tv_go_to_eat_deal"
@@ -86,7 +87,7 @@
                 android:id="@+id/main_tv_go_to_eat_deal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/main_tv_indicate_retaurant"
+                app:layout_constraintBottom_toTopOf="@+id/main_tv_indicate_restaurant"
                 app:layout_constraintStart_toStartOf="@+id/main_tv_add_restaurant"
                 android:layout_marginBottom="40dp"
                 android:textColor="@android:color/white"
@@ -94,18 +95,19 @@
                 android:text="@string/go_to_eat_deal"/>
 
             <ImageView
+                android:id="@+id/main_iv_ic_indicate_restaurant"
                 android:layout_width="21dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/main_tv_indicate_retaurant"
-                app:layout_constraintBottom_toBottomOf="@+id/main_tv_indicate_retaurant"
-                app:layout_constraintEnd_toStartOf="@+id/main_tv_indicate_retaurant"
+                app:layout_constraintTop_toTopOf="@id/main_tv_indicate_restaurant"
+                app:layout_constraintBottom_toBottomOf="@+id/main_tv_indicate_restaurant"
+                app:layout_constraintEnd_toStartOf="@+id/main_tv_indicate_restaurant"
                 android:layout_marginEnd="30dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_pin_white" />
 
             <TextView
-                android:id="@+id/main_tv_indicate_retaurant"
+                android:id="@+id/main_tv_indicate_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/main_tv_write_review"
@@ -116,6 +118,7 @@
                 android:text="@string/indicate_retaurant"/>
 
             <ImageView
+                android:id="@+id/main_iv_ic_write_review"
                 android:layout_width="23dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/main_tv_write_review"
@@ -138,6 +141,7 @@
                 android:text="@string/write_review"/>
 
             <ImageView
+                android:id="@+id/main_iv_ic_add_restaurant"
                 android:layout_width="23dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/main_tv_add_restaurant"

@@ -7,6 +7,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager2.widget.ViewPager2;
@@ -25,8 +28,11 @@ public class MainActivity extends BaseActivity {
     private BottomNavigationView botNav;
     private ViewPager2 vp2MainScreen;
     private FloatingActionButton btnOpenAddition, btnCloseAddition;
-    private AlphaAnimation fadeIn, fadeOut;
+    private AlphaAnimation halfFadeIn, halfFadeOut, fadeIn;
     private RotateAnimation rotateCw, rotateCcw;
+    private TranslateAnimation riseUp;
+    private ImageView ivIcGoToEatDeal, ivIcIndicateRestaurant, ivIcWriteReview, ivIcAddRestaurant;
+    private TextView tvGoToEatDeal, tvIndicateRestaurant, tvWriteReview, tvAddRestaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +69,28 @@ public class MainActivity extends BaseActivity {
 
         btnOpenAddition = findViewById(R.id.main_btn_addition);
         btnCloseAddition = findViewById(R.id.main_btn_close_addition);
-        fadeIn = new AlphaAnimation(0.5f, 1.0f);
-        fadeOut = new AlphaAnimation(1.0f, 0.5f);
+
+        fadeIn = new AlphaAnimation(0.0f, 1.0f);
+        halfFadeIn = new AlphaAnimation(0.5f, 1.0f);
+        halfFadeOut = new AlphaAnimation(1.0f, 0.5f);
         rotateCw = new RotateAnimation(-45, 0, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateCcw = new RotateAnimation(0, -45, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        fadeIn.setDuration(400);
-        fadeOut.setDuration(400);
+        riseUp = new TranslateAnimation(0, 0, 200, 0);
+
+        fadeIn.setDuration(600);
+        halfFadeIn.setDuration(400);
+        halfFadeOut.setDuration(400);
         rotateCw.setDuration(400);
         rotateCcw.setDuration(400);
+        riseUp.setDuration(600);
 
         btnCloseAddition.setOnClickListener(v -> {
-            btnOpenAddition.startAnimation(fadeIn);
+            btnOpenAddition.startAnimation(halfFadeIn);
 
             AnimationSet closeAnimationSet = new AnimationSet(true);
-            closeAnimationSet.addAnimation(fadeOut);
+            closeAnimationSet.addAnimation(halfFadeOut);
             closeAnimationSet.addAnimation(rotateCcw);
             btnCloseAddition.startAnimation(closeAnimationSet);
 
@@ -89,6 +101,15 @@ public class MainActivity extends BaseActivity {
                             ApplicationClass.screenHeight - botNav.getHeight())
             );
         });
+
+        ivIcGoToEatDeal = findViewById(R.id.main_iv_ic_go_to_eat_deal);
+        ivIcIndicateRestaurant = findViewById(R.id.main_iv_ic_indicate_restaurant);
+        ivIcWriteReview = findViewById(R.id.main_iv_ic_write_review);
+        ivIcAddRestaurant = findViewById(R.id.main_iv_ic_add_restaurant);
+        tvGoToEatDeal = findViewById(R.id.main_tv_go_to_eat_deal);
+        tvIndicateRestaurant = findViewById(R.id.main_tv_indicate_restaurant);
+        tvWriteReview = findViewById(R.id.main_tv_write_review);
+        tvAddRestaurant = findViewById(R.id.main_tv_add_restaurant);
     }
 
     private class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -104,10 +125,10 @@ public class MainActivity extends BaseActivity {
                     break;
                 }
                 case R.id.item_addition: {
-                    btnOpenAddition.startAnimation(fadeOut);
+                    btnOpenAddition.startAnimation(halfFadeOut);
 
                     AnimationSet openAnimationSet = new AnimationSet(true);
-                    openAnimationSet.addAnimation(fadeIn);
+                    openAnimationSet.addAnimation(halfFadeIn);
                     openAnimationSet.addAnimation(rotateCw);
                     btnCloseAddition.startAnimation(openAnimationSet);
 
@@ -117,6 +138,20 @@ public class MainActivity extends BaseActivity {
                             new Point(ApplicationClass.screenWidth/2,
                                     ApplicationClass.screenHeight - botNav.getHeight())
                     );
+
+                    AnimationSet appearAnimation = new AnimationSet(true);
+                    appearAnimation.addAnimation(fadeIn);
+                    appearAnimation.addAnimation(riseUp);
+
+                    ivIcGoToEatDeal.startAnimation(appearAnimation);
+                    tvGoToEatDeal.startAnimation(appearAnimation);
+                    ivIcIndicateRestaurant.startAnimation(appearAnimation);
+                    tvIndicateRestaurant.startAnimation(appearAnimation);
+                    ivIcWriteReview.startAnimation(appearAnimation);
+                    tvWriteReview.startAnimation(appearAnimation);
+                    ivIcAddRestaurant.startAnimation(appearAnimation);
+                    tvAddRestaurant.startAnimation(appearAnimation);
+
                     break;
                 }
                 case R.id.item_timeline: {
