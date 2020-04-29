@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.main.models;
+package com.softsquared.mangoplate.src.main.models;
 
 import android.util.Log;
 
@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.mangoplate.src.ApplicationClass;
-import com.example.mangoplate.src.main.discount.DiscountFragment;
-import com.example.mangoplate.src.main.my_info.MyInfoFragment;
-import com.example.mangoplate.src.main.search_restaurant.SearchRestaurantFragment;
-import com.example.mangoplate.src.main.timeline.TimelineFragment;
+import com.softsquared.mangoplate.src.ApplicationClass;
+import com.softsquared.mangoplate.src.main.discount.DiscountFragment;
+import com.softsquared.mangoplate.src.main.my_info.MyInfoFragment;
+import com.softsquared.mangoplate.src.main.search_restaurant.SearchRestaurantFragment;
+import com.softsquared.mangoplate.src.main.timeline.TimelineFragment;
 
 public class MainFragmentStateAdapter extends FragmentStateAdapter {
     private int mCount;

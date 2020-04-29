@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.main;
+package com.softsquared.mangoplate.src.main;
 
 import android.graphics.Point;
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.mangoplate.R;
-import com.example.mangoplate.src.ApplicationClass;
-import com.example.mangoplate.src.BaseActivity;
-import com.example.mangoplate.src.main.models.MainFragmentStateAdapter;
+import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.ApplicationClass;
+import com.softsquared.mangoplate.src.BaseActivity;
+import com.softsquared.mangoplate.src.main.models.MainFragmentStateAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

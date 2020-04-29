@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.main.discount;
+package com.softsquared.mangoplate.src.main.discount;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mangoplate.R;
+import com.softsquared.mangoplate.R;
 
 public class DiscountFragment extends Fragment {
     public DiscountFragment() {

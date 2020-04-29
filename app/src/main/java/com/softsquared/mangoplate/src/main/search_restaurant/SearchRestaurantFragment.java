@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.main.search_restaurant;
+package com.softsquared.mangoplate.src.main.search_restaurant;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mangoplate.R;
+import com.softsquared.mangoplate.R;
 
 public class SearchRestaurantFragment extends Fragment {
     public SearchRestaurantFragment() {

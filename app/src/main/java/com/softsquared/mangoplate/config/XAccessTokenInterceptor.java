@@ -1,4 +1,4 @@
-package com.example.mangoplate.config;
+package com.softsquared.mangoplate.config;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -8,8 +8,8 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.example.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
-import static com.example.mangoplate.src.ApplicationClass.sSharedPreferences;
+import static com.softsquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
 public class XAccessTokenInterceptor implements Interceptor {
     @NotNull

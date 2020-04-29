@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.main.timeline;
+package com.softsquared.mangoplate.src.main.my_info;
 
 import android.os.Bundle;
 
@@ -8,15 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mangoplate.R;
+import com.softsquared.mangoplate.R;
 
-public class TimelineFragment extends Fragment {
-    public TimelineFragment() {
+public class MyInfoFragment extends Fragment {
+    public MyInfoFragment() {
         // Required empty public constructor
     }
 
-    public static TimelineFragment newInstance() {
-        TimelineFragment fragment = new TimelineFragment();
+    public static MyInfoFragment newInstance() {
+        MyInfoFragment fragment = new MyInfoFragment();
         return fragment;
     }
 
@@ -24,6 +24,6 @@ public class TimelineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_timeline, container, false);
+        return inflater.inflate(R.layout.fragment_my_info, container, false);
     }
 }

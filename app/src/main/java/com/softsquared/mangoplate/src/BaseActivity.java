@@ -1,4 +1,4 @@
-package com.example.mangoplate.src;
+package com.softsquared.mangoplate.src;
 
 import android.app.ProgressDialog;
 import android.widget.Toast;

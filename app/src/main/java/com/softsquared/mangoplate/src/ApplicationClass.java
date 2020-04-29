@@ -1,11 +1,11 @@
-package com.example.mangoplate.src;
+package com.softsquared.mangoplate.src;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.DisplayMetrics;
 
-import com.example.mangoplate.config.XAccessTokenInterceptor;
+import com.softsquared.mangoplate.config.XAccessTokenInterceptor;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

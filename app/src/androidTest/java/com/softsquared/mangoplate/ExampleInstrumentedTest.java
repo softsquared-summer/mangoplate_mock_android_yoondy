@@ -1,4 +1,4 @@
-package com.example.mangoplate;
+package com.softsquared.mangoplate;
 
 import android.content.Context;
 
