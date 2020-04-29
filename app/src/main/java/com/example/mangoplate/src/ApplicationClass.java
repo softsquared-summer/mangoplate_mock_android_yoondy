@@ -16,6 +16,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 public class ApplicationClass extends Application {
+    private static DisplayMetrics metrics;
+
     public static MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=uft-8");
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
     public static MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
@@ -23,7 +25,7 @@ public class ApplicationClass extends Application {
     // 테스트 서버 주소
 //    public static String BASE_URL = "http://apis.newvement.com/";
     // 실서버 주소
-//    public static String BASE_URL = "https://template.softsquared.com/";
+    public static String BASE_URL = "http://product.eunjiha.site/";
 
     public static SharedPreferences sSharedPreferences = null;
 
@@ -39,10 +41,6 @@ public class ApplicationClass extends Application {
     // Retrofit 인스턴스
     public static Retrofit retrofit;
 
-    // screen size
-    public static int screenWidth;
-    public static int screenHeight;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -50,9 +48,7 @@ public class ApplicationClass extends Application {
         if(sSharedPreferences == null)
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        screenWidth = metrics.widthPixels;
-        screenHeight = metrics.heightPixels;
+        metrics = getResources().getDisplayMetrics();
     }
 
     public static Retrofit getRetrofit() {
@@ -65,5 +61,13 @@ public class ApplicationClass extends Application {
         }
 
         return retrofit;
+    }
+
+    public static int getScreenWidth() {
+        return metrics == null ? 0 : metrics.widthPixels;
+    }
+
+    public static int getScreenHeight() {
+        return metrics == null ? 0 : metrics.heightPixels;
     }
 }

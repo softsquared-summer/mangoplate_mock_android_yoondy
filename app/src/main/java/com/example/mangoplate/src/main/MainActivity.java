@@ -97,8 +97,8 @@ public class MainActivity extends BaseActivity {
             viewRevealAnimator.setDisplayedChild(
                     viewRevealAnimator.getDisplayedChild() + 1,
                     true,
-                    new Point(ApplicationClass.screenWidth/2,
-                            ApplicationClass.screenHeight - botNav.getHeight())
+                    new Point(ApplicationClass.getScreenWidth()/2,
+                            ApplicationClass.getScreenHeight() - botNav.getHeight())
             );
         });
 
@@ -135,8 +135,8 @@ public class MainActivity extends BaseActivity {
                     viewRevealAnimator.setDisplayedChild(
                             viewRevealAnimator.getDisplayedChild() + 1,
                             true,
-                            new Point(ApplicationClass.screenWidth/2,
-                                    ApplicationClass.screenHeight - botNav.getHeight())
+                            new Point(ApplicationClass.getScreenWidth()/2,
+                                    ApplicationClass.getScreenHeight() - botNav.getHeight())
                     );
 
                     AnimationSet appearAnimation = new AnimationSet(true);
