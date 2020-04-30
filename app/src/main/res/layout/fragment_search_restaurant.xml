@@ -12,7 +12,7 @@
         android:id="@+id/sch_rest_const_layout_location_watch_now"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:background="@android:color/white"
+        android:background="?attr/selectableItemBackground"
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sch_rest_tv_location_watch_now_is"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_weight="3">
+            app:layout_constraintVertical_weight="3"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
                 android:id="@+id/sch_rest_tv_location"
