@@ -9,4 +9,5 @@
     <string name="indicate_retaurant">가봤어요</string>
     <string name="write_review">리뷰 쓰기</string>
     <string name="add_restaurant">식당 등록하기</string>
+    <string name="phrase_location_watch_now_is">지금 보고있는 지역은</string>
 </resources>
