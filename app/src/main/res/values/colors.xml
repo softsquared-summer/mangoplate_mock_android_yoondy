@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="orange">#FF7100</color>
+    <color name="semitransparent">#20FFFFFF</color>
 </resources>

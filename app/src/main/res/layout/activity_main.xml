@@ -32,6 +32,7 @@
                 android:id="@+id/main_vp2_main_screen"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/main_bot_nav"
                 app:layout_constraintStart_toStartOf="parent"

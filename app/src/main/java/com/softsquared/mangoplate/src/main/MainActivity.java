@@ -3,6 +3,8 @@ package com.softsquared.mangoplate.src.main;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -24,9 +26,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
 public class MainActivity extends BaseActivity {
+    public ViewPager2 vp2MainScreen;
+
     private ViewRevealAnimator viewRevealAnimator;
     private BottomNavigationView botNav;
-    private ViewPager2 vp2MainScreen;
     private FloatingActionButton btnOpenAddition, btnCloseAddition;
     private AlphaAnimation halfFadeIn, halfFadeOut, fadeIn;
     private RotateAnimation rotateCw, rotateCcw;
@@ -47,7 +50,11 @@ public class MainActivity extends BaseActivity {
         MainFragmentStateAdapter vp2MainScreenAdapter = new MainFragmentStateAdapter(this, 4);
         vp2MainScreen = findViewById(R.id.main_vp2_main_screen);
         vp2MainScreen.setAdapter(vp2MainScreenAdapter);
-        vp2MainScreen.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        vp2MainScreen.setOnTouchListener((v, event) -> {
+            vp2MainScreen.setUserInputEnabled(true);
+            v.performClick();
+            return false;
+        });
         vp2MainScreen.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
