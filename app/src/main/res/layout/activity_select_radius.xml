@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.main.search_restaurant.select_radius.SelectRadiusActivity">
+
+    <FrameLayout
+        android:id="@+id/sel_radius_frame_layout_bg_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sel_radius_const_layout_bottom_panel"
+        android:background="@drawable/bg_gradation_select_radius"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sel_radius_const_layout_bottom_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sel_radius_tv_radius"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/orange"
+            android:textSize="12sp"
+            android:text="@string/radius_title" />
+
+        <TextView
+            android:id="@+id/sel_radius_tv_radius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/sel_radius_seekBar"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/orange"
+            android:textSize="30sp"
+            android:text="3km"/>
+
+        <ImageView
+            android:id="@+id/sel_radius_iv_ic_narrow_locator"
+            android:layout_width="12dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sel_radius_seekBar"
+            app:layout_constraintTop_toTopOf="@id/sel_radius_seekBar"
+            app:layout_constraintBottom_toBottomOf="@id/sel_radius_seekBar"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_locator_gray"/>
+
+        <SeekBar
+            android:id="@+id/sel_radius_seekBar"
+            style="@style/Widget.AppCompat.SeekBar"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/sel_radius_iv_ic_narrow_locator"
+            app:layout_constraintEnd_toStartOf="@+id/sel_radius_iv_ic_wide_locator"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="60dp"
+            android:thumb="@drawable/seekbar_thumb"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:max="200"
+            android:progress="200"/>
+
+        <ImageView
+            android:id="@+id/sel_radius_iv_ic_wide_locator"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/sel_radius_seekBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sel_radius_seekBar"
+            app:layout_constraintBottom_toBottomOf="@id/sel_radius_seekBar"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_locator_wide_area_gray"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/sel_radius_seekBar"
+            app:layout_constraintTop_toBottomOf="@id/sel_radius_seekBar"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:text="@string/near_me"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

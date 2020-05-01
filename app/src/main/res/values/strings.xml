@@ -16,4 +16,6 @@
     <string name="sort_by_recommend">추천순</string>
     <string name="sort_by_review">리뷰순</string>
     <string name="sort_by_distance">거리순</string>
+    <string name="near_me">내 주변</string>
+    <string name="radius_title">내 위치에서 검색 반경 선택</string>
 </resources>

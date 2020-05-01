@@ -9,4 +9,8 @@
     <color name="middleGray">#CBCBCB</color>
     <color name="brightGray">#F2F2F2</color>
     <color name="semitransparent">#20FFFFFF</color>
+    <color name="brightDarkTransparent">#40000000</color>
+    <color name="darkHalfTransparent">#80000000</color>
+    <color name="darkTransparent">#BF000000</color>
+    <color name="blackTransparent">#E6000000</color>
 </resources>

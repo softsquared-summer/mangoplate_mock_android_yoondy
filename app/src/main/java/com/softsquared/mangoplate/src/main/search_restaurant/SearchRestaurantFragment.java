@@ -23,6 +23,7 @@ import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdInfo
 import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.search_restaurant.select_radius.SelectRadiusActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_sort_by.SelectSortByActivity;
 
 import java.util.Timer;
@@ -30,6 +31,7 @@ import java.util.TimerTask;
 
 public class SearchRestaurantFragment extends Fragment {
     private final int SELECT_SORT_BY = 1;
+    private final int SELECT_RADIUS = 2;
     private ViewPager2 vp2BannerAds;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
@@ -50,25 +52,9 @@ public class SearchRestaurantFragment extends Fragment {
         setVp2BannerAds(view);
         setRvRestaurantList(view);
         setBtnSelectSortBy(view);
+        setBtnSelectRadius(view);
 
         return view;
-    }
-
-    private void setBtnSelectSortBy(View view) {
-        ConstraintLayout clSelectSortBy = view.findViewById(R.id.sch_rest_const_layout_sort_by);
-        Intent intent = new Intent(getContext(), SelectSortByActivity.class);
-        clSelectSortBy.setOnClickListener(v -> startActivityForResult(intent, SELECT_SORT_BY));
-    }
-
-    private void setRvRestaurantList(View view) {
-        RecyclerView rvRestaurantList = view.findViewById(R.id.sch_rest_rv_restaurants_list);
-        rvRestaurantList.setHasFixedSize(true);
-        rvRestaurantList.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-        RestaurantListRvAdapter rvRestaurantListAdapter = new RestaurantListRvAdapter();
-        rvRestaurantList.setAdapter(rvRestaurantListAdapter);
-
-        // TODO: test. It must be removed later.
-        addToRvAdapter(rvRestaurantListAdapter);
     }
 
     private void setVp2BannerAds(View view) {
@@ -94,6 +80,29 @@ public class SearchRestaurantFragment extends Fragment {
         new TabLayoutMediator(tabLayout, vp2BannerAds, (tab, position) -> tab.select()).attach();
 
         setCirculateBannerAds();
+    }
+
+    private void setRvRestaurantList(View view) {
+        RecyclerView rvRestaurantList = view.findViewById(R.id.sch_rest_rv_restaurants_list);
+        rvRestaurantList.setHasFixedSize(true);
+        rvRestaurantList.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        RestaurantListRvAdapter rvRestaurantListAdapter = new RestaurantListRvAdapter();
+        rvRestaurantList.setAdapter(rvRestaurantListAdapter);
+
+        // TODO: test. It must be removed later.
+        addToRvAdapter(rvRestaurantListAdapter);
+    }
+
+    private void setBtnSelectSortBy(View view) {
+        ConstraintLayout clSelectSortBy = view.findViewById(R.id.sch_rest_const_layout_sort_by);
+        Intent intent = new Intent(getContext(), SelectSortByActivity.class);
+        clSelectSortBy.setOnClickListener(v -> startActivityForResult(intent, SELECT_SORT_BY));
+    }
+
+    private void setBtnSelectRadius(View view) {
+        ConstraintLayout clSelectRadius = view.findViewById(R.id.sch_rest_const_layout_radius_btn);
+        Intent intent = new Intent(getContext(), SelectRadiusActivity.class);
+        clSelectRadius.setOnClickListener(v -> startActivityForResult(intent, SELECT_RADIUS));
     }
 
     private void setCirculateBannerAds() {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".src.main.search_restaurant.select_sort_by.SelectSortByActivity"
     android:background="@drawable/bg_gradation_select_sort_by">
-<!--    bg_gradation_select_sort_by-->
+
     <FrameLayout
         android:id="@+id/sel_sort_by_frame_layout_bg_panel"
         android:layout_width="0dp"

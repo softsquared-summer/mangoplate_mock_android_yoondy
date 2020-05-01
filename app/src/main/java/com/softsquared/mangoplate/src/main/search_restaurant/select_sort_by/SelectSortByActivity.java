@@ -32,6 +32,9 @@ public class SelectSortByActivity extends AppCompatActivity {
         btnSortByReview = findViewById(R.id.sel_sort_by_btn_sort_by_review);
         btnSortByDistance = findViewById(R.id.sel_sort_by_btn_sort_by_distance);
 
+        btnSortByScore.setTextColor(getResources().getColor(R.color.orange));
+        btnSortByScore.setSelected(true);
+
         btnSortByScore.setOnClickListener(v -> {
             btnSortByScore.setTextColor(getResources().getColor(R.color.orange));
             v.setSelected(true);
