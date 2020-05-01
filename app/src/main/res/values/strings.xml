@@ -10,4 +10,10 @@
     <string name="write_review">리뷰 쓰기</string>
     <string name="add_restaurant">식당 등록하기</string>
     <string name="phrase_location_watch_now_is">지금 보고있는 지역은</string>
+    <string name="sort_by_guidance_phrase">*거리순은 위치가 켜져있을 때만 가능</string>
+    <string name="sort_by_title">정렬</string>
+    <string name="sort_by_score">평점순</string>
+    <string name="sort_by_recommend">추천순</string>
+    <string name="sort_by_review">리뷰순</string>
+    <string name="sort_by_distance">거리순</string>
 </resources>

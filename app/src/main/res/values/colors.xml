@@ -6,6 +6,7 @@
 
     <color name="orange">#FF7100</color>
     <color name="gray">#7F7F7F</color>
-    <color name="lightGray">#F2F2F2</color>
+    <color name="middleGray">#CBCBCB</color>
+    <color name="brightGray">#F2F2F2</color>
     <color name="semitransparent">#20FFFFFF</color>
 </resources>

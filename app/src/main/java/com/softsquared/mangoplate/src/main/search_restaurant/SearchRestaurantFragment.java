@@ -1,6 +1,7 @@
 package com.softsquared.mangoplate.src.main.search_restaurant;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,17 +18,18 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdInfo;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.search_restaurant.select_sort_by.SelectSortByActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SearchRestaurantFragment extends Fragment {
+    private final int SELECT_SORT_BY = 1;
     private ViewPager2 vp2BannerAds;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
@@ -45,7 +48,19 @@ public class SearchRestaurantFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search_restaurant, container, false);
 
         setVp2BannerAds(view);
+        setRvRestaurantList(view);
+        setBtnSelectSortBy(view);
 
+        return view;
+    }
+
+    private void setBtnSelectSortBy(View view) {
+        ConstraintLayout clSelectSortBy = view.findViewById(R.id.sch_rest_const_layout_sort_by);
+        Intent intent = new Intent(getContext(), SelectSortByActivity.class);
+        clSelectSortBy.setOnClickListener(v -> startActivityForResult(intent, SELECT_SORT_BY));
+    }
+
+    private void setRvRestaurantList(View view) {
         RecyclerView rvRestaurantList = view.findViewById(R.id.sch_rest_rv_restaurants_list);
         rvRestaurantList.setHasFixedSize(true);
         rvRestaurantList.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
@@ -54,8 +69,6 @@ public class SearchRestaurantFragment extends Fragment {
 
         // TODO: test. It must be removed later.
         addToRvAdapter(rvRestaurantListAdapter);
-
-        return view;
     }
 
     private void setVp2BannerAds(View view) {
@@ -167,6 +180,10 @@ public class SearchRestaurantFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        Activity activity = getActivity();
+        if(activity != null)
+            activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
         setNextBannerAd.cancel();
     }
 

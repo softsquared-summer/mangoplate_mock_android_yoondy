@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.main.search_restaurant.select_sort_by.SelectSortByActivity"
+    android:background="@drawable/bg_gradation_select_sort_by">
+<!--    bg_gradation_select_sort_by-->
+    <FrameLayout
+        android:id="@+id/sel_sort_by_frame_layout_bg_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sel_sort_by_const_layout_bottom_panel"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sel_sort_by_const_layout_bottom_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/sel_sort_by_iv_cancel"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="14dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_downward_medium_arrow"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sel_sort_by_btn_sort_by_distance"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="18dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:text="@string/sort_by_title"/>
+
+        <Button
+            android:id="@+id/sel_sort_by_btn_sort_by_score"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sel_sort_by_btn_sort_by_distance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sel_sort_by_btn_sort_by_recommend"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/middleGray"
+            android:text="@string/sort_by_score"
+            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+
+        <Button
+            android:id="@+id/sel_sort_by_btn_sort_by_recommend"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sel_sort_by_btn_sort_by_distance"
+            app:layout_constraintStart_toEndOf="@+id/sel_sort_by_btn_sort_by_score"
+            app:layout_constraintEnd_toStartOf="@+id/sel_sort_by_btn_sort_by_review"
+            android:textColor="@color/middleGray"
+            android:text="@string/sort_by_recommend"
+            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+
+        <Button
+            android:id="@+id/sel_sort_by_btn_sort_by_review"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sel_sort_by_btn_sort_by_distance"
+            app:layout_constraintStart_toEndOf="@+id/sel_sort_by_btn_sort_by_recommend"
+            app:layout_constraintEnd_toStartOf="@+id/sel_sort_by_btn_sort_by_distance"
+            android:textColor="@color/middleGray"
+            android:text="@string/sort_by_review"
+            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+
+        <Button
+            android:id="@+id/sel_sort_by_btn_sort_by_distance"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toTopOf="@+id/sel_sort_by_tv_guidance_phrase"
+            app:layout_constraintStart_toEndOf="@+id/sel_sort_by_btn_sort_by_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/middleGray"
+            android:text="@string/sort_by_distance"
+            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+
+        <TextView
+            android:id="@+id/sel_sort_by_tv_guidance_phrase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/orange"
+            android:textSize="11sp"
+            android:text="@string/sort_by_guidance_phrase"
+            tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

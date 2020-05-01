@@ -19,8 +19,8 @@
         app:vra_hideBeforeReveal="false"
         android:measureAllChildren="true"
         android:animateFirstView="true"
-        android:outAnimation="@anim/anim_fab_close_rotate"
-        android:inAnimation="@anim/anim_fab_open_rotate"
+        android:outAnimation="@anim/fade_out"
+        android:inAnimation="@anim/fade_in"
         android:interpolator="@android:interpolator/accelerate_decelerate">
 
         <!-- Main View -->
