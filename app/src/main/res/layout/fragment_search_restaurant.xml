@@ -235,6 +235,7 @@
                 android:src="@drawable/ic_filter"/>
 
             <ImageView
+                android:id="@+id/sch_rest_iv_band_ad"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -242,6 +243,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/sch_rest_const_layout_sort_by"
                 android:adjustViewBounds="true"
                 android:src="@drawable/band_ad"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sch_rest_rv_restaurants_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sch_rest_iv_band_ad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="5dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

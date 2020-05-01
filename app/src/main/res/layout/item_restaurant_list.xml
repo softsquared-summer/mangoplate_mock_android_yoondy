@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="?attr/selectableItemBackground">
+
+    <FrameLayout
+        android:id="@+id/restaurant_list_frame_layout_photo_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1" >
+
+        <ImageView
+            android:id="@+id/restaurant_list_iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_launcher_foreground"
+            android:background="@color/lightGray"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/restaurant_list_iv_star"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:adjustViewBounds="true"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_star_white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/restaurant_list_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_list_frame_layout_photo_frame"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_list_frame_layout_photo_frame"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:text="1. 시키카츠"/>
+
+    <TextView
+        android:id="@+id/restaurant_list_tv_area_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_list_tv_name"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_list_frame_layout_photo_frame"
+        android:layout_marginTop="3dp"
+        android:textSize="11sp"
+        android:textColor="@color/gray"
+        android:text="동대문구 - 2.94 Km"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/restaurant_list_iv_ic_eye"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_list_tv_area_distance"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_list_frame_layout_photo_frame"
+        android:layout_marginTop="3dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_eye_gray"/>
+
+    <TextView
+        android:id="@+id/restaurant_list_tv_view_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_list_iv_ic_eye"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_list_iv_ic_eye"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_list_iv_ic_eye"
+        android:layout_marginStart="2dp"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        android:text="8,902"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/restaurant_list_iv_ic_pencil"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_list_iv_ic_eye"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_list_tv_view_count"
+        android:adjustViewBounds="true"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_pencil_gray"/>
+
+    <TextView
+        android:id="@+id/restaurant_list_tv_review_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_list_iv_ic_eye"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_list_iv_ic_eye"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_list_iv_ic_pencil"
+        android:layout_marginStart="2dp"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        android:text="14"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/restaurant_list_tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_list_tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/orange"
+        android:textSize="22sp"
+        android:text="4.7"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

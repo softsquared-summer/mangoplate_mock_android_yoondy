@@ -21,15 +21,15 @@ public class BannerAdsVp2Adapter extends RecyclerView.Adapter<BannerAdsVp2Adapte
 
     @NonNull
     @Override
-    public BannerAdsVp2Adapter.AdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_banner_ad, parent, false);
-        return new BannerAdsVp2Adapter.AdViewHolder(view);
+        return new AdViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BannerAdsVp2Adapter.AdViewHolder holder, int position) {
-        holder.bind(bannerAdInfoArrayList.get(position).getImageUrl());
+    public void onBindViewHolder(@NonNull AdViewHolder holder, int position) {
+        holder.bind(bannerAdInfoArrayList.get(position));
     }
 
     public void addBannerAdInfo(BannerAdInfo bannerAdInfo) {
@@ -49,8 +49,10 @@ public class BannerAdsVp2Adapter extends RecyclerView.Adapter<BannerAdsVp2Adapte
             ivAd = itemView.findViewById(R.id.banner_ad_vp2_iv_ad);
         }
 
-        void bind(String url) {
-            Glide.with(itemView.getContext()).load(url).into(ivAd);
+        void bind(BannerAdInfo bannerAdInfo) {
+            Glide.with(itemView.getContext())
+                    .load(bannerAdInfo.getImageUrl())
+                    .into(ivAd);
 
             itemView.setOnTouchListener((v, event) -> {
                 Context context = v.getContext();
