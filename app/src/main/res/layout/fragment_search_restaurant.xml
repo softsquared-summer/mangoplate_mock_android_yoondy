@@ -81,6 +81,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:layout_margin="9dp"
             android:src="@drawable/ic_search" />
     </FrameLayout>
@@ -107,6 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:adjustViewBounds="true"
             android:src="@drawable/ic_map" />
     </FrameLayout>
 
@@ -124,6 +126,7 @@
             android:layout_height="match_parent" >
         
             <FrameLayout
+                android:id="@+id/sch_rest_frame_layout_banner_ads"
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -147,6 +150,98 @@
                     app:tabIndicatorHeight="0dp" />
 
             </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sch_rest_const_layout_sort_by"
+                android:layout_width="75dp"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toBottomOf="@+id/sch_rest_frame_layout_banner_ads"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="1dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/sch_rest_tv_sorting_criteria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/gray"
+                    android:text="평점순"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/ic_downward_triangle"
+                    app:layout_constraintStart_toEndOf="@+id/sch_rest_tv_sorting_criteria"
+                    app:layout_constraintTop_toTopOf="@+id/sch_rest_tv_sorting_criteria"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="3dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sch_rest_const_layout_radius_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toTopOf="@+id/sch_rest_iv_filter_btn"
+                app:layout_constraintBottom_toBottomOf="@+id/sch_rest_iv_filter_btn"
+                app:layout_constraintEnd_toStartOf="@+id/sch_rest_iv_filter_btn"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginEnd="9dp"
+                android:background="@drawable/background_rounding_radius_btn">
+
+                <ImageView
+                    android:id="@+id/sch_rest_iv_locator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sch_rest_tv_radius"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="7dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_locator"/>
+
+                <TextView
+                    android:id="@+id/sch_rest_tv_radius"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sch_rest_iv_locator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/orange"
+                    android:text="3km"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/sch_rest_iv_filter_btn"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/sch_rest_frame_layout_banner_ads"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="12dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_filter"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sch_rest_const_layout_sort_by"
+                android:adjustViewBounds="true"
+                android:src="@drawable/band_ad"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
