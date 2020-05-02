@@ -59,7 +59,7 @@
             android:layout_marginStart="8dp"
             android:textColor="@color/middleGray"
             android:text="@string/sort_by_score"
-            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+            android:background="@drawable/bg_rounding_orange_line_btn"/>
 
         <Button
             android:id="@+id/sel_sort_by_btn_sort_by_recommend"
@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toStartOf="@+id/sel_sort_by_btn_sort_by_review"
             android:textColor="@color/middleGray"
             android:text="@string/sort_by_recommend"
-            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+            android:background="@drawable/bg_rounding_orange_line_btn"/>
 
         <Button
             android:id="@+id/sel_sort_by_btn_sort_by_review"
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toStartOf="@+id/sel_sort_by_btn_sort_by_distance"
             android:textColor="@color/middleGray"
             android:text="@string/sort_by_review"
-            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+            android:background="@drawable/bg_rounding_orange_line_btn"/>
 
         <Button
             android:id="@+id/sel_sort_by_btn_sort_by_distance"
@@ -93,7 +93,7 @@
             android:layout_marginEnd="8dp"
             android:textColor="@color/middleGray"
             android:text="@string/sort_by_distance"
-            android:background="@drawable/bg_rounding_sel_sort_by_btn"/>
+            android:background="@drawable/bg_rounding_orange_line_btn"/>
 
         <TextView
             android:id="@+id/sel_sort_by_tv_guidance_phrase"

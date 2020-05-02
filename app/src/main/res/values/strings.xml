@@ -42,4 +42,7 @@
     <string name="parking">주차</string>
     <string name="only_can_park">가능한 곳만</string>
     <string name="regardless">상관없음</string>
+    <string name="apply">적용</string>
+    <string name="all_clear_selection">전체 선택 취소</string>
+    <string name="edit">편집</string>
 </resources>

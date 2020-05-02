@@ -24,6 +24,7 @@ import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdInfo
 import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.search_restaurant.select_area.SelectAreaActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_filter.SelectFilterActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_radius.SelectRadiusActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_sort_by.SelectSortByActivity;
@@ -32,9 +33,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SearchRestaurantFragment extends Fragment {
-    private final int SELECT_SORT_BY = 1;
-    private final int SELECT_RADIUS = 2;
-    private static final int SELECT_FILTER = 3;
+    private final int SELECT_AREA = 1;
+    private final int SELECT_SORT_BY = 2;
+    private final int SELECT_RADIUS = 3;
+    private final int SELECT_FILTER = 4;
     private ViewPager2 vp2BannerAds;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
@@ -54,6 +56,7 @@ public class SearchRestaurantFragment extends Fragment {
 
         setVp2BannerAds(view);
         setRvRestaurantList(view);
+        setBtnSelectArea(view);
         setBtnSelectSortBy(view);
         setBtnSelectRadius(view);
         setBtnSelectFilter(view);
@@ -95,6 +98,12 @@ public class SearchRestaurantFragment extends Fragment {
 
         // TODO: test. It must be removed later.
         addToRvAdapter(rvRestaurantListAdapter);
+    }
+
+    private void setBtnSelectArea(View view) {
+        ConstraintLayout clSelectArea = view.findViewById(R.id.sch_rest_const_layout_location_watch_now);
+        Intent intent = new Intent(getContext(), SelectAreaActivity.class);
+        clSelectArea.setOnClickListener(v -> startActivityForResult(intent, SELECT_AREA));
     }
 
     private void setBtnSelectSortBy(View view) {
