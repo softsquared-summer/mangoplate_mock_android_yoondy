@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdInfo
 import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.search_restaurant.select_filter.SelectFilterActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_radius.SelectRadiusActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_sort_by.SelectSortByActivity;
 
@@ -32,6 +34,7 @@ import java.util.TimerTask;
 public class SearchRestaurantFragment extends Fragment {
     private final int SELECT_SORT_BY = 1;
     private final int SELECT_RADIUS = 2;
+    private static final int SELECT_FILTER = 3;
     private ViewPager2 vp2BannerAds;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
@@ -53,6 +56,7 @@ public class SearchRestaurantFragment extends Fragment {
         setRvRestaurantList(view);
         setBtnSelectSortBy(view);
         setBtnSelectRadius(view);
+        setBtnSelectFilter(view);
 
         return view;
     }
@@ -103,6 +107,12 @@ public class SearchRestaurantFragment extends Fragment {
         ConstraintLayout clSelectRadius = view.findViewById(R.id.sch_rest_const_layout_radius_btn);
         Intent intent = new Intent(getContext(), SelectRadiusActivity.class);
         clSelectRadius.setOnClickListener(v -> startActivityForResult(intent, SELECT_RADIUS));
+    }
+
+    private void setBtnSelectFilter(View view) {
+        ImageView ivSelectFilter = view.findViewById(R.id.sch_rest_iv_filter_btn);
+        Intent intent = new Intent(getContext(), SelectFilterActivity.class);
+        ivSelectFilter.setOnClickListener(v -> startActivityForResult(intent, SELECT_FILTER));
     }
 
     private void setCirculateBannerAds() {

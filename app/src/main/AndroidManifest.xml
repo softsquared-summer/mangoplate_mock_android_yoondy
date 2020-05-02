@@ -19,6 +19,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
+            android:name=".src.main.search_restaurant.select_filter.SelectFilterActivity"
+            android:theme="@style/Transparent"/>
+        <activity
             android:name=".src.main.search_restaurant.select_radius.SelectRadiusActivity"
             android:theme="@style/Transparent" />
         <activity

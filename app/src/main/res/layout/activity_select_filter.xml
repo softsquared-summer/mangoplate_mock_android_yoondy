@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradation_select_filter"
+    tools:context=".src.main.search_restaurant.select_filter.SelectFilterActivity">
+
+    <FrameLayout
+        android:id="@+id/sel_filter_frame_layout_bg_panel"
+        android:layout_width="0dp"
+        android:layout_height="226dp"
+        app:layout_constraintBottom_toTopOf="@+id/sel_filter_const_layout_window_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sel_filter_const_layout_window_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/middleBrightGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sel_filter_frame_layout_bg_panel">
+
+        <TextView
+            android:id="@+id/sel_filter_tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#818181"
+            android:textSize="15sp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="18dp"/>
+
+        <TextView
+            android:id="@+id/sel_filter_tv_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apply_filter"
+            android:textColor="@color/orange"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="18dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sel_filter_const_layout_window_bar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/sel_filter_tv_category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="25dp"/>
+
+            <Button
+                android:id="@+id/sel_filter_btn_all_category"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="@string/all"
+                android:textColor="@color/middleGray"
+                android:background="@drawable/bg_rounding_sel_sort_by_btn"
+                app:layout_constraintBottom_toBottomOf="@id/sel_filter_btn_wish_category"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_btn_wish_category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/sel_filter_btn_wish_category" />
+
+            <Button
+                android:id="@+id/sel_filter_btn_wish_category"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="@string/wish"
+                android:textColor="@color/middleGray"
+                android:background="@drawable/bg_rounding_sel_sort_by_btn"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_btn_gone_category"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_btn_all_category"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_tv_category_title"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:id="@+id/sel_filter_btn_gone_category"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="@string/gone"
+                android:textColor="@color/middleGray"
+                android:background="@drawable/bg_rounding_sel_sort_by_btn"
+                app:layout_constraintBottom_toBottomOf="@id/sel_filter_btn_wish_category"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_btn_wish_category"
+                app:layout_constraintTop_toTopOf="@id/sel_filter_btn_wish_category" />
+
+            <ImageView
+                android:id="@+id/sel_filter_iv_seperator1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sperator_horizontal_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_btn_wish_category"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/sel_filter_tv_type_of_food_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type_of_food"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_seperator1"
+                android:layout_marginTop="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/can_multiple_select"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/sel_filter_tv_type_of_food_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_korean_food"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_const_layout_japanese_food"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_tv_type_of_food_title"
+                android:layout_marginTop="20dp"
+                app:layout_constraintHorizontal_chainStyle="packed">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_korean_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_korean_food_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_korean_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/korean_food"
+                    android:textColor="@color/middleGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_japanese_food"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_const_layout_chinese_food"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_const_layout_korean_food"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_const_layout_korean_food">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_japanese_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_japanese_food_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_japanese_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/japanese_food"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_japanese_food" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_chinese_food"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_const_layout_western_food"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_const_layout_japanese_food"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_const_layout_korean_food">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_chinese_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_chinese_food_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_chinese_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chinese_food"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_chinese_food" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_western_food"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_const_layout_chinese_food"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_const_layout_korean_food">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_western_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_western_food_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_western_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/western_food"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_western_food" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_world_food"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_const_layout_buffet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_const_layout_korean_food"
+                android:layout_marginTop="30dp"
+                app:layout_constraintHorizontal_chainStyle="packed">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_world_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_world_food_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_world_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/world_food"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_world_food" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_buffet"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_const_layout_cafe"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_const_layout_world_food"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_const_layout_world_food">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_buffet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_buffet_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_buffet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buffet"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_buffet" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_cafe"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_const_layout_pub"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_const_layout_buffet"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_const_layout_world_food">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_cafe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_cafe_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_cafe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cafe"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_cafe" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sel_filter_const_layout_pub"
+                android:layout_width="98dp"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_const_layout_cafe"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_const_layout_world_food">
+
+                <ImageView
+                    android:id="@+id/sel_filter_iv_pub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_pub_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sel_filter_tv_pub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pub"
+                    android:textSize="12sp"
+                    android:textColor="@color/middleGray"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_pub" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/sel_filter_iv_seperator2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sperator_horizontal_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_const_layout_world_food"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/sel_filter_tv_cost_per_one_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cost_per_one_person"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_seperator2"
+                android:layout_marginTop="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/can_multiple_select"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/sel_filter_tv_cost_per_one_person"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"/>
+
+            <FrameLayout
+                android:id="@+id/sel_filter_frame_layout_under_ten_thousand_won"
+                android:layout_width="95dp"
+                android:layout_height="70dp"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_tv_cost_per_one_person"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_frame_layout_about_ten_thousand_won"
+                android:layout_marginTop="18dp"
+                app:layout_constraintHorizontal_chainStyle="packed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/sel_filter_iv_under_ten_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_circle_1_gray"/>
+
+                    <TextView
+                        android:id="@+id/sel_filter_tv_under_ten_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/sel_filter_iv_under_ten_thousand_won"
+                        app:layout_constraintEnd_toEndOf="@+id/sel_filter_iv_under_ten_thousand_won"
+                        android:textColor="@color/middleGray"
+                        android:textSize="13sp"
+                        android:text="@string/under_ten_thousand_won"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/sel_filter_frame_layout_about_ten_thousand_won"
+                android:layout_width="95dp"
+                android:layout_height="70dp"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_frame_layout_under_ten_thousand_won"
+                app:layout_constraintStart_toEndOf="@id/sel_filter_frame_layout_under_ten_thousand_won"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_frame_layout_about_twenty_thousand_won">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/sel_filter_iv_about_ten_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_circle_2_gray"/>
+
+                    <TextView
+                        android:id="@+id/sel_filter_tv_about_ten_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/sel_filter_iv_about_ten_thousand_won"
+                        app:layout_constraintEnd_toEndOf="@+id/sel_filter_iv_about_ten_thousand_won"
+                        android:textColor="@color/middleGray"
+                        android:textSize="13sp"
+                        android:text="@string/about_ten_thousand_won"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/sel_filter_frame_layout_about_twenty_thousand_won"
+                android:layout_width="95dp"
+                android:layout_height="70dp"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_frame_layout_under_ten_thousand_won"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_frame_layout_about_ten_thousand_won"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_frame_layout_more_than_thirty_thousand_won">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/sel_filter_iv_about_twenty_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_circle_3_gray"/>
+
+                    <TextView
+                        android:id="@+id/sel_filter_tv_about_twenty_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/sel_filter_iv_about_twenty_thousand_won"
+                        app:layout_constraintEnd_toEndOf="@+id/sel_filter_iv_about_twenty_thousand_won"
+                        android:textColor="@color/middleGray"
+                        android:textSize="13sp"
+                        android:text="@string/about_twenty_thousand_won"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/sel_filter_frame_layout_more_than_thirty_thousand_won"
+                android:layout_width="95dp"
+                android:layout_height="70dp"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_frame_layout_under_ten_thousand_won"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_frame_layout_about_twenty_thousand_won"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/sel_filter_iv_more_than_thirty_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_circle_4_gray"/>
+
+                    <TextView
+                        android:id="@+id/sel_filter_tv_more_than_thirty_thousand_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/sel_filter_iv_more_than_thirty_thousand_won"
+                        app:layout_constraintEnd_toEndOf="@+id/sel_filter_iv_more_than_thirty_thousand_won"
+                        android:textColor="@color/middleGray"
+                        android:textSize="13sp"
+                        android:text="@string/more_than_thirty_thousand_won"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/sel_filter_iv_seperator3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sperator_horizontal_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_frame_layout_under_ten_thousand_won"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/sel_filter_tv_parking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/parking"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sel_filter_iv_seperator3"
+                android:layout_marginTop="25dp"/>
+
+            <Button
+                android:id="@+id/sel_filter_btn_parking_all"
+                android:layout_width="80dp"
+                android:layout_height="38dp"
+                android:text="@string/regardless"
+                android:textColor="@color/middleGray"
+                android:background="@drawable/bg_rounding_sel_sort_by_btn"
+                app:layout_constraintEnd_toStartOf="@+id/sel_filter_btn_parking_only"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sel_filter_tv_parking"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="25dp"/>
+
+            <Button
+                android:id="@+id/sel_filter_btn_parking_only"
+                android:layout_width="98dp"
+                android:layout_height="38dp"
+                android:text="@string/only_can_park"
+                android:textColor="@color/middleGray"
+                android:background="@drawable/bg_rounding_sel_sort_by_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sel_filter_btn_parking_all"
+                app:layout_constraintTop_toTopOf="@+id/sel_filter_btn_parking_all"
+                android:layout_marginStart="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
