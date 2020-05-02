@@ -90,7 +90,7 @@
         android:id="@+id/sch_rest_iv_sperator_vertical"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
-        android:src="@drawable/sperator_vertical_gray"
+        android:src="@drawable/separator_vertical_gray"
         app:layout_constraintBottom_toBottomOf="@id/sch_rest_frame_layout_map"
         app:layout_constraintEnd_toStartOf="@id/sch_rest_frame_layout_map"
         app:layout_constraintTop_toTopOf="@id/sch_rest_frame_layout_map" />

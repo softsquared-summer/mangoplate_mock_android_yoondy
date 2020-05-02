@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,6 +25,7 @@ import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdInfo
 import com.softsquared.mangoplate.src.main.search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.search_restaurant.models.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.search_restaurant.search.SearchActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_area.SelectAreaActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_filter.SelectFilterActivity;
 import com.softsquared.mangoplate.src.main.search_restaurant.select_radius.SelectRadiusActivity;
@@ -33,10 +35,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SearchRestaurantFragment extends Fragment {
-    private final int SELECT_AREA = 1;
-    private final int SELECT_SORT_BY = 2;
-    private final int SELECT_RADIUS = 3;
-    private final int SELECT_FILTER = 4;
+    private final int SEARCH = 1;
+    private final int SELECT_AREA = 2;
+    private final int SELECT_SORT_BY = 3;
+    private final int SELECT_RADIUS = 4;
+    private final int SELECT_FILTER = 5;
+    private boolean isFadeAnimActivity = false;
     private ViewPager2 vp2BannerAds;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
@@ -56,6 +60,7 @@ public class SearchRestaurantFragment extends Fragment {
 
         setVp2BannerAds(view);
         setRvRestaurantList(view);
+        setBtnSearch(view);
         setBtnSelectArea(view);
         setBtnSelectSortBy(view);
         setBtnSelectRadius(view);
@@ -100,28 +105,52 @@ public class SearchRestaurantFragment extends Fragment {
         addToRvAdapter(rvRestaurantListAdapter);
     }
 
+    private void setBtnSearch(View view) {
+        FrameLayout flSearch = view.findViewById(R.id.sch_rest_frame_layout_search);
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        flSearch.setOnClickListener(v -> {
+            isFadeAnimActivity = false;
+            startActivityForResult(intent, SEARCH);
+        });
+    }
+
     private void setBtnSelectArea(View view) {
         ConstraintLayout clSelectArea = view.findViewById(R.id.sch_rest_const_layout_location_watch_now);
         Intent intent = new Intent(getContext(), SelectAreaActivity.class);
-        clSelectArea.setOnClickListener(v -> startActivityForResult(intent, SELECT_AREA));
+        clSelectArea.setOnClickListener(v -> {
+            isFadeAnimActivity = true;
+            startActivityForResult(intent, SELECT_AREA);
+        });
     }
 
     private void setBtnSelectSortBy(View view) {
+        isFadeAnimActivity = true;
         ConstraintLayout clSelectSortBy = view.findViewById(R.id.sch_rest_const_layout_sort_by);
         Intent intent = new Intent(getContext(), SelectSortByActivity.class);
-        clSelectSortBy.setOnClickListener(v -> startActivityForResult(intent, SELECT_SORT_BY));
+        clSelectSortBy.setOnClickListener(v -> {
+            isFadeAnimActivity = true;
+            startActivityForResult(intent, SELECT_SORT_BY);
+        });
     }
 
     private void setBtnSelectRadius(View view) {
+        isFadeAnimActivity = true;
         ConstraintLayout clSelectRadius = view.findViewById(R.id.sch_rest_const_layout_radius_btn);
         Intent intent = new Intent(getContext(), SelectRadiusActivity.class);
-        clSelectRadius.setOnClickListener(v -> startActivityForResult(intent, SELECT_RADIUS));
+        clSelectRadius.setOnClickListener(v -> {
+            isFadeAnimActivity = true;
+            startActivityForResult(intent, SELECT_RADIUS);
+        });
     }
 
     private void setBtnSelectFilter(View view) {
+        isFadeAnimActivity = true;
         ImageView ivSelectFilter = view.findViewById(R.id.sch_rest_iv_filter_btn);
         Intent intent = new Intent(getContext(), SelectFilterActivity.class);
-        ivSelectFilter.setOnClickListener(v -> startActivityForResult(intent, SELECT_FILTER));
+        ivSelectFilter.setOnClickListener(v -> {
+            isFadeAnimActivity = true;
+            startActivityForResult(intent, SELECT_FILTER);
+        });
     }
 
     private void setCirculateBannerAds() {
@@ -208,9 +237,12 @@ public class SearchRestaurantFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
         Activity activity = getActivity();
-        if(activity != null)
+        if(isFadeAnimActivity && activity != null) {
+            isFadeAnimActivity = false;
             activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        }
 
         setNextBannerAd.cancel();
     }

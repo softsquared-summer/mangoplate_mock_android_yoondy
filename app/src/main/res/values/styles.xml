@@ -18,4 +18,8 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="TextInputLayoutTransparent">
+        <item name="colorOnSurface">@color/orange</item>
+    </style>
+
 </resources>
