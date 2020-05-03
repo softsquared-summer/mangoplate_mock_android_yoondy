@@ -1,9 +1,794 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+tools:context=".src.main.my_info.MyInfoFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".src.main.my_info.MyInfoFragment"
-    android:background="@android:color/holo_red_dark">
-    <!-- TODO: delete background color -->
-</FrameLayout>
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/my_info_iv_notified"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_bell_unfilled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_profile_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_notified"
+        app:srcCompat="@drawable/photo_my_profile_test" />
+
+    <TextView
+        android:id="@+id/my_info_tv_follower_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/almostBlack"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/my_info_tv_follower"
+        app:layout_constraintEnd_toEndOf="@+id/my_info_tv_follower"
+        app:layout_constraintStart_toStartOf="@+id/my_info_tv_follower"
+        app:layout_constraintTop_toTopOf="@+id/my_info_iv_profile_photo"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/my_info_tv_follower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="12sp"
+        android:text="@string/followers"
+        app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_profile_photo"
+        app:layout_constraintStart_toEndOf="@+id/my_info_iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_tv_follower_count" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_follow"
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_vertical_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/my_info_tv_follower"
+        app:layout_constraintStart_toEndOf="@+id/my_info_tv_follower"
+        app:layout_constraintTop_toTopOf="@+id/my_info_tv_follower_count" />
+
+    <TextView
+        android:id="@+id/my_info_tv_following_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/almostBlack"
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/my_info_tv_following"
+        app:layout_constraintEnd_toEndOf="@+id/my_info_tv_following"
+        app:layout_constraintStart_toStartOf="@+id/my_info_tv_following"
+        app:layout_constraintTop_toTopOf="@+id/my_info_iv_profile_photo"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/my_info_tv_following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="12sp"
+        android:text="@string/following"
+        app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_profile_photo"
+        app:layout_constraintStart_toEndOf="@+id/my_info_iv_separator_follow"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_tv_following_count" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/my_info_tv_follower"
+        app:layout_constraintEnd_toEndOf="@+id/my_info_iv_notified"
+        app:layout_constraintTop_toTopOf="@+id/my_info_tv_follower_count" />
+
+    <TextView
+        android:id="@+id/my_info_tv_my_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="윤대현"
+        android:textColor="@color/almostBlack"
+        app:layout_constraintStart_toStartOf="@+id/my_info_iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_profile_photo" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_profile"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_tv_my_name" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_profile2"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        android:tint="@color/brightGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_profile" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_event"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_profile2">
+
+        <ImageView
+            android:id="@+id/my_info_iv_event_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_gift"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/event"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_event_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_event_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_event_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_event_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_event_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_event"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_event" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_event2"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        android:tint="@color/brightGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_event" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_bought_deal"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_event2">
+
+        <ImageView
+            android:id="@+id/my_info_iv_deal_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_deal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/bought_deal"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_deal_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_deal_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_deal_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_deal_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_deal_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_bought_deal"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        android:tint="@color/brightGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_bought_deal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_notify_deal"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_bought_deal">
+
+        <ImageView
+            android:id="@+id/my_info_iv_notify_deal_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_bell_unfilled_check"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/notify_deal"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_notify_deal_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_notify_deal_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_notify_deal_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_notify_deal_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_notify_deal_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_notify_deal"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_notify_deal" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_notify_deal2"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_notify_deal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_timeline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_notify_deal2">
+
+        <ImageView
+            android:id="@+id/my_info_iv_timeline_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/timeline"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_timeline_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_timeline_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_timeline_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_timeline_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_timeline_icon" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_info_const_layout_review"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/my_info_iv_separator_review"
+            app:layout_constraintTop_toBottomOf="@+id/my_info_iv_timeline_icon"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp">
+
+            <TextView
+                android:id="@+id/my_info_tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/my_info_tv_review_count"
+                android:layout_margin="5dp"
+                android:textSize="15sp"
+                android:text="@string/review"/>
+
+            <TextView
+                android:id="@+id/my_info_tv_review_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/my_info_tv_review"
+                app:layout_constraintEnd_toEndOf="@+id/my_info_tv_review"
+                app:layout_constraintTop_toBottomOf="@+id/my_info_tv_review"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="5dp"
+                android:textColor="@color/almostBlack"
+                android:text="0"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/my_info_iv_separator_review"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="@+id/my_info_const_layout_review"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_const_layout_review"
+            app:layout_constraintStart_toEndOf="@+id/my_info_const_layout_review"
+            app:layout_constraintEnd_toStartOf="@+id/my_info_const_layout_gone"
+            android:tint="@color/brightGray"
+            android:src="@drawable/separator_vertical_gray"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_info_const_layout_gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_separator_review"
+            app:layout_constraintEnd_toStartOf="@+id/my_info_iv_separator_gone"
+            app:layout_constraintTop_toTopOf="@+id/my_info_const_layout_review">
+
+            <TextView
+                android:id="@+id/my_info_tv_gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/my_info_tv_gone_count"
+                android:layout_margin="5dp"
+                android:textSize="15sp"
+                android:text="@string/gone"/>
+
+            <TextView
+                android:id="@+id/my_info_tv_gone_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/my_info_tv_gone"
+                app:layout_constraintEnd_toEndOf="@+id/my_info_tv_gone"
+                app:layout_constraintTop_toBottomOf="@+id/my_info_tv_gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/almostBlack"
+                android:layout_margin="5dp"
+                android:text="0"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/my_info_iv_separator_gone"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:tint="@color/brightGray"
+            app:layout_constraintTop_toTopOf="@+id/my_info_const_layout_gone"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_const_layout_gone"
+            app:layout_constraintStart_toEndOf="@+id/my_info_const_layout_gone"
+            app:layout_constraintEnd_toStartOf="@+id/my_info_const_layout_photo"
+            android:src="@drawable/separator_vertical_gray"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_info_const_layout_photo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_separator_gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/my_info_const_layout_review"
+            android:layout_marginEnd="17dp">
+
+            <TextView
+                android:id="@+id/my_info_tv_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/my_info_tv_photo_count"
+                android:layout_margin="5dp"
+                android:textSize="15sp"
+                android:text="@string/photo"/>
+
+            <TextView
+                android:id="@+id/my_info_tv_photo_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/my_info_tv_photo"
+                app:layout_constraintEnd_toEndOf="@+id/my_info_tv_photo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_info_tv_photo"
+                android:layout_margin="5dp"
+                android:textColor="@color/almostBlack"
+                android:text="0"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_timeline"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_timeline"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_wish"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_timeline">
+
+        <ImageView
+            android:id="@+id/my_info_iv_wish_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_star_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/wish"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_wish_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_wish_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_wish_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_wish_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_wish_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_wish"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_wish"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_my_list"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_wish">
+
+        <ImageView
+            android:id="@+id/my_info_iv_my_list_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_my_list_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/my_list"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_my_list_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_my_list_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_my_list_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_my_list_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_my_list_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_my_list"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_my_list"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_bookmark"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_my_list">
+
+        <ImageView
+            android:id="@+id/my_info_iv_bookmark_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_bookmark_unfilled_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/bookmark"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_bookmark_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_bookmark_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_bookmark_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_bookmark_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_bookmark_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_bookmark"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_bookmark"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_restaurant_my_register"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_bookmark">
+
+        <ImageView
+            android:id="@+id/my_info_iv_restaurant_my_register_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_restaurant_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/restaurant_my_register"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_restaurant_my_register_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_restaurant_my_register_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_restaurant_my_register_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_restaurant_my_register_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_restaurant_my_register_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_restaurant_my_register"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_restaurant_my_register" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_restaurant_my_register2"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_restaurant_my_register" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_info_const_layout_settings"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_restaurant_my_register2">
+
+        <ImageView
+            android:id="@+id/my_info_iv_settings_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_gear"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="16sp"
+            android:text="@string/settings"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_settings_icon"
+            app:layout_constraintStart_toEndOf="@+id/my_info_iv_settings_icon"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_settings_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginEnd="17dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_right_arrow_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/my_info_iv_settings_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_info_iv_settings_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_settings"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_const_layout_settings" />
+
+    <ImageView
+        android:id="@+id/my_info_iv_separator_settings2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:tint="@color/brightGray"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_settings" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

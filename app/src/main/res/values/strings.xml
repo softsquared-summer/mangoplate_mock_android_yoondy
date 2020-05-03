@@ -51,4 +51,16 @@
     <string name="find_friend">친구 찾기</string>
     <string name="search_hint">키워드로 검색해보세요.</string>
     <string name="suggest_reviewr_of_today">오늘의 추천 리뷰어</string>
+    <string name="followers">팔로워</string>
+    <string name="following">팔로잉</string>
+    <string name="event">이벤트</string>
+    <string name="bought_deal">구매한 EAT딜</string>
+    <string name="notify_deal">EAT딜 입고알림</string>
+    <string name="timeline">타임라인</string>
+    <string name="review">리뷰</string>
+    <string name="photo">사진</string>
+    <string name="my_list">마이리스트</string>
+    <string name="bookmark">북마크</string>
+    <string name="restaurant_my_register">내가 등록한 식당</string>
+    <string name="settings">설정</string>
 </resources>
