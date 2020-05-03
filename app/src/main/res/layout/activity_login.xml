@@ -86,4 +86,26 @@
         android:textSize="16sp"
         android:text="@string/skip"/>
 
+    <ImageView
+        android:id="@+id/login_iv_facebook_btn"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="@+id/login_tv_subtitle"
+        app:layout_constraintEnd_toEndOf="@+id/login_tv_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/login_tv_subtitle"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/btn_facebook_login"/>
+
+    <ImageView
+        android:id="@+id/login_iv_kakaotalk_btn"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="@+id/login_tv_subtitle"
+        app:layout_constraintEnd_toEndOf="@+id/login_tv_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/login_iv_facebook_btn"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/btn_kakaotalk_login"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

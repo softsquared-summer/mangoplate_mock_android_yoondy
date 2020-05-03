@@ -1,7 +1,5 @@
 package com.softsquared.mangoplate.src.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -12,12 +10,18 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.login.LoginManager;
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
 import com.softsquared.mangoplate.src.main.MainActivity;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
     private ImageView slide0, slide1, lastSlide;
@@ -26,12 +30,17 @@ public class LoginActivity extends AppCompatActivity {
     private int bgImgIdListIdx = 0;
     private boolean isMovedToRight;
 
+    private ImageView btnFacebook;
+    private FacebookCallback<com.facebook.login.LoginResult> facebookCallback;
+    private CallbackManager facebookCallbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         setView();
+        setFacebookLogin();
     }
 
     private void setView() {
@@ -134,5 +143,22 @@ public class LoginActivity extends AppCompatActivity {
         anims.addAnimation(hiding);
 
         return anims;
+    }
+
+    private void setFacebookLogin() {
+        facebookCallbackManager = CallbackManager.Factory.create();
+        facebookCallback = new FacebookLoginCallback(this);
+        btnFacebook = findViewById(R.id.login_iv_facebook_btn);
+        btnFacebook.setOnClickListener(v -> {
+            LoginManager loginManager = LoginManager.getInstance();
+            loginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email"));
+            loginManager.registerCallback(facebookCallbackManager, facebookCallback);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
