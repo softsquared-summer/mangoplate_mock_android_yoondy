@@ -63,4 +63,7 @@
     <string name="bookmark">북마크</string>
     <string name="restaurant_my_register">내가 등록한 식당</string>
     <string name="settings">설정</string>
+    <string name="eat_deal">EAT딜</string>
+    <string name="mango_pick_story">망고픽 스토리</string>
+    <string name="top_list">TOP 리스트</string>
 </resources>

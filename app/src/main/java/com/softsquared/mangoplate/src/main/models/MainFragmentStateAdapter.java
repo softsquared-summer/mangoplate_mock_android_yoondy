@@ -34,7 +34,5 @@ public class MainFragmentStateAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public int getItemCount() {
-        return mCount;
-    }
+    public int getItemCount() { return mCount; }
 }
