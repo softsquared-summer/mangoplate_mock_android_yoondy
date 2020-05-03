@@ -19,39 +19,48 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
-            android:name=".src.login.LoginActivity"
+            android:name=".src.splash.SplashActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".src.login.LoginActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
             android:name=".src.main.search_restaurant.search.SearchActivity"
-            android:windowSoftInputMode="stateAlwaysVisible" />
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".src.main.search_restaurant.select_area.SelectAreaActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/Transparent"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".src.main.search_restaurant.select_filter.SelectFilterActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/Transparent"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".src.main.search_restaurant.select_radius.SelectRadiusActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/Transparent"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".src.main.search_restaurant.select_sort_by.SelectSortByActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/Transparent"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".src.main.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

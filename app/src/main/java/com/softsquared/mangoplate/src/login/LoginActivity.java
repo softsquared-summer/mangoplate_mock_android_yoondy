@@ -2,6 +2,7 @@ package com.softsquared.mangoplate.src.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,8 +10,10 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.main.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setView() {
+        Intent intent = new Intent(this, MainActivity.class);
+        TextView tvSkip = findViewById(R.id.login_tv_skip);
+        tvSkip.setOnClickListener(v -> startActivity(intent));
+
         bgImgIdList = new ArrayList<>();
         slide0 = findViewById(R.id.login_iv_bg_slide0);
         slide1 = findViewById(R.id.login_iv_bg_slide1);
