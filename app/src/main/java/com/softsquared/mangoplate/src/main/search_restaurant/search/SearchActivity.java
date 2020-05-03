@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.main.search_restaurant.search.find_friend.FindFriendFragment;
 import com.softsquared.mangoplate.src.main.search_restaurant.search.search_recent.SearchRecentFragment;
 import com.softsquared.mangoplate.src.main.search_restaurant.search.search_suggest.SearchSuggestFragment;
 
@@ -46,13 +47,18 @@ public class SearchActivity extends AppCompatActivity {
     private void callFragment(int position) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if(position == 0) {
-            SearchSuggestFragment searchSuggestFragment = new SearchSuggestFragment();
+            SearchSuggestFragment searchSuggestFragment = SearchSuggestFragment.newInstance();
             transaction.replace(R.id.search_frame_layout_fragment_container, searchSuggestFragment)
                     .commitAllowingStateLoss();
         }
-        else if(position == 1){
-            SearchRecentFragment searchRecentFragment = new SearchRecentFragment();
+        else if(position == 1) {
+            SearchRecentFragment searchRecentFragment = SearchRecentFragment.newInstance();
             transaction.replace(R.id.search_frame_layout_fragment_container, searchRecentFragment)
+                    .commitAllowingStateLoss();
+        }
+        else if(position == 2) {
+            FindFriendFragment findFriendFragment = FindFriendFragment.newInstance();
+            transaction.replace(R.id.search_frame_layout_fragment_container, findFriendFragment)
                     .commitAllowingStateLoss();
         }
         else {
