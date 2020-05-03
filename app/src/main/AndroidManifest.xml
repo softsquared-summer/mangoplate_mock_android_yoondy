@@ -19,8 +19,18 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
+            android:name=".src.login.LoginActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".src.main.search_restaurant.search.SearchActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"/>
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".src.main.search_restaurant.select_area.SelectAreaActivity"
             android:theme="@style/Transparent" />

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.login.LoginActivity">
+
+    <FrameLayout
+        android:id="@+id/login_frame_layout_bg"
+        android:layout_width="600dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/login_iv_bg_slide0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/login_iv_bg_slide1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login_tv_subtitle"
+        android:layout_marginBottom="32dp"
+        android:tint="@android:color/white"
+        android:src="@drawable/logo_mango_plate"/>
+
+    <ImageView
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="@+id/login_tv_subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/login_tv_subtitle"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/white_dot"/>
+
+    <ImageView
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="@+id/login_tv_subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/login_tv_subtitle"
+        android:layout_marginStart="25dp"
+        android:src="@drawable/white_dot"/>
+
+    <TextView
+        android:id="@+id/login_tv_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="70dp"
+        android:textColor="@android:color/white"
+        android:textSize="17sp"
+        android:text="@string/login_activity_subtitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:text="@string/skip"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
