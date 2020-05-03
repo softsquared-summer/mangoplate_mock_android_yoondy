@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_list_const_layout_photo_frame"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/middleGray">
+
+        <ImageView
+            android:id="@+id/top_list_iv_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:tint="@color/brightDarkTransparent"
+            android:src="@drawable/photo_my_profile_test"/>
+
+        <ImageView
+            android:id="@+id/top_list_iv_top_view_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_top_view_mark"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="@+id/top_list_tv_date"
+            app:layout_constraintBottom_toBottomOf="@+id/top_list_tv_date"
+            app:layout_constraintEnd_toStartOf="@+id/top_list_tv_view_count"
+            android:layout_marginEnd="5dp"
+            android:tint="@android:color/white"
+            android:src="@drawable/ic_eye_gray"/>
+
+        <TextView
+            android:id="@+id/top_list_tv_view_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/top_list_tv_date"
+            app:layout_constraintEnd_toStartOf="@+id/top_list_iv_separator"
+            android:layout_marginEnd="3dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:text="817,996"/>
+
+        <ImageView
+            android:id="@+id/top_list_iv_separator"
+            android:layout_width="1dp"
+            android:layout_height="11dp"
+            app:layout_constraintBottom_toBottomOf="@+id/top_list_tv_date"
+            app:layout_constraintEnd_toStartOf="@+id/top_list_tv_date"
+            android:layout_marginEnd="3dp"
+            android:tint="@android:color/white"
+            android:src="@drawable/separator_vertical_gray"/>
+
+        <TextView
+            android:id="@+id/top_list_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="12dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:text="4 일 전"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/top_list_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/top_list_const_layout_photo_frame"
+        app:layout_constraintTop_toBottomOf="@+id/top_list_const_layout_photo_frame"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/almostBlack"
+        android:textSize="17sp"
+        android:text="오래된 한식당 맛집 베스트 50곳"/>
+
+    <TextView
+        android:id="@+id/top_list_tv_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/top_list_tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/top_list_tv_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:text="오래된 데에는 다 이유가 있지!"/>
+    
+    <ImageView
+        android:id="@+id/top_list_iv_bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="@+id/top_list_const_layout_photo_frame"
+        app:layout_constraintTop_toBottomOf="@+id/top_list_const_layout_photo_frame"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_bookmark_unfilled_long_gray"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/separator_horizontal_gray"/>
+
+    <ImageView
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/separator_vertical_gray"/>
+
+    <ImageView
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/separator_vertical_gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

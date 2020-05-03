@@ -5,5 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".src.main.discount.mango_pick_story.MangoPickStoryFragment"
     android:background="@color/orange">
+    <!-- TODO: delete background color -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
