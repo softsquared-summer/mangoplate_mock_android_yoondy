@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.softsquared.mangoplate.src.ApplicationClass;
-import com.softsquared.mangoplate.src.main.discount.DiscountFragment;
-import com.softsquared.mangoplate.src.main.my_info.MyInfoFragment;
-import com.softsquared.mangoplate.src.main.search_restaurant.SearchRestaurantFragment;
-import com.softsquared.mangoplate.src.main.timeline.TimelineFragment;
+import com.softsquared.mangoplate.src.main.tab_discount.DiscountFragment;
+import com.softsquared.mangoplate.src.main.tab_my_info.MyInfoFragment;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.SearchRestaurantFragment;
+import com.softsquared.mangoplate.src.main.tab_timeline.TimelineFragment;
 
 public class MainFragmentStateAdapter extends FragmentStateAdapter {
     private int mCount;

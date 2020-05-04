@@ -32,11 +32,11 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
         <activity
-            android:name=".src.main.my_info.event.event_detail.EventDetailActivity"
+            android:name=".src.main.event.event_detail.EventDetailActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.my_info.event.EventActivity"
+            android:name=".src.main.event.EventActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -74,27 +74,27 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.search_restaurant.search.SearchActivity"
+            android:name=".src.main.tab_search_restaurant.search.SearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysVisible"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.search_restaurant.select_area.SelectAreaActivity"
+            android:name=".src.main.tab_search_restaurant.select_area.SelectAreaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.search_restaurant.select_filter.SelectFilterActivity"
+            android:name=".src.main.tab_search_restaurant.select_filter.SelectFilterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.search_restaurant.select_radius.SelectRadiusActivity"
+            android:name=".src.main.tab_search_restaurant.select_radius.SelectRadiusActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.search_restaurant.select_sort_by.SelectSortByActivity"
+            android:name=".src.main.tab_search_restaurant.select_sort_by.SelectSortByActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"
             tools:ignore="LockedOrientationActivity" />

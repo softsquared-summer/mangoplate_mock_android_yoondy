@@ -19,6 +19,7 @@ import com.facebook.login.LoginManager;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
 import com.softsquared.mangoplate.src.login.models.KakaoLoginCallback;
 import com.softsquared.mangoplate.src.main.MainActivity;
@@ -26,7 +27,7 @@ import com.softsquared.mangoplate.src.main.MainActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private ImageView slide0, slide1, lastSlide;
     private ArrayList<Integer> bgImgIdList;
     private Handler timerHandler = new Handler();

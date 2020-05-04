@@ -74,4 +74,5 @@
     <string name="login_activity_subtitle">맛 집 찾 고 싶 을 때</string>
     <string name="skip">건너뛰기</string>
     <string name="ended">종료</string>
+    <string name="notify_not_prepared">아직 구현 중이에요. 좀만 더 기다려주세요!</string>
 </resources>

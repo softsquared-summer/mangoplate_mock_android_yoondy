@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.main.search_restaurant.select_radius.SelectRadiusActivity">
+    tools:context=".src.main.tab_search_restaurant.select_radius.SelectRadiusActivity">
 
     <FrameLayout
         android:id="@+id/sel_radius_frame_layout_bg_panel"

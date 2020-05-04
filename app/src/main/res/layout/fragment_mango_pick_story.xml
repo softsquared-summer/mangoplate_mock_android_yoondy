@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.main.discount.mango_pick_story.MangoPickStoryFragment"
+    tools:context=".src.main.tab_discount.mango_pick_story.MangoPickStoryFragment"
     android:background="@color/orange">
     <!-- TODO: delete background color -->
 

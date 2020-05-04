@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradation_select_filter"
-    tools:context=".src.main.search_restaurant.select_filter.SelectFilterActivity">
+    tools:context=".src.main.tab_search_restaurant.select_filter.SelectFilterActivity">
 
     <FrameLayout
         android:id="@+id/sel_filter_frame_layout_bg_panel"

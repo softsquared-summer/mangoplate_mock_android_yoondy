@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.main.discount.eat_deal.EatDealFragment"
+    tools:context=".src.main.tab_discount.eat_deal.EatDealFragment"
     android:background="@color/gray">
     <!-- TODO: delete background color -->
 

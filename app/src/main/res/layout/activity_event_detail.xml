@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".src.main.my_info.event.event_detail.EventDetailActivity">
+    tools:context=".src.main.event.event_detail.EventDetailActivity">
 
     <ImageView
         android:id="@+id/event_detail_iv_back_btn"

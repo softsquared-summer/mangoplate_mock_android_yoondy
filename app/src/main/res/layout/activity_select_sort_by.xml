@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.main.search_restaurant.select_sort_by.SelectSortByActivity"
+    tools:context=".src.main.tab_search_restaurant.select_sort_by.SelectSortByActivity"
     android:background="@drawable/bg_gradation_select_sort_by">
 
     <FrameLayout

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.main.timeline.TimelineFragment"
+    tools:context=".src.main.tab_timeline.TimelineFragment"
     android:background="@color/colorAccent">
     <!-- TODO: delete background color -->
 </FrameLayout>
