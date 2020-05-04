@@ -1,5 +1,6 @@
 package com.softsquared.mangoplate.src.main.my_info.event.models;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
+import com.softsquared.mangoplate.src.main.my_info.event.event_detail.EventDetailActivity;
 
 import java.util.ArrayList;
 
@@ -88,6 +90,11 @@ public class EventRvAdapter extends RecyclerView.Adapter<EventRvAdapter.EventVie
                     tvDate.setTextColor(itemView.getResources().getColor(R.color.gray));
                 }
             }
+
+            clPanel.setOnClickListener(v -> {
+                Intent intent = new Intent(itemView.getContext(), EventDetailActivity.class);
+                itemView.getContext().startActivity(intent);
+            });
 
             Log.d(ApplicationClass.TAG, "imgUrl: " + eventInfo.getImageUrl() + ", title: " + title + ", date: " + eventInfo.getDate() + ", status: " + eventInfo.getStatus());
         }

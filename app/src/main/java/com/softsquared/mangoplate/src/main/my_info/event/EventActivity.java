@@ -42,7 +42,7 @@ public class EventActivity extends AppCompatActivity {
         EventInfo info0 = new EventInfo("0",
                 "https://i.imgur.com/SRtOkqA.png",
                 "[맛집엔BC X IBK기업은행] 5만원 캐시백 이벤트! 마감 임박! 지금 지원해보세요!",
-                "null",
+                "NEW",
                 "57일 남음");
         adapter.add(info0);
         EventInfo info1 = new EventInfo("1",
