@@ -3,8 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".src.main.tab_discount.mango_pick_story.MangoPickStoryFragment"
     android:background="@color/orange">
-    <!-- TODO: delete background color -->
+
+    <ImageView
+        android:id="@+id/mango_pick_story_iv_mango_plate_logo"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        android:adjustViewBounds="true"
+        android:tint="@android:color/white"
+        android:src="@drawable/logo_mango_plate"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mango_pick_story_iv_mango_plate_logo"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:text="@string/notify_not_prepared"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
