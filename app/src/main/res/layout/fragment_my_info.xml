@@ -140,7 +140,8 @@ tools:context=".src.main.my_info.MyInfoFragment">
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_profile2">
+        app:layout_constraintTop_toBottomOf="@+id/my_info_iv_separator_profile2"
+        android:background="?attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/my_info_iv_event_icon"

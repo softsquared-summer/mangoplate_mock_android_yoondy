@@ -1,9 +1,11 @@
 package com.softsquared.mangoplate.src.main.my_info;
 
+import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.main.my_info.event.EventActivity;
 
 public class MyInfoFragment extends Fragment {
     public MyInfoFragment() {
@@ -19,8 +22,7 @@ public class MyInfoFragment extends Fragment {
     }
 
     public static MyInfoFragment newInstance() {
-        MyInfoFragment fragment = new MyInfoFragment();
-        return fragment;
+        return new MyInfoFragment();
     }
 
     @Override
@@ -37,5 +39,11 @@ public class MyInfoFragment extends Fragment {
         ImageView ivProfilePhoto = view.findViewById(R.id.my_info_iv_profile_photo);
         ivProfilePhoto.setBackground(new ShapeDrawable(new OvalShape()));
         ivProfilePhoto.setClipToOutline(true);
+
+        ConstraintLayout clEvent = view.findViewById(R.id.my_info_const_layout_event);
+        clEvent.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), EventActivity.class);
+            startActivity(intent);
+        });
     }
 }

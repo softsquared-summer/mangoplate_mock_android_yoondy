@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/event_const_layout_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/event_iv_img"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/photo_my_profile_test"
+            android:background="@color/middleGray"/>
+
+        <TextView
+            android:id="@+id/event_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_iv_img"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/almostBlack"
+            android:textSize="18sp"
+            android:text="[맛집엔BC X IBK기업은행] 5만원 캐시백 이벤트!"/>
+
+        <TextView
+            android:id="@+id/event_tv_ended"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_tv_title"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/orange"
+            android:text="@string/ended"/>
+
+        <TextView
+            android:id="@+id/event_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/event_tv_ended"
+            app:layout_constraintTop_toBottomOf="@+id/event_tv_title"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/middleDarkGray"
+            android:text="57일 남음"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/event_iv_separator"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/event_const_layout_panel"
+        app:layout_constraintEnd_toEndOf="@+id/event_const_layout_panel"
+        app:layout_constraintTop_toBottomOf="@+id/event_const_layout_panel"
+        android:src="@drawable/separator_horizontal_gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
