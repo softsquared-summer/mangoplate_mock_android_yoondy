@@ -16,8 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.login.LoginManager;
+import com.kakao.auth.AuthType;
+import com.kakao.auth.Session;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
+import com.softsquared.mangoplate.src.login.models.KakaoLoginCallback;
 import com.softsquared.mangoplate.src.main.MainActivity;
 
 import java.util.ArrayList;
@@ -30,9 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private int bgImgIdListIdx = 0;
     private boolean isMovedToRight;
 
-    private ImageView btnFacebook;
-    private FacebookCallback<com.facebook.login.LoginResult> facebookCallback;
     private CallbackManager facebookCallbackManager;
+    private KakaoLoginCallback kakaoLoginCallback = new KakaoLoginCallback(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setView();
         setFacebookLogin();
+        setKakaoLogin();
     }
 
     private void setView() {
@@ -147,8 +150,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setFacebookLogin() {
         facebookCallbackManager = CallbackManager.Factory.create();
-        facebookCallback = new FacebookLoginCallback(this);
-        btnFacebook = findViewById(R.id.login_iv_facebook_btn);
+        FacebookCallback<com.facebook.login.LoginResult> facebookCallback = new FacebookLoginCallback(this);
+        ImageView btnFacebook = findViewById(R.id.login_iv_facebook_btn);
         btnFacebook.setOnClickListener(v -> {
             LoginManager loginManager = LoginManager.getInstance();
             loginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email"));
@@ -156,9 +159,28 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void setKakaoLogin() {
+        Session kakaoSession = Session.getCurrentSession();
+        kakaoSession.addCallback(kakaoLoginCallback);
+        ImageView btnKakao = findViewById(R.id.login_iv_kakaotalk_btn);
+        btnKakao.setOnClickListener(v -> kakaoSession.open(AuthType.KAKAO_LOGIN_ALL, LoginActivity.this));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+
+        // send to SDK the result of simple login by kakaoTalk|kakaoStory
+        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data))
+            return;
+
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Session.getCurrentSession().removeCallback(kakaoLoginCallback);
     }
 }

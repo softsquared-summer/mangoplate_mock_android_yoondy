@@ -22,11 +22,11 @@ public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
 
     @Override
     public void onSuccess(LoginResult loginResult) {
+        String accessToken = AccessToken.getCurrentAccessToken().getToken();
+        Log.d(ApplicationClass.TAG, "accessToken: " + accessToken);
+
         GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(),
-                (object, response) -> {
-                    Log.d(ApplicationClass.TAG, "onCompleted() JSONObject: " + object.toString());
-                    AccessToken at = loginResult.getAccessToken();
-                });
+                (object, response) -> Log.d(ApplicationClass.TAG, "onCompleted(). JSONObject: " + object.toString()));
 
         Bundle parameters = new Bundle();
         parameters.putString("fields", "id,name,email,gender,birthday");
@@ -44,6 +44,6 @@ public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
 
     @Override
     public void onError(FacebookException error) {
-        Log.e(ApplicationClass.TAG, "FacebookLoginCallback.onError(): " + error.getMessage());
+        Log.e(ApplicationClass.TAG, "FacebookLoginCallback::onError(): " + error.getMessage());
     }
 }

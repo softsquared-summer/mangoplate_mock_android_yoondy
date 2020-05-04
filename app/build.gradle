@@ -60,4 +60,7 @@ dependencies {
 
     // facebook Login SDK
     implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
+
+    // Kakao Login SDK
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 }
