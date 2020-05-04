@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.ApplicationClass;
-import com.softsquared.mangoplate.src.main.MainActivity;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -66,7 +64,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
                     .into(ivPhoto);
 
             ivStar.setImageResource(restaurantInfo.isWantToGo() ?
-                    R.drawable.ic_star_orange : R.drawable.ic_star_white);
+                    R.drawable.ic_star_filled_orange : R.drawable.ic_star_unfilled_white);
 
             tvName.setText(restaurantInfo.getName());
 

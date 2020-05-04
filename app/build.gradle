@@ -58,6 +58,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+    // https://github.com/amarjain07/StickyScrollView
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
+
     // facebook Login SDK
     implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
 

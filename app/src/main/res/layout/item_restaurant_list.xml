@@ -37,7 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:adjustViewBounds="true"
                 android:layout_margin="10dp"
-                android:src="@drawable/ic_star_white" />
+                android:src="@drawable/ic_star_unfilled_white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
