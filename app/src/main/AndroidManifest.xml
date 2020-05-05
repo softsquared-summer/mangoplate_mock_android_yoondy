@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".src.ApplicationClass"
@@ -26,6 +27,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
+        <service
+            android:name=".src.gps.GpsService"/>
 
         <activity
             android:name=".src.main.restaurant_detail.RestaurantDetailActivity"

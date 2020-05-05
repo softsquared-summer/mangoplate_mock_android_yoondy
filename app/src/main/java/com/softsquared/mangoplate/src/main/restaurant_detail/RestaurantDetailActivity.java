@@ -1,17 +1,24 @@
 package com.softsquared.mangoplate.src.main.restaurant_detail;
 
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.widget.ImageView;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-
 import com.amar.library.ui.StickyScrollView;
 import com.amar.library.ui.interfaces.IScrollViewListener;
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
+import com.softsquared.mangoplate.src.gps.GpsService;
+import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.IRestaurantDetailActivityView;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuAdapter;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuPhotoAdapter;
@@ -20,7 +27,10 @@ import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDe
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantListRvAdapter;
 
-public class RestaurantDetailActivity extends BaseActivity {
+import java.io.IOException;
+
+public class RestaurantDetailActivity extends BaseActivity implements IRestaurantDetailActivityView {
+    final private RestaurantDetailService restaurantDetailService = new RestaurantDetailService(this, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,10 @@ public class RestaurantDetailActivity extends BaseActivity {
         setRestaurantReview();
         setRvPopularRestaurantNearby();
         setView();
+
+        // TODO: test code. erase later
+        GpsService gpsService = new GpsService(getApplicationContext());
+        Log.d(ApplicationClass.TAG, "gps2: " + gpsService.getLongitude() + ", " + gpsService.getLatitude());
     }
 
     private void setTopBarAndStickyScrollView() {
@@ -124,6 +138,12 @@ public class RestaurantDetailActivity extends BaseActivity {
         clNavigation.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
         clCallTaxi.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
         clCopyAddress.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
+
+        // TODO: test. It must be removed later.
+        double longitude = 127.07622041;
+        double latitude = 37.5959791;
+        restaurantDetailService.requestMapImage(500, 140, 17,
+                longitude, latitude);
     }
 
     private void setRestaurantServiceInfo() {
@@ -262,5 +282,21 @@ public class RestaurantDetailActivity extends BaseActivity {
 
         ConstraintLayout clSearchBlogReviewBtn = findViewById(R.id.restaurant_detail_const_layout_search_blog_review_title);
         clSearchBlogReviewBtn.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
+    }
+
+    @Override
+    public void validateSuccess(Bitmap bitmap) {
+        ImageView ivMap = findViewById(R.id.restaurant_detail_iv_map);
+        new Handler(Looper.getMainLooper()).post(() -> ivMap.setImageBitmap(bitmap));
+    }
+
+    @Override
+    public void validateFailure(IOException e) {
+        Log.e(ApplicationClass.TAG, "RestaurantDetailActivity::validateFailure(): " + e);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }
