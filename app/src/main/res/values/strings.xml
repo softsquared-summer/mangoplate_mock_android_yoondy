@@ -12,7 +12,7 @@
     <string name="item4">내정보</string>
     <string name="go_to_eat_deal">EAT딜 보러가기</string>
     <string name="indicate_retaurant">가봤어요</string>
-    <string name="write_review">리뷰 쓰기</string>
+    <string name="write_review2">리뷰 쓰기</string>
     <string name="add_restaurant">식당 등록하기</string>
     <string name="phrase_location_watch_now_is">지금 보고있는 지역은</string>
     <string name="sort_by_guidance_phrase">*거리순은 위치가 켜져있을 때만 가능</string>
@@ -75,4 +75,26 @@
     <string name="skip">건너뛰기</string>
     <string name="ended">종료</string>
     <string name="notify_not_prepared">아직 구현 중이에요. 좀만 더 기다려주세요!</string>
+    <string name="write_review">리뷰쓰기</string>
+    <string name="parcel_address">지번</string>
+    <string name="path_find">길 찾기</string>
+    <string name="navigation">내비게이션</string>
+    <string name="call_taxi">택시부르기</string>
+    <string name="copy_address">주소 복사</string>
+    <string name="calling">전화하기</string>
+    <string name="service_info">편의정보</string>
+    <string name="opening_hours">영업시간</string>
+    <string name="break_time">쉬는시간</string>
+    <string name="day_off">휴일</string>
+    <string name="price">가격</string>
+    <string name="warning_phrase_for_specific_menu">특정 메뉴는 미리 전화로 얘기해야 준비 될 수도 있어요. 전화 후\n방문해주세요.</string>
+    <string name="see_more_info">정보 더 보기</string>
+    <string name="menu">메뉴</string>
+    <string name="see_more_menu">메뉴 더 보기</string>
+    <string name="request_edit_restaurant_info_phrase">잘못 되었거나 폐점된 정보를 알려주세요.</string>
+    <string name="popular_keyword_of_this_restaurant">이 식당의 인기 키워드</string>
+    <string name="see_more_review">리뷰 더 보기</string>
+    <string name="search_blog_review_title_phrase">이 식당의 블로그 리뷰가 궁금하신가요?</string>
+    <string name="search_blog_review">블로그 검색하기</string>
+    <string name="popular_restaurant_nearby">주변 인기 식당</string>
 </resources>

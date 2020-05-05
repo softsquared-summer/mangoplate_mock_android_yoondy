@@ -1,5 +1,6 @@
 package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.main.restaurant_detail.RestaurantDetailActivity;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
     public int getItemCount() { return restaurantInfoArrayList.size(); }
 
     class RestaurantViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout clWholeScreen;
         ImageView ivPhoto;
         ImageView ivStar;
         TextView tvName;
@@ -49,6 +53,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
 
         RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
+            clWholeScreen = itemView.findViewById(R.id.restaurant_list_const_layout_whole_screen);
             ivPhoto = itemView.findViewById(R.id.restaurant_list_iv_photo);
             ivStar = itemView.findViewById(R.id.restaurant_list_iv_star);
             tvName = itemView.findViewById(R.id.restaurant_list_tv_name);
@@ -59,6 +64,11 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
         }
 
         void bind(RestaurantInfo restaurantInfo) {
+            clWholeScreen.setOnClickListener(v -> {
+                Intent intent = new Intent(itemView.getContext(), RestaurantDetailActivity.class);
+                itemView.getContext().startActivity(intent);
+            });
+
             Glide.with(itemView.getContext())
                     .load(restaurantInfo.getImageUrl())
                     .into(ivPhoto);

@@ -16,7 +16,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/middleGray"
-        android:background="@drawable/bg_rounding_unfilled_btn"
+        android:background="@drawable/btn_sel_rounding_unfilled_orange_check_gray"
         android:textSize="13sp"
         android:text="전체" />
 

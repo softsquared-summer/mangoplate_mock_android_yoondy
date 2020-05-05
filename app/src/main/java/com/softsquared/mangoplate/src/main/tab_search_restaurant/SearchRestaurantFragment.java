@@ -105,6 +105,8 @@ public class SearchRestaurantFragment extends Fragment {
 
         // TODO: test. It must be removed later.
         addToRvAdapter(rvRestaurantListAdapter);
+        addToRvAdapter(rvRestaurantListAdapter);
+        addToRvAdapter(rvRestaurantListAdapter);
     }
 
     private void setBtnSearch(View view) {

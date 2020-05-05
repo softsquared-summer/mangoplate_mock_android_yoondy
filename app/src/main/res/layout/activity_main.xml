@@ -149,7 +149,7 @@
                 android:layout_marginBottom="40dp"
                 android:textColor="@android:color/white"
                 android:textSize="23sp"
-                android:text="@string/write_review"/>
+                android:text="@string/write_review2"/>
 
             <ImageView
                 android:id="@+id/main_iv_ic_add_restaurant"

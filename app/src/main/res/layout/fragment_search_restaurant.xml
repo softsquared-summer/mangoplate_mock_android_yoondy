@@ -193,7 +193,7 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:layout_marginEnd="9dp"
-                android:background="@drawable/bg_rounding_radius_btn">
+                android:background="@drawable/btn_rounding_filled_bright_gray">
 
                 <ImageView
                     android:id="@+id/sch_rest_iv_locator"
