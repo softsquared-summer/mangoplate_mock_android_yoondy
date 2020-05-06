@@ -11,6 +11,8 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.login.LoginResult;
 import com.softsquared.mangoplate.src.ApplicationClass;
+import com.softsquared.mangoplate.src.login.LoginActivity;
+import com.softsquared.mangoplate.src.login.LoginService;
 import com.softsquared.mangoplate.src.main.MainActivity;
 
 public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
@@ -24,6 +26,10 @@ public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
     public void onSuccess(LoginResult loginResult) {
         String accessToken = AccessToken.getCurrentAccessToken().getToken();
         Log.d(ApplicationClass.TAG, "accessToken: " + accessToken);
+        if(activity instanceof LoginActivity) {
+            final LoginService loginService = new LoginService((LoginActivity) activity);
+            loginService.login("facebook", accessToken);
+        }
 
         GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                 (object, response) -> Log.d(ApplicationClass.TAG, "onCompleted(). JSONObject: " + object.toString()));

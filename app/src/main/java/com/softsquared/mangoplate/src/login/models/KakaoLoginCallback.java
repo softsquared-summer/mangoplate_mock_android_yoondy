@@ -16,6 +16,8 @@ import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
 import com.softsquared.mangoplate.src.ApplicationClass;
+import com.softsquared.mangoplate.src.login.LoginActivity;
+import com.softsquared.mangoplate.src.login.LoginService;
 import com.softsquared.mangoplate.src.main.MainActivity;
 
 public class KakaoLoginCallback implements ISessionCallback {
@@ -43,6 +45,10 @@ public class KakaoLoginCallback implements ISessionCallback {
             public void onSuccess(MeV2Response result) {
                 AccessToken accessToken = Session.getCurrentSession().getTokenInfo();
                 Log.d(ApplicationClass.TAG, "Kakao Login access token: " + accessToken.getAccessToken());
+                if(activity instanceof LoginActivity) {
+                    final LoginService loginService = new LoginService((LoginActivity)activity);
+                    loginService.login("kakao", accessToken.getAccessToken());
+                }
 
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);

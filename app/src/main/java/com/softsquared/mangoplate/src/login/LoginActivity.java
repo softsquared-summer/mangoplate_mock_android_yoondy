@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
@@ -11,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -19,15 +19,21 @@ import com.facebook.login.LoginManager;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
+import com.softsquared.mangoplate.src.login.interfaces.ILoginActivityView;
 import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
 import com.softsquared.mangoplate.src.login.models.KakaoLoginCallback;
+import com.softsquared.mangoplate.src.login.models.LoginInfo;
 import com.softsquared.mangoplate.src.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LoginActivity extends BaseActivity {
+import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
+import static com.softsquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
+
+public class LoginActivity extends BaseActivity implements ILoginActivityView {
     private ImageView slide0, slide1, lastSlide;
     private ArrayList<Integer> bgImgIdList;
     private Handler timerHandler = new Handler();
@@ -183,5 +189,22 @@ public class LoginActivity extends BaseActivity {
         super.onDestroy();
 
         Session.getCurrentSession().removeCallback(kakaoLoginCallback);
+    }
+
+    @Override
+    public void validateSuccess(LoginInfo loginInfo) {
+        if(loginInfo == null) {
+            Log.d(TAG, "loginInfo: null");
+            return;
+        }
+        else Log.d(TAG, "loginInfo: " + loginInfo.toString());
+
+        X_ACCESS_TOKEN = loginInfo.getJwt();
+        Log.d(TAG, "LoginActivity::validateSuccess() : X_ACCESS_TOKEN is " + X_ACCESS_TOKEN);
+    }
+
+    @Override
+    public void validateFailure() {
+        Log.d(TAG, "LoginActivity::validateFailure()");
     }
 }
