@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
-import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.IRestaurantDetailActivityView;
+import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,10 +25,10 @@ class RestaurantDetailService {
     private final String NAVER_API_HEADER_NAME_CLIENT_ID = "X-NCP-APIGW-API-KEY-ID";
     private final String NAVER_API_HEADER_NAME_CLIENT_SECRET = "X-NCP-APIGW-API-KEY";
     private final Context context;
-    private final IRestaurantDetailActivityView restaurantDetailActivityView;
+    private final RestaurantDetailActivityView restaurantDetailActivityView;
     private OkHttpClient okHttpClient = new OkHttpClient();
 
-    RestaurantDetailService(IRestaurantDetailActivityView restaurantDetailActivityView, Context context) {
+    RestaurantDetailService(RestaurantDetailActivityView restaurantDetailActivityView, Context context) {
         this.restaurantDetailActivityView = restaurantDetailActivityView;
         this.context = context;
     }
@@ -51,17 +51,17 @@ class RestaurantDetailService {
                 .enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        restaurantDetailActivityView.validateFailure(e);
+                        restaurantDetailActivityView.onFailureGetNaverMap(e);
                     }
 
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) {
                         if(response.body() == null) {
-                            restaurantDetailActivityView.validateFailure(null);
+                            restaurantDetailActivityView.onFailureGetNaverMap(null);
                             return;
                         }
 
-                        restaurantDetailActivityView.validateSuccess(
+                        restaurantDetailActivityView.onSuccessGetNaverMap(
                                 BitmapFactory.decodeStream(Objects.requireNonNull(Objects.requireNonNull(response).body()).byteStream()));
                     }
                 });

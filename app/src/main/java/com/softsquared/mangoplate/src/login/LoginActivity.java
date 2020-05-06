@@ -9,7 +9,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -20,7 +19,7 @@ import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.BaseActivity;
-import com.softsquared.mangoplate.src.login.interfaces.ILoginActivityView;
+import com.softsquared.mangoplate.src.login.interfaces.LoginActivityView;
 import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
 import com.softsquared.mangoplate.src.login.models.KakaoLoginCallback;
 import com.softsquared.mangoplate.src.login.models.LoginInfo;
@@ -33,7 +32,7 @@ import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 import static com.softsquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
-public class LoginActivity extends BaseActivity implements ILoginActivityView {
+public class LoginActivity extends BaseActivity implements LoginActivityView {
     private ImageView slide0, slide1, lastSlide;
     private ArrayList<Integer> bgImgIdList;
     private Handler timerHandler = new Handler();
@@ -196,18 +195,14 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
     }
 
     @Override
-    public void validateSuccess(LoginInfo loginInfo) {
+    public void onSuccessLogin(LoginInfo loginInfo) {
         if(loginInfo == null) {
-            Log.d(TAG, "loginInfo: null");
+            Log.d(TAG, "LoginActivity::onSuccessLogin() loginInfo: null");
             return;
         }
-        else Log.d(TAG, "loginInfo: " + loginInfo.toString());
+        else Log.d(TAG, "LoginActivity::onSuccessLogin() loginInfo: " + loginInfo.toString());
 
-        Log.d(TAG, "LoginActivity::validateSuccess() : before X_ACCESS_TOKEN is " + X_ACCESS_TOKEN);
-        Log.d(TAG, "LoginActivity::validateSuccess() : got X_ACCESS_TOKEN:     " + loginInfo.getJwt());
         sSharedPreferences.edit().putString(X_ACCESS_TOKEN, loginInfo.getJwt()).apply();
-//        X_ACCESS_TOKEN = loginInfo.getJwt();
-        Log.d(TAG, "LoginActivity::validateSuccess() : after X_ACCESS_TOKEN is " + X_ACCESS_TOKEN);
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
@@ -215,7 +210,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
     }
 
     @Override
-    public void validateFailure() {
-        Log.d(TAG, "LoginActivity::validateFailure()");
+    public void onFailureLogin() {
+        Log.d(TAG, "LoginActivity::onFailureLogin()");
     }
 }

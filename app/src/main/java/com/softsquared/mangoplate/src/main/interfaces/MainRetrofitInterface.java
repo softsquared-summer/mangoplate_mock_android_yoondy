@@ -5,7 +5,7 @@ import com.softsquared.mangoplate.src.main.models.UserResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface IMainRetrofitInterface {
+public interface MainRetrofitInterface {
     @GET("/user")
     Call<UserResponse> getUserInfo();
 }

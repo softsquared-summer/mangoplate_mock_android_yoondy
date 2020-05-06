@@ -70,13 +70,13 @@ public class EventRvAdapter extends RecyclerView.Adapter<EventRvAdapter.EventVie
                     .into(ivImg);
 
             String title = eventInfo.getTitle();
-            if(title == null || title.isEmpty()) title = " ";
+            if(title == null || title.isEmpty() || title.equals("null")) title = " ";
             tvTitle.setText(title);
 
             tvDate.setText(eventInfo.getDate());
 
             String status = eventInfo.getStatus();
-            if(status == null || status.equals("") || status.equals("null"))
+            if(status == null || status.isEmpty() || status.equals("null"))
                 tvEnded.setVisibility(View.GONE);
             else {
                 tvEnded.setVisibility(View.VISIBLE);

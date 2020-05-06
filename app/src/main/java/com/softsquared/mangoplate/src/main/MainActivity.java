@@ -22,7 +22,7 @@ import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.gps.GpsService;
-import com.softsquared.mangoplate.src.main.interfaces.IMainActivityView;
+import com.softsquared.mangoplate.src.main.interfaces.MainActivityView;
 import com.softsquared.mangoplate.src.main.models.MainFragmentStateAdapter;
 import com.softsquared.mangoplate.src.main.models.UserInfo;
 
@@ -31,7 +31,7 @@ import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
-public class MainActivity extends BaseActivity implements IMainActivityView {
+public class MainActivity extends BaseActivity implements MainActivityView {
     public ViewPager2 vp2MainScreen;
 
     final MainService mainService = new MainService(this);
@@ -192,7 +192,7 @@ public class MainActivity extends BaseActivity implements IMainActivityView {
     }
 
     @Override
-    public void onGetUserSuccess(UserInfo myInfo) {
+    public void onSuccessGetUser(UserInfo myInfo) {
         Log.d(TAG, "name: " + myInfo.getName());
         Log.d(TAG, "email: " + myInfo.getEmail());
         Log.d(TAG, "phone: " + myInfo.getPhone());
@@ -204,5 +204,10 @@ public class MainActivity extends BaseActivity implements IMainActivityView {
         editor.putString("phone", myInfo.getPhone());
         editor.putString("profileUrl", myInfo.getProfileUrl());
         editor.apply();
+    }
+
+    @Override
+    public void onFailureGetUser() {
+        Log.d(TAG, "MainActivity::onFailureGetUser()");
     }
 }

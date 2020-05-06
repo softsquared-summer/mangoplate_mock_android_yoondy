@@ -18,7 +18,7 @@ import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.gps.GpsService;
-import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.IRestaurantDetailActivityView;
+import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuAdapter;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuPhotoAdapter;
@@ -29,7 +29,7 @@ import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.Restaura
 
 import java.io.IOException;
 
-public class RestaurantDetailActivity extends BaseActivity implements IRestaurantDetailActivityView {
+public class RestaurantDetailActivity extends BaseActivity implements RestaurantDetailActivityView {
     final private RestaurantDetailService restaurantDetailService = new RestaurantDetailService(this, this);
 
     @Override
@@ -112,6 +112,8 @@ public class RestaurantDetailActivity extends BaseActivity implements IRestauran
         restaurantDetailPhotoAdapter.add(info1);
         RestaurantDetailPhotoInfo info2 = new RestaurantDetailPhotoInfo(25, "https://i.imgur.com/nwe2QFd.jpg");
         restaurantDetailPhotoAdapter.add(info2);
+        restaurantDetailPhotoAdapter.add(info0);
+        restaurantDetailPhotoAdapter.add(info1);
     }
 
     private void setMenuForRecord() {
@@ -285,13 +287,13 @@ public class RestaurantDetailActivity extends BaseActivity implements IRestauran
     }
 
     @Override
-    public void validateSuccess(Bitmap bitmap) {
+    public void onSuccessGetNaverMap(Bitmap bitmap) {
         ImageView ivMap = findViewById(R.id.restaurant_detail_iv_map);
         new Handler(Looper.getMainLooper()).post(() -> ivMap.setImageBitmap(bitmap));
     }
 
     @Override
-    public void validateFailure(IOException e) {
+    public void onFailureGetNaverMap(IOException e) {
         Log.e(ApplicationClass.TAG, "RestaurantDetailActivity::validateFailure(): " + e);
     }
 

@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 
 import java.io.IOException;
 
-public interface IRestaurantDetailActivityView {
-    void validateSuccess(Bitmap bitmap);
+public interface RestaurantDetailActivityView {
+    void onSuccessGetNaverMap(Bitmap bitmap);
 
-    void validateFailure(IOException e);
+    void onFailureGetNaverMap(IOException e);
 }
