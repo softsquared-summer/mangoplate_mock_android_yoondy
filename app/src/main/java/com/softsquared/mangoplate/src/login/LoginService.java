@@ -59,4 +59,44 @@ public class LoginService {
             }
         });
     }
+
+    // TODO: This is temporary way of API 1-2.
+    public void kakaoTempLogin(String id, String name, String profileUrl) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", id);
+            jsonObject.put("name", name);
+            jsonObject.put("profileUrl", profileUrl);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, jsonObject.toString());
+        Log.d(TAG, "LoginService::kakaoTempLogin() : requestBody: " + jsonObject.toString());
+
+        final ILoginRetrofitInterface loginRetrofitInterface = getRetrofit().create(ILoginRetrofitInterface.class);
+        loginRetrofitInterface.loginTempKakao("kakao", requestBody).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<LoginResponse> call, @NotNull Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
+                Log.d(TAG, "response: " + response);
+                Log.d(TAG, "loginResponse: " + loginResponse);
+                assert loginResponse != null;
+                Log.d(TAG, "code: " + loginResponse.getCode());
+                Log.d(TAG, "result: " + loginResponse.getResult());
+                Log.d(TAG, "message: " + loginResponse.getMessage());
+
+                if(loginResponse.isSuccess())
+                    loginActivityView.validateSuccess(loginResponse.getResult());
+                else
+                    loginActivityView.validateFailure();
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<LoginResponse> call, @NotNull Throwable t) {
+                loginActivityView.validateFailure();
+            }
+        });
+    }
 }

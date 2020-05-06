@@ -43,12 +43,15 @@ public class KakaoLoginCallback implements ISessionCallback {
 
             @Override
             public void onSuccess(MeV2Response result) {
+                // TODO: not ready yet API 1-2.
+                /*
                 AccessToken accessToken = Session.getCurrentSession().getTokenInfo();
                 Log.d(ApplicationClass.TAG, "Kakao Login access token: " + accessToken.getAccessToken());
                 if(activity instanceof LoginActivity) {
                     final LoginService loginService = new LoginService((LoginActivity)activity);
                     loginService.login("kakao", accessToken.getAccessToken());
                 }
+                 */
 
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
@@ -74,6 +77,11 @@ public class KakaoLoginCallback implements ISessionCallback {
                     Log.d(ApplicationClass.TAG, "Kakao Login nickname: " + profile.getNickname());
                     Log.d(ApplicationClass.TAG, "Kakao Login profile image: " + profile.getProfileImageUrl());
                     Log.d(ApplicationClass.TAG, "Kakao Login thumbnail image: " + profile.getThumbnailImageUrl());
+                    if(activity instanceof LoginActivity) {
+                        final LoginService loginService = new LoginService((LoginActivity)activity);
+                        loginService.kakaoTempLogin(String.valueOf(result.getId()), profile.getNickname(), profile.getProfileImageUrl());
+                    }
+
                 }
                 else if (kakaoAccount.profileNeedsAgreement() == OptionalBoolean.TRUE) {
                     // can get profile after request agreement

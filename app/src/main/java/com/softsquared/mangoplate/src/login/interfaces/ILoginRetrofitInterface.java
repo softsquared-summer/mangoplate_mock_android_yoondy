@@ -16,4 +16,11 @@ public interface ILoginRetrofitInterface {
             @Query("type") String type,
             @Body RequestBody params
     );
+
+    @POST("/jwt")
+    @Headers("Content-Type: application/json")
+    Call<LoginResponse> loginTempKakao(
+            @Query("type") String type,
+            @Body RequestBody params
+    );
 }
