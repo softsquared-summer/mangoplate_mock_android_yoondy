@@ -1,8 +1,9 @@
 package com.softsquared.mangoplate.src.login.interfaces;
 
+import com.softsquared.mangoplate.src.login.models.KakaoTempLoginBody;
+import com.softsquared.mangoplate.src.login.models.LoginBody;
 import com.softsquared.mangoplate.src.login.models.LoginResponse;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
@@ -14,13 +15,13 @@ public interface ILoginRetrofitInterface {
     @Headers("Content-Type: application/json")
     Call<LoginResponse> login(
             @Query("type") String type,
-            @Body RequestBody params
+            @Body LoginBody loginBody
     );
 
     @POST("/jwt")
     @Headers("Content-Type: application/json")
     Call<LoginResponse> loginTempKakao(
             @Query("type") String type,
-            @Body RequestBody params
-    );
+            @Body KakaoTempLoginBody kakaoTempLoginBody
+            );
 }
