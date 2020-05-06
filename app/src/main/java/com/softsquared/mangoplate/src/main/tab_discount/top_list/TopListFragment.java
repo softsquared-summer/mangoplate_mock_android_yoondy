@@ -54,6 +54,8 @@ public class TopListFragment extends Fragment {
 
         // TODO: test. erase this later.
         addToAdapter(adapter);
+        addToAdapter(adapter);
+        addToAdapter(adapter);
     }
 
     private void addToAdapter(TopListRvAdapter adapter) {

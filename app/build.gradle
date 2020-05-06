@@ -61,6 +61,9 @@ dependencies {
     // https://github.com/amarjain07/StickyScrollView
     implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
 
+    // https://github.com/lopspower/CircularImageView
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
     // facebook Login SDK
     implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
 

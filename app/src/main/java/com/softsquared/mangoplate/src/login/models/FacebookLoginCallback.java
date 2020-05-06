@@ -38,10 +38,6 @@ public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
         parameters.putString("fields", "id,name,email,gender,birthday");
         graphRequest.setParameters(parameters);
         graphRequest.executeAsync();
-
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
-        activity.finish();
     }
 
     @Override

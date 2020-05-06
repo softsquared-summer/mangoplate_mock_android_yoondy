@@ -1,10 +1,10 @@
 package com.softsquared.mangoplate.src.main;
 
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -16,18 +16,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
+import com.softsquared.mangoplate.src.gps.GpsService;
+import com.softsquared.mangoplate.src.main.interfaces.IMainActivityView;
 import com.softsquared.mangoplate.src.main.models.MainFragmentStateAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.softsquared.mangoplate.src.main.models.UserInfo;
 
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
-public class MainActivity extends BaseActivity {
+import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
+import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
+
+public class MainActivity extends BaseActivity implements IMainActivityView {
     public ViewPager2 vp2MainScreen;
 
+    final MainService mainService = new MainService(this);
     private ViewRevealAnimator viewRevealAnimator;
     private BottomNavigationView botNav;
     private FloatingActionButton btnOpenAddition, btnCloseAddition;
@@ -44,6 +51,12 @@ public class MainActivity extends BaseActivity {
 
         setVp2();
         initView();
+
+        mainService.getMyInfo();
+
+        // TODO: test code. erase later
+        GpsService gpsService = new GpsService(getApplicationContext());
+        Log.d(TAG, "gps1: " + gpsService.getLongitude() + ", " + gpsService.getLatitude());
     }
 
     private void setVp2() {
@@ -59,10 +72,10 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                if(position == 0) botNav.setSelectedItemId(R.id.item_search_restaurant);
-                else if(position == 1) botNav.setSelectedItemId(R.id.item_discount);
-                else if(position == 2) botNav.setSelectedItemId(R.id.item_timeline);
-                else if(position == 3) botNav.setSelectedItemId(R.id.item_my_info);
+                if (position == 0) botNav.setSelectedItemId(R.id.item_search_restaurant);
+                else if (position == 1) botNav.setSelectedItemId(R.id.item_discount);
+                else if (position == 2) botNav.setSelectedItemId(R.id.item_timeline);
+                else if (position == 3) botNav.setSelectedItemId(R.id.item_my_info);
             }
         });
     }
@@ -104,7 +117,7 @@ public class MainActivity extends BaseActivity {
             viewRevealAnimator.setDisplayedChild(
                     viewRevealAnimator.getDisplayedChild() + 1,
                     true,
-                    new Point(ApplicationClass.getScreenWidth()/2,
+                    new Point(ApplicationClass.getScreenWidth() / 2,
                             ApplicationClass.getScreenHeight() - botNav.getHeight())
             );
         });
@@ -133,6 +146,10 @@ public class MainActivity extends BaseActivity {
                 }
                 case R.id.item_addition: {
                     btnOpenAddition.startAnimation(halfFadeOut);
+//test
+                    GpsService gpsService = new GpsService(getApplicationContext());
+                    Log.d(TAG, "gps2: " + gpsService.getLongitude() + ", " + gpsService.getLatitude());
+
 
                     AnimationSet openAnimationSet = new AnimationSet(true);
                     openAnimationSet.addAnimation(halfFadeIn);
@@ -142,7 +159,7 @@ public class MainActivity extends BaseActivity {
                     viewRevealAnimator.setDisplayedChild(
                             viewRevealAnimator.getDisplayedChild() + 1,
                             true,
-                            new Point(ApplicationClass.getScreenWidth()/2,
+                            new Point(ApplicationClass.getScreenWidth() / 2,
                                     ApplicationClass.getScreenHeight() - botNav.getHeight())
                     );
 
@@ -172,5 +189,20 @@ public class MainActivity extends BaseActivity {
             }
             return true;
         }
+    }
+
+    @Override
+    public void onGetUserSuccess(UserInfo myInfo) {
+        Log.d(TAG, "name: " + myInfo.getName());
+        Log.d(TAG, "email: " + myInfo.getEmail());
+        Log.d(TAG, "phone: " + myInfo.getPhone());
+        Log.d(TAG, "profileUrl: " + myInfo.getProfileUrl());
+
+        SharedPreferences.Editor editor= sSharedPreferences.edit();
+        editor.putString("name", myInfo.getName());
+        editor.putString("email", myInfo.getEmail());
+        editor.putString("phone", myInfo.getPhone());
+        editor.putString("profileUrl", myInfo.getProfileUrl());
+        editor.apply();
     }
 }

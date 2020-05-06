@@ -21,16 +21,16 @@ tools:context=".src.main.tab_my_info.MyInfoFragment">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/my_info_iv_profile_photo"
         android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="70dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_info_iv_notified"
-        app:srcCompat="@drawable/photo_my_profile_test" />
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/my_info_tv_follower_count"
@@ -105,10 +105,10 @@ tools:context=".src.main.tab_my_info.MyInfoFragment">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="윤대현"
+        android:text="홍길동"
         android:textColor="@color/almostBlack"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/my_info_iv_profile_photo"
         app:layout_constraintTop_toBottomOf="@+id/my_info_iv_profile_photo" />
 

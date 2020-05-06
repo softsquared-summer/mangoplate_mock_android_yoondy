@@ -19,7 +19,6 @@ import com.facebook.login.LoginManager;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.login.interfaces.ILoginActivityView;
 import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
@@ -32,6 +31,7 @@ import java.util.Arrays;
 
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 import static com.softsquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
 public class LoginActivity extends BaseActivity implements ILoginActivityView {
     private ImageView slide0, slide1, lastSlide;
@@ -55,8 +55,12 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
 
     private void setView() {
         Intent intent = new Intent(this, MainActivity.class);
+
+        // we didn't decide to implement login skip.
+        /*
         TextView tvSkip = findViewById(R.id.login_tv_skip);
         tvSkip.setOnClickListener(v -> startActivity(intent));
+         */
 
         bgImgIdList = new ArrayList<>();
         slide0 = findViewById(R.id.login_iv_bg_slide0);
@@ -199,8 +203,15 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
         }
         else Log.d(TAG, "loginInfo: " + loginInfo.toString());
 
-        X_ACCESS_TOKEN = loginInfo.getJwt();
-        Log.d(TAG, "LoginActivity::validateSuccess() : X_ACCESS_TOKEN is " + X_ACCESS_TOKEN);
+        Log.d(TAG, "LoginActivity::validateSuccess() : before X_ACCESS_TOKEN is " + X_ACCESS_TOKEN);
+        Log.d(TAG, "LoginActivity::validateSuccess() : got X_ACCESS_TOKEN:     " + loginInfo.getJwt());
+        sSharedPreferences.edit().putString(X_ACCESS_TOKEN, loginInfo.getJwt()).apply();
+//        X_ACCESS_TOKEN = loginInfo.getJwt();
+        Log.d(TAG, "LoginActivity::validateSuccess() : after X_ACCESS_TOKEN is " + X_ACCESS_TOKEN);
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
