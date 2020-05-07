@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.tab_discount.top_list.models;
+package com.softsquared.mangoplate.src.main.tab_discount.top_list;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.main.MainActivity;
+import com.softsquared.mangoplate.src.main.tab_discount.top_list.models.TopListInfo;
 
 import java.util.ArrayList;
 

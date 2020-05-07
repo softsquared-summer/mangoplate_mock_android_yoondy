@@ -7,7 +7,7 @@ public class BannerAdInfo {
 
     @SerializedName("imageUrl") private String imageUrl;
 
-    String getImageUrl() { return imageUrl; }
+    public String getImageUrl() { return imageUrl; }
 
-    int getEventId() { return eventId; }
+    public int getEventId() { return eventId; }
 }

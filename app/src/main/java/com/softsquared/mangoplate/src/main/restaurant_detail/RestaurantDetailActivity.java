@@ -19,13 +19,10 @@ import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
-import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuAdapter;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
-import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuPhotoAdapter;
-import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailPhotoAdapter;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailPhotoInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.RestaurantListRvAdapter;
 
 import java.io.IOException;
 

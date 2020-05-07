@@ -5,29 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradation_select_area"
-    tools:context=".src.main.tab_search_restaurant.select_area.SelectAreaActivity">
+    tools:context=".src.main.tab_search_restaurant.select_area.SelectDistrictActivity">
 
     <FrameLayout
-        android:id="@+id/sel_area_frame_layout_bg_panel"
+        android:id="@+id/sel_district_frame_layout_bg_panel"
         android:layout_width="0dp"
         android:layout_height="343dp"
-        app:layout_constraintBottom_toTopOf="@+id/sel_area_const_layout_bottom_panel"
+        app:layout_constraintBottom_toTopOf="@+id/sel_district_const_layout_bottom_panel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sel_area_const_layout_bottom_panel"
+        android:id="@+id/sel_district_const_layout_bottom_panel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sel_area_frame_layout_bg_panel"
+        app:layout_constraintTop_toBottomOf="@+id/sel_district_frame_layout_bg_panel"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/sel_area_tab_layout_large_category"
+            android:id="@+id/sel_district_tab_layout_large_category"
             android:layout_width="0dp"
             android:layout_height="70dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,16 +44,16 @@
             app:tabRippleColor="@android:color/transparent"/>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/sel_area_vp2_area_select_page"
+            android:id="@+id/sel_district_vp2_district_select_page"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sel_area_tab_layout_large_category"
-            app:layout_constraintBottom_toTopOf="@+id/sel_area_btn_apply"/>
+            app:layout_constraintTop_toBottomOf="@+id/sel_district_tab_layout_large_category"
+            app:layout_constraintBottom_toTopOf="@+id/sel_district_btn_apply"/>
 
         <ImageView
-            android:id="@+id/sel_area_iv_edit_icon"
+            android:id="@+id/sel_district_iv_edit_icon"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:adjustViewBounds="true"
@@ -66,21 +66,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/sel_area_iv_edit_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/sel_area_iv_edit_icon"
-            app:layout_constraintStart_toEndOf="@+id/sel_area_iv_edit_icon"
+            app:layout_constraintTop_toTopOf="@+id/sel_district_iv_edit_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/sel_district_iv_edit_icon"
+            app:layout_constraintStart_toEndOf="@+id/sel_district_iv_edit_icon"
             android:layout_marginStart="7dp"
             android:text="@string/edit"/>
 
         <Button
-            android:id="@+id/sel_area_btn_apply"
+            android:id="@+id/sel_district_btn_apply"
             android:layout_width="100dp"
             android:layout_height="36dp"
             android:text="@string/apply"
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:background="@drawable/btn_sel_rounding_filled_orange_middle_gray"
-            app:layout_constraintTop_toBottomOf="@+id/sel_area_vp2_area_select_page"
+            app:layout_constraintTop_toBottomOf="@+id/sel_district_vp2_district_select_page"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,8 +90,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/sel_area_btn_apply"
-            app:layout_constraintBottom_toBottomOf="@+id/sel_area_btn_apply"
+            app:layout_constraintTop_toTopOf="@+id/sel_district_btn_apply"
+            app:layout_constraintBottom_toBottomOf="@+id/sel_district_btn_apply"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp"
             android:textColor="@color/middleGray"

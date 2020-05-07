@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
+package com.softsquared.mangoplate.src.main.tab_search_restaurant;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.event.event_detail.EventDetailActivity;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
 
 import java.util.ArrayList;
 

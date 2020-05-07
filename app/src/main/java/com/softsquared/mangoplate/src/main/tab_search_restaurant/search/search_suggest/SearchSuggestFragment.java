@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.search.search_suggest.models.SearchSuggestRvAdapter;
 
 public class SearchSuggestFragment extends Fragment {
     public SearchSuggestFragment() {

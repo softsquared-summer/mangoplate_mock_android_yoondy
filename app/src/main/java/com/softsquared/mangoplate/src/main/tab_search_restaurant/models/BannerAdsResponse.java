@@ -5,17 +5,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class BannerAdsResponse {
-    @SerializedName("result")
-    private ArrayList<BannerAdInfo> result;
+    @SerializedName("result") private ArrayList<BannerAdInfo> result;
 
-    @SerializedName("code")
-    private int code;
+    @SerializedName("code") private int code;
 
-    @SerializedName("message")
-    private String message;
+    @SerializedName("message") private String message;
 
-    @SerializedName("isSuccess")
-    private boolean isSuccess;
+    @SerializedName("isSuccess") private boolean isSuccess;
 
     public ArrayList<BannerAdInfo> getResult() { return result; }
 

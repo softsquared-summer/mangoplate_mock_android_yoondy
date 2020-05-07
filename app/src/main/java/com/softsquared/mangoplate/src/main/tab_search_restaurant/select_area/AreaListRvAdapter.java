@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models;
+package com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,40 +12,41 @@ import com.softsquared.mangoplate.R;
 
 import java.util.ArrayList;
 
-class MiddleAreaListRvAdapter extends RecyclerView.Adapter<MiddleAreaListRvAdapter.MiddleAreaViewHolder> {
+class AreaListRvAdapter extends RecyclerView.Adapter<AreaListRvAdapter.AreaViewHolder> {
     private ArrayList<String> areaArrayList = new ArrayList<>();
 
     @NonNull
     @Override
-    public MiddleAreaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AreaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_middle_area, parent, false);
-        return new MiddleAreaViewHolder(view);
+                .inflate(R.layout.item_area, parent, false);
+        return new AreaViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MiddleAreaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AreaViewHolder holder, int position) {
         holder.bind(areaArrayList.get(position));
     }
 
     @Override
     public int getItemCount() { return areaArrayList.size(); }
 
-    void addAllAreaList(ArrayList<String> areaList) {
-        areaArrayList.addAll(areaList);
-    }
+    public void add(String area) { areaArrayList.add(area); }
 
-    class MiddleAreaViewHolder extends RecyclerView.ViewHolder {
+    class AreaViewHolder extends RecyclerView.ViewHolder {
         Button btnArea;
 
-        MiddleAreaViewHolder(@NonNull View itemView) {
+        AreaViewHolder(@NonNull View itemView) {
             super(itemView);
-            btnArea = itemView.findViewById(R.id.middle_area_btn);
+            btnArea = itemView.findViewById(R.id.area_btn);
         }
 
         void bind(String areaName) {
             btnArea.setText(areaName);
             btnArea.setSelected(false);
+            btnArea.setOnClickListener(v -> {
+                // TODO: toggle this area
+            });
         }
     }
 }

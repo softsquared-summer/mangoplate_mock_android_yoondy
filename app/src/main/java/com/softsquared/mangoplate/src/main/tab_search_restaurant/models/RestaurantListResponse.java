@@ -3,17 +3,13 @@ package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
 import com.google.gson.annotations.SerializedName;
 
 public class RestaurantListResponse {
-    @SerializedName("result")
-    private RestaurantInfo result;
+    @SerializedName("result") private RestaurantInfo result;
 
-    @SerializedName("code")
-    private int code;
+    @SerializedName("code") private int code;
 
-    @SerializedName("message")
-    private String message;
+    @SerializedName("message") private String message;
 
-    @SerializedName("isSuccess")
-    private boolean isSuccess;
+    @SerializedName("isSuccess") private boolean isSuccess;
 
     public RestaurantInfo getResult() { return result; }
 

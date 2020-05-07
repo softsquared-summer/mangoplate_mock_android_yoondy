@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.event.models;
+package com.softsquared.mangoplate.src.main.event;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.main.event.event_detail.EventDetailActivity;
+import com.softsquared.mangoplate.src.main.event.models.EventInfo;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,11 @@
-package com.softsquared.mangoplate.src.main.event.models;
+package com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class EventResponse {
-    @SerializedName("result") private ArrayList<EventInfo> result;
+public class AreaNearMeResponse {
+    @SerializedName("result") private ArrayList<AreaNearMeInfo> result;
 
     @SerializedName("code") private int code;
 
@@ -13,7 +13,7 @@ public class EventResponse {
 
     @SerializedName("isSuccess") private boolean isSuccess;
 
-    public ArrayList<EventInfo> getResult() { return result; }
+    public ArrayList<AreaNearMeInfo> getResult() { return result; }
 
     public int getCode() { return code; }
 

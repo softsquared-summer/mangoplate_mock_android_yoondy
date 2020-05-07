@@ -17,14 +17,14 @@ import retrofit2.Response;
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 import static com.softsquared.mangoplate.src.ApplicationClass.getRetrofit;
 
-public class LoginService {
+class LoginService {
     private final LoginActivityView loginActivityView;
 
-    public LoginService(LoginActivityView loginActivityView) {
+    LoginService(LoginActivityView loginActivityView) {
         this.loginActivityView = loginActivityView;
     }
 
-    public void login(String loginType, String accessToken) {
+    void login(String loginType, String accessToken) {
         final LoginRetrofitInterface loginRetrofitInterface = getRetrofit().create(LoginRetrofitInterface.class);
         loginRetrofitInterface.login(loginType, new LoginBody(accessToken))
                 .enqueue(new Callback<LoginResponse>() {
@@ -48,13 +48,14 @@ public class LoginService {
 
             @Override
             public void onFailure(@NotNull Call<LoginResponse> call, @NotNull Throwable t) {
+                Log.d(TAG, "LoginService::login() fail : " + t);
                 loginActivityView.onFailureLogin();
             }
         });
     }
 
     // TODO: This is temporary way of API 1-2.
-    public void kakaoTempLogin(String id, String name, String profileUrl) {
+    void kakaoTempLogin(String id, String name, String profileUrl) {
         final LoginRetrofitInterface loginRetrofitInterface = getRetrofit().create(LoginRetrofitInterface.class);
         loginRetrofitInterface.loginTempKakao("kakao", new KakaoTempLoginBody(id, name, profileUrl))
                 .enqueue(new Callback<LoginResponse>() {
@@ -78,6 +79,7 @@ public class LoginService {
 
             @Override
             public void onFailure(@NotNull Call<LoginResponse> call, @NotNull Throwable t) {
+                Log.d(TAG, "LoginService::login() fail : " + t);
                 loginActivityView.onFailureLogin();
             }
         });

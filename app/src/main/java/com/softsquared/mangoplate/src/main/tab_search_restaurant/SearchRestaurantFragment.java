@@ -21,14 +21,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.BaseActivity;
+import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantListRvAdapter;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.search.SearchActivity;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.SelectAreaActivity;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.SelectDistrictActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_filter.SelectFilterActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_radius.SelectRadiusActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_sort_by.SelectSortByActivity;
@@ -134,7 +133,11 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
     private void setBtnSelectArea(View view) {
         ConstraintLayout clSelectArea = view.findViewById(R.id.sch_rest_const_layout_location_watch_now);
-        Intent intent = new Intent(getContext(), SelectAreaActivity.class);
+        Intent intent = new Intent(getContext(), SelectDistrictActivity.class);
+        GpsService gpsService = new GpsService(getContext());
+
+        intent.putExtra("latitude", gpsService.getLatitude());
+        intent.putExtra("longitude", gpsService.getLongitude());
         clSelectArea.setOnClickListener(v -> {
             isFadeAnimActivity = true;
             startActivityForResult(intent, SELECT_AREA);

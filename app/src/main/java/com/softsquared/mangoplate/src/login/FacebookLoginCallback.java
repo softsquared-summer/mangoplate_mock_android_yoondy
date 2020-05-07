@@ -1,7 +1,6 @@
-package com.softsquared.mangoplate.src.login.models;
+package com.softsquared.mangoplate.src.login;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,14 +10,11 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.login.LoginResult;
 import com.softsquared.mangoplate.src.ApplicationClass;
-import com.softsquared.mangoplate.src.login.LoginActivity;
-import com.softsquared.mangoplate.src.login.LoginService;
-import com.softsquared.mangoplate.src.main.MainActivity;
 
 public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
     private Activity activity;
 
-    public FacebookLoginCallback(Activity activity) {
+    FacebookLoginCallback(Activity activity) {
         this.activity = activity;
     }
 

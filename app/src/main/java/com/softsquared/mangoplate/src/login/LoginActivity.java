@@ -20,8 +20,6 @@ import com.kakao.auth.Session;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.login.interfaces.LoginActivityView;
-import com.softsquared.mangoplate.src.login.models.FacebookLoginCallback;
-import com.softsquared.mangoplate.src.login.models.KakaoLoginCallback;
 import com.softsquared.mangoplate.src.login.models.LoginInfo;
 import com.softsquared.mangoplate.src.main.MainActivity;
 

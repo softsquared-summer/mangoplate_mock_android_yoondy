@@ -83,7 +83,7 @@
             android:windowSoftInputMode="stateAlwaysVisible"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".src.main.tab_search_restaurant.select_area.SelectAreaActivity"
+            android:name=".src.main.tab_search_restaurant.select_area.SelectDistrictActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"
             tools:ignore="LockedOrientationActivity" />

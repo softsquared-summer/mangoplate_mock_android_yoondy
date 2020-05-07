@@ -3,28 +3,23 @@ package com.softsquared.mangoplate.src.main.event.models;
 import com.google.gson.annotations.SerializedName;
 
 public class EventInfo {
-    @SerializedName("eventId")
-    private int eventId;
+    @SerializedName("eventId") private int eventId;
 
-    @SerializedName("imageUrl")
-    private String imageUrl;
+    @SerializedName("imageUrl") private String imageUrl;
 
-    @SerializedName("title")
-    private String title;
+    @SerializedName("title") private String title;
 
-    @SerializedName("status")
-    private String status;
+    @SerializedName("status") private String status;
 
-    @SerializedName("date")
-    private String date;
+    @SerializedName("date") private String date;
 
-    int getEventId() { return eventId; }
+    public int getEventId() { return eventId; }
 
-    String getImageUrl() { return imageUrl; }
+    public String getImageUrl() { return imageUrl; }
 
-    String getTitle() { return title; }
+    public String getTitle() { return title; }
 
-    String getStatus() { return status; }
+    public String getStatus() { return status; }
 
-    String getDate() { return date; }
+    public String getDate() { return date; }
 }

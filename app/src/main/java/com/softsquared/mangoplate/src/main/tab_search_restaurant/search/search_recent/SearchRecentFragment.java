@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.search.search_recent.models.SearchRecentRvAdapter;
 
 public class SearchRecentFragment extends Fragment {
     private TextView tvGuidePhrase;

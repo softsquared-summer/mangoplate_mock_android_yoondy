@@ -12,7 +12,6 @@ import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.main.event.interfaces.EventActivityView;
 import com.softsquared.mangoplate.src.main.event.models.EventInfo;
-import com.softsquared.mangoplate.src.main.event.models.EventRvAdapter;
 
 import java.util.ArrayList;
 

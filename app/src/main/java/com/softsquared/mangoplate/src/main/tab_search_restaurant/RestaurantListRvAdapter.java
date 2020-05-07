@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
+package com.softsquared.mangoplate.src.main.tab_search_restaurant;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.main.restaurant_detail.RestaurantDetailActivity;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

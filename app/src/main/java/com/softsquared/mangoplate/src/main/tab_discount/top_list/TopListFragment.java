@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.tab_discount.top_list.models.TopListInfo;
-import com.softsquared.mangoplate.src.main.tab_discount.top_list.models.TopListRvAdapter;
 
 public class TopListFragment extends Fragment {
 

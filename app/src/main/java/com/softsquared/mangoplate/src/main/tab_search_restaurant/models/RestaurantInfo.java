@@ -4,45 +4,37 @@ import com.google.gson.annotations.SerializedName;
 
 public class RestaurantInfo {
     // TODO: After completed API 4-1, These vars and funs must be changed. These are temp names.
-    @SerializedName("imageUrl")
-    private String imageUrl;
+    @SerializedName("imageUrl") private String imageUrl;
 
-    @SerializedName("name")
-    private String name;
+    @SerializedName("name") private String name;
 
-    @SerializedName("area")
-    private String area;
+    @SerializedName("area") private String area;
 
-    @SerializedName("distance")
-    private String distance;
+    @SerializedName("distance") private String distance;
 
-    @SerializedName("viewCount")
-    private int viewCount;
+    @SerializedName("viewCount") private int viewCount;
 
-    @SerializedName("reviewCount")
-    private int reviewCount;
+    @SerializedName("reviewCount") private int reviewCount;
 
-    @SerializedName("score")
-    private float score;
+    @SerializedName("score") private float score;
 
-    @SerializedName("isWantToGo")
-    private boolean isWantToGo;
+    @SerializedName("isWantToGo") private boolean isWantToGo;
 
-    String getImageUrl() { return imageUrl; }
+    public String getImageUrl() { return imageUrl; }
 
-    String getName() { return name; }
+    public String getName() { return name; }
 
-    String getArea() { return area; }
+    public String getArea() { return area; }
 
-    String getDistance() { return distance; }
+    public String getDistance() { return distance; }
 
-    int getViewCount() { return viewCount; }
+    public int getViewCount() { return viewCount; }
 
-    int getReviewCount() { return reviewCount; }
+    public int getReviewCount() { return reviewCount; }
 
-    float getScore() { return score; }
+    public float getScore() { return score; }
 
-    boolean isWantToGo() { return isWantToGo; }
+    public boolean isWantToGo() { return isWantToGo; }
 
     // TODO: test. It must be removed later.
     public RestaurantInfo(String imageUrl, String name, String area, String distance, int viewCount, int reviewCount, float score, boolean isWantToGo) {

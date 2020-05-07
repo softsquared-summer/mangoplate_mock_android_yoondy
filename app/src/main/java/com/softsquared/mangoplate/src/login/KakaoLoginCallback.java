@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.login.models;
+package com.softsquared.mangoplate.src.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +23,7 @@ import com.softsquared.mangoplate.src.main.MainActivity;
 public class KakaoLoginCallback implements ISessionCallback {
     private Activity activity;
 
-    public KakaoLoginCallback(Activity activity) {
+    KakaoLoginCallback(Activity activity) {
         this.activity = activity;
     }
 

@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.restaurant_detail.models;
+package com.softsquared.mangoplate.src.main.restaurant_detail;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.mangoplate.R;
+import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.tab_search_restaurant.search.search_suggest.models;
+package com.softsquared.mangoplate.src.main.tab_search_restaurant.search.search_suggest;
 
 import android.view.LayoutInflater;
 import android.view.View;

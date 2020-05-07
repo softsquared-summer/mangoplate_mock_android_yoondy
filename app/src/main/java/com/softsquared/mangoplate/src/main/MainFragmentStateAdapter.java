@@ -1,4 +1,4 @@
-package com.softsquared.mangoplate.src.main.models;
+package com.softsquared.mangoplate.src.main;
 
 import android.util.Log;
 
@@ -16,7 +16,7 @@ import com.softsquared.mangoplate.src.main.tab_timeline.TimelineFragment;
 public class MainFragmentStateAdapter extends FragmentStateAdapter {
     private int mCount;
 
-    public MainFragmentStateAdapter(@NonNull FragmentActivity fragmentActivity, int count) {
+    MainFragmentStateAdapter(@NonNull FragmentActivity fragmentActivity, int count) {
         super(fragmentActivity);
         mCount = count;
     }

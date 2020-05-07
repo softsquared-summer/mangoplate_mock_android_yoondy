@@ -23,7 +23,6 @@ import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.interfaces.MainActivityView;
-import com.softsquared.mangoplate.src.main.models.MainFragmentStateAdapter;
 import com.softsquared.mangoplate.src.main.models.UserInfo;
 
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;

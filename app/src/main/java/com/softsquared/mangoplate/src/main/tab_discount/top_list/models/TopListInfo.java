@@ -22,17 +22,17 @@ public class TopListInfo {
     @SerializedName("isBookmark")
     private boolean isBookmark;
 
-    String getImageUrl() { return imageUrl; }
+    public String getImageUrl() { return imageUrl; }
 
-    String getTitle() { return title; }
+    public String getTitle() { return title; }
 
-    String getSubtitle() { return subtitle; }
+    public String getSubtitle() { return subtitle; }
 
-    String getViewCount() { return viewCount; }
+    public String getViewCount() { return viewCount; }
 
-    String getDate() { return date; }
+    public String getDate() { return date; }
 
-    boolean isBookmark() { return isBookmark; }
+    public boolean isBookmark() { return isBookmark; }
 
     // TODO: test. It must be removed later.
     public TopListInfo(String imageUrl, String title, String subtitle, String date, String viewCount, boolean isBookmark) {
