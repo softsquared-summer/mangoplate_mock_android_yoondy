@@ -22,8 +22,12 @@ public class EventDetailActivity extends BaseActivity implements EventDetailActi
         setContentView(R.layout.activity_event_detail);
 
         Intent intent = getIntent();
-        eventId = intent.getIntExtra("eventId", 0);
-        Log.d(TAG, "eventId: " + eventId);
+        if(intent == null)
+            Log.e(TAG, "EventDetailActivity::onCreate() intent is null.");
+        else {
+            eventId = intent.getIntExtra("eventId", 0);
+            Log.d(TAG, "eventId: " + eventId);
+        }
 
         setView();
     }

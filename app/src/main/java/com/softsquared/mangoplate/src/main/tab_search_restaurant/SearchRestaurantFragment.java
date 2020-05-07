@@ -44,7 +44,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private final int SELECT_SORT_BY = 3;
     private final int SELECT_RADIUS = 4;
     private final int SELECT_FILTER = 5;
-    private final SearchRestaurantService searchRestaurantService = new SearchRestaurantService(this);
+    private SearchRestaurantService searchRestaurantService;
 
     private GpsService gpsService;
     private MainActivity mainActivity;
@@ -71,6 +71,8 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         Activity activity = getActivity();
         if(activity instanceof MainActivity)
             mainActivity = (MainActivity) activity;
+
+        searchRestaurantService = new SearchRestaurantService(this);
 
         setVp2BannerAds(view);
         setRvRestaurantList(view);
@@ -125,7 +127,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         rvRestaurantList.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         rvRestaurantListAdapter = new RestaurantListRvAdapter();
         rvRestaurantList.setAdapter(rvRestaurantListAdapter);
-
     }
 
     private void setBtnSearch(View view) {

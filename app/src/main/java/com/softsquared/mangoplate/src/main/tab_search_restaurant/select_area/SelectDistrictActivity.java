@@ -24,7 +24,7 @@ import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 public class SelectDistrictActivity extends BaseActivity implements SelectDistrictFragmentView {
     private ViewPager2 vp2SelectDistrict;
     private SelectDistrictVp2Adapter vp2SelectDistrictAdapter;
-    private Pair[] areaCategory = new Pair[50]; // Pair<String districtName, ArrayList<String> areaList>
+    private Pair<String, ArrayList<String> >[] areaCategory = new Pair[50]; // Pair<districtName, areaList>
     ArrayList<DistrictInfo> districtInfoList;
 
     @Override
@@ -47,13 +47,17 @@ public class SelectDistrictActivity extends BaseActivity implements SelectDistri
         vp2SelectDistrict.setAdapter(vp2SelectDistrictAdapter);
 
         Intent intent = getIntent();
-        double latitude = intent.getDoubleExtra("latitude", 0);
-        double longitude = intent.getDoubleExtra("longitude", 0);
+        if(intent == null)
+            Log.e(TAG, "SelectDistrictActivity::setVp2DistrictSelectPage() intent is null.");
+        else {
+            double latitude = intent.getDoubleExtra("latitude", 0);
+            double longitude = intent.getDoubleExtra("longitude", 0);
 
-        final SelectDistrictService selectDistrictService = new SelectDistrictService(this);
-        selectDistrictService.getAreaNearMe((float) latitude, (float) longitude);
+            final SelectDistrictService selectDistrictService = new SelectDistrictService(this);
+            selectDistrictService.getAreaNearMe((float) latitude, (float) longitude);
 
-        showProgressDialog();
+            showProgressDialog();
+        }
     }
 
     @Override
@@ -129,7 +133,7 @@ public class SelectDistrictActivity extends BaseActivity implements SelectDistri
             TabLayout tabLayout = findViewById(R.id.sel_district_tab_layout_large_category);
             new TabLayoutMediator(tabLayout, vp2SelectDistrict, (tab, position) -> {
                 tab.select();
-                tab.setText((String) areaCategory[position].first);
+                tab.setText(areaCategory[position].first);
             }).attach();
 
             hideProgressDialog();
