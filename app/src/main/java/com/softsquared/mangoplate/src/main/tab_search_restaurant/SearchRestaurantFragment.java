@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -37,8 +39,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
+import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
 public class SearchRestaurantFragment extends Fragment implements SearchRestaurantFragmentView {
+    private final String ORDER = "order";
+    private final int REQUEST = 12345;
     private final int SEARCH = 1;
     private final int SELECT_AREA = 2;
     private final int SELECT_SORT_BY = 3;
@@ -54,6 +59,8 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private RestaurantListRvAdapter rvRestaurantListAdapter;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
+
+    private TextView tvSortBy;
 
     public SearchRestaurantFragment() {
         // Required empty public constructor
@@ -84,14 +91,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         setBtnSelectFilter(view);
 
         gpsService = new GpsService(getContext());
-        Log.d(TAG, "lat: " + gpsService.getLatitude() + ", lng: " + gpsService.getLongitude());
-        searchRestaurantService.getRestaurantList(
-                (float) gpsService.getLatitude(), (float) gpsService.getLongitude(),
-                null, null, null,
-                null, null, null,
-                null, null, null
-        );
-        mainActivity.showProgressDialog();
+        updateRvRestaurantList();
 
         return view;
     }
@@ -134,7 +134,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         Intent intent = new Intent(getContext(), SearchActivity.class);
         flSearch.setOnClickListener(v -> {
             isFadeAnimActivity = false;
-            startActivityForResult(intent, SEARCH);
+            startActivity(intent);
         });
     }
 
@@ -152,17 +152,21 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         intent.putExtra("longitude", gpsService.getLongitude());
         clSelectArea.setOnClickListener(v -> {
             isFadeAnimActivity = true;
-            startActivityForResult(intent, SELECT_AREA);
+            startActivityForResult(intent, REQUEST);
         });
     }
 
     private void setBtnSelectSortBy(View view) {
+        tvSortBy = view.findViewById(R.id.sch_rest_tv_sort_by);
+        String sortBy = sSharedPreferences.getString(ORDER, "");
+        tvSortBy.setText(sortBy.isEmpty() ? "-" : sortBy);
+
         isFadeAnimActivity = true;
         ConstraintLayout clSelectSortBy = view.findViewById(R.id.sch_rest_const_layout_sort_by);
         Intent intent = new Intent(getContext(), SelectSortByActivity.class);
         clSelectSortBy.setOnClickListener(v -> {
             isFadeAnimActivity = true;
-            startActivityForResult(intent, SELECT_SORT_BY);
+            startActivityForResult(intent, REQUEST);
         });
     }
 
@@ -172,7 +176,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         Intent intent = new Intent(getContext(), SelectRadiusActivity.class);
         clSelectRadius.setOnClickListener(v -> {
             isFadeAnimActivity = true;
-            startActivityForResult(intent, SELECT_RADIUS);
+            startActivityForResult(intent, REQUEST);
         });
     }
 
@@ -182,7 +186,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         Intent intent = new Intent(getContext(), SelectFilterActivity.class);
         ivSelectFilter.setOnClickListener(v -> {
             isFadeAnimActivity = true;
-            startActivityForResult(intent, SELECT_FILTER);
+            startActivityForResult(intent, REQUEST);
         });
     }
 
@@ -198,6 +202,50 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             }
         };
         new Timer().schedule(setNextBannerAd, 0, 2000);
+    }
+
+    private void updateRvRestaurantList() {
+        Log.d(TAG, "lat: " + gpsService.getLatitude() + ", lng: " + gpsService.getLongitude());
+        String order = sSharedPreferences.getString(ORDER, "");
+        searchRestaurantService.getRestaurantList(
+                (float) gpsService.getLatitude(), (float) gpsService.getLongitude(),
+                null,
+                order.isEmpty() ? null : order,
+                null,
+                null, null, null,
+                null, null, null
+        );
+        mainActivity.showProgressDialog();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST) {
+            switch (resultCode) {
+                case SELECT_AREA: {
+                    break;
+                }
+                case SELECT_SORT_BY: {
+                    if(data != null) {
+                        String sortBy = data.getStringExtra(ORDER);
+                        if(sortBy != null) {
+                            sSharedPreferences.edit().putString(ORDER, sortBy).apply();
+                            tvSortBy.setText(sortBy.isEmpty() ? "-" : sortBy);
+                        }
+                    }
+                    break;
+                }
+                case SELECT_RADIUS: {
+                    break;
+                }
+                case SELECT_FILTER: {
+                    break;
+                }
+            }
+
+            updateRvRestaurantList();
+        }
     }
 
     @Override
@@ -245,6 +293,8 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
     @Override
     public void onSuccessGetRestaurantList(ArrayList<RestaurantInfo> restaurantInfoList) {
+        rvRestaurantListAdapter.clear();
+
         for(RestaurantInfo restaurantInfo : restaurantInfoList)
             rvRestaurantListAdapter.add(restaurantInfo);
 

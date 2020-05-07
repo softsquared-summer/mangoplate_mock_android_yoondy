@@ -41,6 +41,8 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
     @Override
     public int getItemCount() { return restaurantInfoArrayList.size(); }
 
+    void clear() { restaurantInfoArrayList.clear(); }
+
     class RestaurantViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout clWholeScreen;
         ImageView ivPhoto;

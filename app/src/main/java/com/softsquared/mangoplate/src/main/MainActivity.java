@@ -199,7 +199,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         Log.d(TAG, "phone: " + myInfo.getPhone());
         Log.d(TAG, "profileUrl: " + myInfo.getProfileUrl());
 
-        SharedPreferences.Editor editor= sSharedPreferences.edit();
+        SharedPreferences.Editor editor = sSharedPreferences.edit();
         editor.putString("name", myInfo.getName());
         editor.putString("email", myInfo.getEmail());
         editor.putString("phone", myInfo.getPhone());
