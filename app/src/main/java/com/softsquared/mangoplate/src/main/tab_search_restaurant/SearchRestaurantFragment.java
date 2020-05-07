@@ -22,6 +22,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.main.MainActivity;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdsVp2Adapter;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
@@ -32,16 +33,18 @@ import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_filter.S
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_radius.SelectRadiusActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_sort_by.SelectSortByActivity;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SearchRestaurantFragment extends Fragment {
+public class SearchRestaurantFragment extends Fragment implements SearchRestaurantFragmentView {
     private final int SEARCH = 1;
     private final int SELECT_AREA = 2;
     private final int SELECT_SORT_BY = 3;
     private final int SELECT_RADIUS = 4;
     private final int SELECT_FILTER = 5;
     private boolean isFadeAnimActivity = false;
+    private boolean isReadyToVp2BannerAds = false;
     private ViewPager2 vp2BannerAds;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
@@ -72,12 +75,16 @@ public class SearchRestaurantFragment extends Fragment {
     }
 
     private void setVp2BannerAds(View view) {
+        Activity activity = getActivity();
+        if(activity instanceof MainActivity)
+            ((MainActivity) activity).showProgressDialog();
+
         vp2BannerAdsAdapter = new BannerAdsVp2Adapter();
         vp2BannerAds = view.findViewById(R.id.sch_rest_vp2_banner_ads);
         vp2BannerAds.setAdapter(vp2BannerAdsAdapter);
 
-        // TODO: test. It must be removed later.
-        addToVp2Adapter(vp2BannerAdsAdapter);
+        final SearchRestaurantService searchRestaurantService = new SearchRestaurantService(this);
+        searchRestaurantService.getBannerAd();
 
         vp2BannerAds.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -92,8 +99,6 @@ public class SearchRestaurantFragment extends Fragment {
         // Indicator
         TabLayout tabLayout = view.findViewById(R.id.sch_rest_tab_layout_banner_ads_indicator);
         new TabLayoutMediator(tabLayout, vp2BannerAds, (tab, position) -> tab.select()).attach();
-
-        setCirculateBannerAds();
     }
 
     private void setRvRestaurantList(View view) {
@@ -174,10 +179,10 @@ public class SearchRestaurantFragment extends Fragment {
                 int adsCount = vp2BannerAdsAdapter.getItemCount();
                 int nextIndex = (index + 1) % adsCount;
                 new Handler(Looper.getMainLooper())
-                        .post(() -> vp2BannerAds.setCurrentItem(nextIndex));
+                        .postDelayed(() -> vp2BannerAds.setCurrentItem(nextIndex), 2000);
             }
         };
-        new Timer().schedule(setNextBannerAd, 8000, 8000);
+        new Timer().schedule(setNextBannerAd, 0, 2000);
     }
 
     // TODO: test. It must be removed later.
@@ -228,25 +233,6 @@ public class SearchRestaurantFragment extends Fragment {
         rvRestaurantListAdapter.addRestaurantInfo(info3);
     }
 
-    // TODO: test. It must be removed later.
-    private void addToVp2Adapter(BannerAdsVp2Adapter vp2Adapter) {
-        BannerAdInfo info0 = new BannerAdInfo();
-        info0.setImageUrl("https://i.imgur.com/zD38cF0.png");
-        vp2Adapter.addBannerAdInfo(info0);
-        BannerAdInfo info1 = new BannerAdInfo();
-        info1.setImageUrl("https://i.imgur.com/Ve8w2qi.png");
-        vp2Adapter.addBannerAdInfo(info1);
-        BannerAdInfo info2 = new BannerAdInfo();
-        info2.setImageUrl("https://i.imgur.com/OnMuBL5.png");
-        vp2Adapter.addBannerAdInfo(info2);
-        BannerAdInfo info3 = new BannerAdInfo();
-        info3.setImageUrl("https://i.imgur.com/t1reWoz.png");
-        vp2Adapter.addBannerAdInfo(info3);
-        BannerAdInfo info4 = new BannerAdInfo();
-        info4.setImageUrl("https://i.imgur.com/Es0wA2R.png");
-        vp2Adapter.addBannerAdInfo(info4);
-    }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -257,12 +243,40 @@ public class SearchRestaurantFragment extends Fragment {
             activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
 
-        setNextBannerAd.cancel();
+        if(setNextBannerAd != null)
+            setNextBannerAd.cancel();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        setNextBannerAd.run();
+
+        if(isReadyToVp2BannerAds) {
+            if (setNextBannerAd == null)
+                setCirculateBannerAds();
+            else
+                setNextBannerAd.run();
+        }
+    }
+
+    @Override
+    public void onSuccessGetBannerAd(ArrayList<BannerAdInfo> bannerAdInfoList) {
+        for(BannerAdInfo b : bannerAdInfoList)
+            vp2BannerAdsAdapter.add(b);
+
+        vp2BannerAdsAdapter.notifyDataSetChanged();
+        isReadyToVp2BannerAds = true;
+        setCirculateBannerAds();
+
+        Activity activity = getActivity();
+        if(activity instanceof MainActivity)
+            ((MainActivity) activity).hideProgressDialog();
+    }
+
+    @Override
+    public void onFailureGetBannerAd() {
+        Activity activity = getActivity();
+        if(activity instanceof MainActivity)
+            ((MainActivity) activity).hideProgressDialog();
     }
 }

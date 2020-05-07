@@ -1,6 +1,7 @@
 package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.main.MainActivity;
+import com.softsquared.mangoplate.src.main.event.event_detail.EventDetailActivity;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,7 @@ public class BannerAdsVp2Adapter extends RecyclerView.Adapter<BannerAdsVp2Adapte
         holder.bind(bannerAdInfoArrayList.get(position));
     }
 
-    public void addBannerAdInfo(BannerAdInfo bannerAdInfo) {
+    public void add(BannerAdInfo bannerAdInfo) {
         bannerAdInfoArrayList.add(bannerAdInfo);
     }
 
@@ -63,8 +65,10 @@ public class BannerAdsVp2Adapter extends RecyclerView.Adapter<BannerAdsVp2Adapte
                 return false;
             });
 
-            itemView.setOnClickListener(v -> {
-                // TODO: go to detail of event
+            ivAd.setOnClickListener(v -> {
+                Intent intent = new Intent(itemView.getContext(), EventDetailActivity.class);
+                intent.putExtra("eventId", bannerAdInfo.getEventId());
+                itemView.getContext().startActivity(intent);
             });
         }
     }

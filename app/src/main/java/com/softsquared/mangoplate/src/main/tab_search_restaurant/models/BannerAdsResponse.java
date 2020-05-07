@@ -2,9 +2,11 @@ package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class BannerAdsResponse {
     @SerializedName("result")
-    private BannerAdInfo result;
+    private ArrayList<BannerAdInfo> result;
 
     @SerializedName("code")
     private int code;
@@ -15,7 +17,7 @@ public class BannerAdsResponse {
     @SerializedName("isSuccess")
     private boolean isSuccess;
 
-    public BannerAdInfo getResult() { return result; }
+    public ArrayList<BannerAdInfo> getResult() { return result; }
 
     public int getCode() { return code; }
 
