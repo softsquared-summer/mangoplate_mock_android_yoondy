@@ -43,6 +43,7 @@ import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences
 
 public class SearchRestaurantFragment extends Fragment implements SearchRestaurantFragmentView {
     private final String ORDER = "order";
+    private final String RADIUS = "RADIUS";
     private final int REQUEST = 12345;
     private final int SEARCH = 1;
     private final int SELECT_AREA = 2;
@@ -60,7 +61,8 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
 
-    private TextView tvSortBy;
+    private String sortBy, radius;
+    private TextView tvSortBy, tvRadius;
 
     public SearchRestaurantFragment() {
         // Required empty public constructor
@@ -80,6 +82,17 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             mainActivity = (MainActivity) activity;
 
         searchRestaurantService = new SearchRestaurantService(this);
+
+        sortBy = sSharedPreferences.getString(ORDER, "");
+        if(sortBy.isEmpty()) {
+            sortBy = "평점순";
+            sSharedPreferences.edit().putString(ORDER, sortBy).apply();
+        }
+        radius = sSharedPreferences.getString(RADIUS, "");
+        if(radius.isEmpty()) {
+            radius = "3";
+            sSharedPreferences.edit().putString(RADIUS, radius).apply();
+        }
 
         setVp2BannerAds(view);
         setRvRestaurantList(view);
@@ -158,7 +171,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
     private void setBtnSelectSortBy(View view) {
         tvSortBy = view.findViewById(R.id.sch_rest_tv_sort_by);
-        String sortBy = sSharedPreferences.getString(ORDER, "");
         tvSortBy.setText(sortBy.isEmpty() ? "-" : sortBy);
 
         isFadeAnimActivity = true;
@@ -171,6 +183,13 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     }
 
     private void setBtnSelectRadius(View view) {
+        tvRadius = view.findViewById(R.id.sch_rest_tv_radius);
+        String radiusText = "- km";
+        if(radius.equals("0.5")) radiusText = "500m";
+        else if(radius.equals("1")) radiusText = "1km";
+        else if(radius.equals("3")) radiusText = "3km";
+        tvRadius.setText(radiusText);
+
         isFadeAnimActivity = true;
         ConstraintLayout clSelectRadius = view.findViewById(R.id.sch_rest_const_layout_radius_btn);
         Intent intent = new Intent(getContext(), SelectRadiusActivity.class);
@@ -207,13 +226,15 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private void updateRvRestaurantList() {
         Log.d(TAG, "lat: " + gpsService.getLatitude() + ", lng: " + gpsService.getLongitude());
         String order = sSharedPreferences.getString(ORDER, "");
+        String radius = sSharedPreferences.getString(RADIUS, "");
         searchRestaurantService.getRestaurantList(
                 (float) gpsService.getLatitude(), (float) gpsService.getLongitude(),
                 null,
                 order.isEmpty() ? null : order,
                 null,
                 null, null, null,
-                null, null, null
+                radius.isEmpty() ? null : radius,
+                null, null
         );
         mainActivity.showProgressDialog();
     }
@@ -237,6 +258,17 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                     break;
                 }
                 case SELECT_RADIUS: {
+                    if(data != null) {
+                        String radius = data.getStringExtra(RADIUS);
+                        if(radius != null) {
+                            sSharedPreferences.edit().putString(RADIUS, radius).apply();
+                            String radiusText = "- km";
+                            if(radius.equals("0.5")) radiusText = "500m";
+                            else if(radius.equals("1")) radiusText = "1km";
+                            else if(radius.equals("3")) radiusText = "3km";
+                            tvRadius.setText(radiusText);
+                        }
+                    }
                     break;
                 }
                 case SELECT_FILTER: {
