@@ -21,6 +21,7 @@ import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailPhotoInfo;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.SearchRestaurantService;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 
 public class RestaurantDetailActivity extends BaseActivity implements RestaurantDetailActivityView, SearchRestaurantFragmentView {
     final private RestaurantDetailService restaurantDetailService = new RestaurantDetailService(this, this);
+    private RestaurantListRvAdapter popularRestaurantNearbyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,14 +211,20 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
     }
 
     private void setRvPopularRestaurantNearby() {
-        RestaurantListRvAdapter popularRestaurantNearbyAdapter = new RestaurantListRvAdapter(this);
+        popularRestaurantNearbyAdapter = new RestaurantListRvAdapter(this);
         RecyclerView rvPopularRestaurantNearby = findViewById(R.id.restaurant_detail_rv_popular_restaurant_nearby);
         rvPopularRestaurantNearby.setLayoutManager(new GridLayoutManager(this, 2));
         rvPopularRestaurantNearby.setAdapter(popularRestaurantNearbyAdapter);
 
-        // TODO: test. It must be removed later.
-//        addToRestaurantListRvAdapter(popularRestaurantNearbyAdapter);
-//        addToRestaurantListRvAdapter(popularRestaurantNearbyAdapter);
+        // TODO: this is temporary.
+        final GpsService gpsService = new GpsService(this);
+        final SearchRestaurantService searchRestaurantService = new SearchRestaurantService(this);
+        searchRestaurantService.getRestaurantList(
+                (float) gpsService.getLatitude(), (float) gpsService.getLongitude(),
+                null, null, null,
+                null, null, null,
+                 null, null, null
+        );
     }
 
     private void addToRestaurantDetailMenuAdapter(RestaurantDetailMenuAdapter adapter) {
@@ -228,55 +236,6 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         adapter.add(info2);
     }
 
-    // TODO: test. It must be removed later.
-    /*
-    private void addToRestaurantListRvAdapter(RestaurantListRvAdapter adapter) {
-        RestaurantInfo info0 = new RestaurantInfo(
-                "https://i.imgur.com/OSupQAB.jpg",
-                "1. 시키카츠",
-                "동대문구",
-                "2.95 Km",
-                8945,
-                14,
-                4.7f,
-                false
-        );
-        adapter.add(info0);
-        RestaurantInfo info1 = new RestaurantInfo(
-                "https://i.imgur.com/Im86J1J.jpg",
-                "2. 오관스시",
-                "동대문구",
-                "2.83 Km",
-                75394,
-                57,
-                4.3f,
-                false
-        );
-        adapter.add(info1);
-        RestaurantInfo info2 = new RestaurantInfo(
-                "https://i.imgur.com/nwe2QFd.jpg",
-                "3. 회기왕족발보쌈",
-                "동대문구",
-                "2.54 Km",
-                147224,
-                103,
-                4.3f,
-                false
-        );
-        adapter.add(info2);
-        RestaurantInfo info3 = new RestaurantInfo(
-                "https://i.imgur.com/7Lj7d86.jpg",
-                "4. 이문동커피집",
-                "동대문구",
-                "2.12 Km",
-                30293,
-                33,
-                2.7f,
-                true
-        );
-        adapter.add(info3);
-    }
-*/
     private void setView() {
         ConstraintLayout clCallRestaurant = findViewById(R.id.restaurant_detail_const_layout_call_restaurant);
         clCallRestaurant.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
@@ -316,7 +275,10 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
 
     @Override
     public void onSuccessGetRestaurantList(ArrayList<RestaurantInfo> restaurantInfoList) {
+        for(RestaurantInfo restaurantInfo : restaurantInfoList)
+            popularRestaurantNearbyAdapter.add(restaurantInfo);
 
+        popularRestaurantNearbyAdapter.notifyDataSetChanged();
     }
 
     @Override

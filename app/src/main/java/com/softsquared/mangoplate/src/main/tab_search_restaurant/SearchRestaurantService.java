@@ -17,10 +17,10 @@ import retrofit2.Response;
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 import static com.softsquared.mangoplate.src.ApplicationClass.getRetrofit;
 
-class SearchRestaurantService {
+public class SearchRestaurantService {
     private final SearchRestaurantFragmentView searchRestaurantFragmentView;
 
-    SearchRestaurantService(SearchRestaurantFragmentView searchRestaurantFragmentView) {
+    public SearchRestaurantService(SearchRestaurantFragmentView searchRestaurantFragmentView) {
         this.searchRestaurantFragmentView = searchRestaurantFragmentView;
     }
 
@@ -55,10 +55,10 @@ class SearchRestaurantService {
     }
 
     // API 4-1
-    void getRestaurantList(float lat, float lng,
-                           String area, String order, String category,
-                           String kind, String price, String parking,
-                           String radius, String page, String size) {
+    public void getRestaurantList(float lat, float lng,
+                                  String area, String order, String category,
+                                  String kind, String price, String parking,
+                                  String radius, String page, String size) {
         Log.d(TAG, "SearchRestaurantService::getRestaurantList() lat: " + lat + ", lng: " + lng);
         Log.d(TAG, "SearchRestaurantService::getRestaurantList() area: " + area + ", order: " + order + ", category: " + category);
         Log.d(TAG, "SearchRestaurantService::getRestaurantList() kind: " + kind + ", price: " + price + ", parking: " + parking);
