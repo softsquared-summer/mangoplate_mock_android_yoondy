@@ -2,11 +2,14 @@ package com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces;
 
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdsResponse;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantListResponse;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.WishResponse;
 
 import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface SearchRestaurantRetrofitInterface {
@@ -28,4 +31,7 @@ public interface SearchRestaurantRetrofitInterface {
             @Query("page") String page,
             @Query("size") String size // Mandatory if there is "page"
     );
+
+    @POST("/restaurants/{restaurantId}/future")
+    Call<WishResponse> postWish(@Path("restaurantId") int restaurantId);
 }

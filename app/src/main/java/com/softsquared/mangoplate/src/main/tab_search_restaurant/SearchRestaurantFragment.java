@@ -30,6 +30,7 @@ import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.WishInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.search.SearchActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.SelectDistrictActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_filter.SelectFilterActivity;
@@ -142,7 +143,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         RecyclerView rvRestaurantList = view.findViewById(R.id.sch_rest_rv_restaurants_list);
         rvRestaurantList.setHasFixedSize(true);
         rvRestaurantList.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-        rvRestaurantListAdapter = new RestaurantListRvAdapter();
+        rvRestaurantListAdapter = new RestaurantListRvAdapter(this);
         rvRestaurantList.setAdapter(rvRestaurantListAdapter);
     }
 
@@ -358,5 +359,14 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     @Override
     public void onFailureGetRestaurantList() {
         mainActivity.hideProgressDialog();
+    }
+
+    @Override
+    public void onSuccessPostWish(WishInfo wishInfo) {
+        Log.d(TAG, "SearchRestaurantFragment::onSuccessPostWish() " + wishInfo.getState());
+    }
+
+    @Override
+    public void onFailurePostWish() {
     }
 }

@@ -21,12 +21,16 @@ import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailPhotoInfo;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.RestaurantListRvAdapter;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.WishInfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class RestaurantDetailActivity extends BaseActivity implements RestaurantDetailActivityView {
+public class RestaurantDetailActivity extends BaseActivity implements RestaurantDetailActivityView, SearchRestaurantFragmentView {
     final private RestaurantDetailService restaurantDetailService = new RestaurantDetailService(this, this);
 
     @Override
@@ -205,7 +209,7 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
     }
 
     private void setRvPopularRestaurantNearby() {
-        RestaurantListRvAdapter popularRestaurantNearbyAdapter = new RestaurantListRvAdapter();
+        RestaurantListRvAdapter popularRestaurantNearbyAdapter = new RestaurantListRvAdapter(this);
         RecyclerView rvPopularRestaurantNearby = findViewById(R.id.restaurant_detail_rv_popular_restaurant_nearby);
         rvPopularRestaurantNearby.setLayoutManager(new GridLayoutManager(this, 2));
         rvPopularRestaurantNearby.setAdapter(popularRestaurantNearbyAdapter);
@@ -298,5 +302,35 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onSuccessGetBannerAd(ArrayList<BannerAdInfo> bannerAdInfoList) {
+
+    }
+
+    @Override
+    public void onFailureGetBannerAd() {
+
+    }
+
+    @Override
+    public void onSuccessGetRestaurantList(ArrayList<RestaurantInfo> restaurantInfoList) {
+
+    }
+
+    @Override
+    public void onFailureGetRestaurantList() {
+
+    }
+
+    @Override
+    public void onSuccessPostWish(WishInfo wishInfo) {
+
+    }
+
+    @Override
+    public void onFailurePostWish() {
+
     }
 }

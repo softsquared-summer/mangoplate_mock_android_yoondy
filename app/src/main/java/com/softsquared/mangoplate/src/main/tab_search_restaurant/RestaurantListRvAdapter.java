@@ -14,12 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.main.restaurant_detail.RestaurantDetailActivity;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
 
 import java.util.ArrayList;
 
 public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantListRvAdapter.RestaurantViewHolder> {
     private ArrayList<RestaurantInfo> restaurantInfoArrayList = new ArrayList<>();
+    private SearchRestaurantFragmentView searchRestaurantFragmentView;
+
+    public RestaurantListRvAdapter(SearchRestaurantFragmentView searchRestaurantFragmentView) {
+        this.searchRestaurantFragmentView = searchRestaurantFragmentView;
+    }
 
     @NonNull
     @Override
@@ -31,7 +37,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder holder, int position) {
-        holder.bind(restaurantInfoArrayList.get(position));
+        holder.bind(searchRestaurantFragmentView, restaurantInfoArrayList.get(position));
     }
 
     public void add(RestaurantInfo restaurantInfo) {
@@ -52,6 +58,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
         TextView tvViewCount;
         TextView tvReviewCount;
         TextView tvScore;
+        boolean isWish;
 
         RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,7 +72,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
             tvScore = itemView.findViewById(R.id.restaurant_list_tv_score);
         }
 
-        void bind(RestaurantInfo restaurantInfo) {
+        void bind(SearchRestaurantFragmentView searchRestaurantFragmentView, RestaurantInfo restaurantInfo) {
             clWholeScreen.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), RestaurantDetailActivity.class);
                 itemView.getContext().startActivity(intent);
@@ -75,8 +82,19 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
                     .load(restaurantInfo.getImg())
                     .into(ivPhoto);
 
-            ivStar.setImageResource(restaurantInfo.getStar().equals("YES") ?
+            isWish = restaurantInfo.getStar().equals("YES");
+            ivStar.setImageResource(isWish ?
                     R.drawable.ic_star_filled_orange : R.drawable.ic_star_unfilled_white);
+
+            ivStar.setOnClickListener(v -> {
+                final SearchRestaurantService searchRestaurantService = new SearchRestaurantService(searchRestaurantFragmentView);
+                searchRestaurantService.postWish(restaurantInfo.getRestaurantId());
+
+                ivStar.setImageResource(isWish ?
+                        R.drawable.ic_star_unfilled_white : R.drawable.ic_star_filled_orange);
+
+                isWish = !isWish;
+            });
 
             tvName.setText(restaurantInfo.getTitle());
 

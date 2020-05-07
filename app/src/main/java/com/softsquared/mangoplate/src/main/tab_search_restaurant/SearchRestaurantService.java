@@ -6,6 +6,7 @@ import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.Sear
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantRetrofitInterface;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdsResponse;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantListResponse;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.WishResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -73,9 +74,6 @@ class SearchRestaurantService {
             @Override
             public void onResponse(@NotNull Call<RestaurantListResponse> call, @NotNull Response<RestaurantListResponse> response) {
                 RestaurantListResponse restaurantListResponse = response.body();
-
-
-
                 if(restaurantListResponse == null) {
                     Log.d(TAG, "SearchRestaurantService::getRestaurantList() Failure. restaurantListResponse is null");
                     searchRestaurantFragmentView.onFailureGetRestaurantList();
@@ -95,6 +93,36 @@ class SearchRestaurantService {
             public void onFailure(@NotNull Call<RestaurantListResponse> call, @NotNull Throwable t) {
                 Log.d(TAG, "SearchRestaurantService::getRestaurantList() Failure: " + t);
                 searchRestaurantFragmentView.onFailureGetRestaurantList();
+            }
+        });
+    }
+
+    // API 11-1
+    void postWish(int restaurantId) {
+        SearchRestaurantRetrofitInterface searchRestaurantRetrofitInterface = getRetrofit().create(SearchRestaurantRetrofitInterface.class);
+        searchRestaurantRetrofitInterface.postWish(restaurantId).enqueue(new Callback<WishResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<WishResponse> call, @NotNull Response<WishResponse> response) {
+                WishResponse wishResponse = response.body();
+                if(wishResponse == null) {
+                    Log.d(TAG, "SearchRestaurantService::postWish() Failure. wishResponse is null");
+                    searchRestaurantFragmentView.onFailurePostWish();
+                    return;
+                }
+                else if(!wishResponse.isSuccess()) {
+                    Log.d(TAG, "SearchRestaurantService::postWish() Failure. wishResponse code: " + wishResponse.getCode());
+                    Log.d(TAG, "SearchRestaurantService::postWish() Failure. wishResponse message " + wishResponse.getMessage());
+                    searchRestaurantFragmentView.onFailurePostWish();
+                    return;
+                }
+
+                searchRestaurantFragmentView.onSuccessPostWish(wishResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<WishResponse> call, @NotNull Throwable t) {
+                Log.d(TAG, "SearchRestaurantService::postWish() Failure: " + t);
+                searchRestaurantFragmentView.onFailurePostWish();
             }
         });
     }
