@@ -8,5 +8,5 @@ import retrofit2.http.Path;
 
 public interface EventDetailRetrofitInterface {
     @GET("/events/{eventId}")
-    Call<EventDetailResponse> getEventInMyInfo(@Path("eventId") String eventId);
+    Call<EventDetailResponse> getEventInMyInfo(@Path("eventId") int eventId);
 }

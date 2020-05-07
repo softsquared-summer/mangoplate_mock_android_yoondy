@@ -23,7 +23,7 @@ class EventDetailService {
     }
 
     // API 2-3
-    void getEventDetail(String eventId) {
+    void getEventDetail(int eventId) {
         EventDetailRetrofitInterface eventDetailRetrofitInterface = getRetrofit().create(EventDetailRetrofitInterface.class);
         eventDetailRetrofitInterface.getEventInMyInfo(eventId).enqueue(new Callback<EventDetailResponse>() {
             @Override

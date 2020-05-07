@@ -14,7 +14,7 @@ import com.softsquared.mangoplate.src.main.event.event_detail.models.EventDetail
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 
 public class EventDetailActivity extends BaseActivity implements EventDetailActivityView {
-    private String eventId = "";
+    private int eventId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class EventDetailActivity extends BaseActivity implements EventDetailActi
         setContentView(R.layout.activity_event_detail);
 
         Intent intent = getIntent();
-        eventId = intent.getStringExtra("eventId");
+        eventId = intent.getIntExtra("eventId", 0);
         Log.d(TAG, "eventId: " + eventId);
 
         setView();
@@ -38,7 +38,7 @@ public class EventDetailActivity extends BaseActivity implements EventDetailActi
         ImageView ivShareBtn = findViewById(R.id.event_detail_iv_share_btn);
         ivShareBtn.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
 
-        if(!eventId.isEmpty()) {
+        if(eventId > 0) {
             final EventDetailService eventDetailService = new EventDetailService(this);
             eventDetailService.getEventDetail(eventId);
             showProgressDialog();

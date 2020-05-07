@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class EventInfo {
     @SerializedName("eventId")
-    private String eventId;
+    private int eventId;
 
     @SerializedName("imageUrl")
     private String imageUrl;
@@ -18,7 +18,7 @@ public class EventInfo {
     @SerializedName("date")
     private String date;
 
-    String getEventId() { return eventId; }
+    int getEventId() { return eventId; }
 
     String getImageUrl() { return imageUrl; }
 
@@ -27,13 +27,4 @@ public class EventInfo {
     String getStatus() { return status; }
 
     String getDate() { return date; }
-
-    // TODO: test. It must be removed later.
-    public EventInfo(String eventId, String imageUrl, String title, String status, String date) {
-        this.eventId = eventId;
-        this.imageUrl = imageUrl;
-        this.title = title;
-        this.status = status;
-        this.date = date;
-    }
 }
