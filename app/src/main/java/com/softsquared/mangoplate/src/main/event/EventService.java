@@ -46,7 +46,7 @@ class EventService {
 
             @Override
             public void onFailure(@NotNull Call<EventResponse> call, @NotNull Throwable t) {
-                Log.d(TAG, "EventService::getEventInMyInfo() onFailure() : " + t);
+                Log.d(TAG, "EventService::getEventInMyInfo() Failure: " + t);
                 eventActivityView.onFailureGetEventInMyInfo();
             }
         });

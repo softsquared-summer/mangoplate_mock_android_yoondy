@@ -2,7 +2,7 @@ package com.softsquared.mangoplate.src.main.event.event_detail.models;
 
 import com.google.gson.annotations.SerializedName;
 
-class EventDetailInfo {
+public class EventDetailInfo {
 
     @SerializedName("imageUrl")
     private String imageUrl;

@@ -93,6 +93,7 @@ public class EventRvAdapter extends RecyclerView.Adapter<EventRvAdapter.EventVie
 
             clPanel.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), EventDetailActivity.class);
+                intent.putExtra("eventId", eventInfo.getEventId());
                 itemView.getContext().startActivity(intent);
             });
 
