@@ -211,8 +211,8 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         rvPopularRestaurantNearby.setAdapter(popularRestaurantNearbyAdapter);
 
         // TODO: test. It must be removed later.
-        addToRestaurantListRvAdapter(popularRestaurantNearbyAdapter);
-        addToRestaurantListRvAdapter(popularRestaurantNearbyAdapter);
+//        addToRestaurantListRvAdapter(popularRestaurantNearbyAdapter);
+//        addToRestaurantListRvAdapter(popularRestaurantNearbyAdapter);
     }
 
     private void addToRestaurantDetailMenuAdapter(RestaurantDetailMenuAdapter adapter) {
@@ -225,6 +225,7 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
     }
 
     // TODO: test. It must be removed later.
+    /*
     private void addToRestaurantListRvAdapter(RestaurantListRvAdapter adapter) {
         RestaurantInfo info0 = new RestaurantInfo(
                 "https://i.imgur.com/OSupQAB.jpg",
@@ -236,7 +237,7 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
                 4.7f,
                 false
         );
-        adapter.addRestaurantInfo(info0);
+        adapter.add(info0);
         RestaurantInfo info1 = new RestaurantInfo(
                 "https://i.imgur.com/Im86J1J.jpg",
                 "2. 오관스시",
@@ -247,7 +248,7 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
                 4.3f,
                 false
         );
-        adapter.addRestaurantInfo(info1);
+        adapter.add(info1);
         RestaurantInfo info2 = new RestaurantInfo(
                 "https://i.imgur.com/nwe2QFd.jpg",
                 "3. 회기왕족발보쌈",
@@ -258,7 +259,7 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
                 4.3f,
                 false
         );
-        adapter.addRestaurantInfo(info2);
+        adapter.add(info2);
         RestaurantInfo info3 = new RestaurantInfo(
                 "https://i.imgur.com/7Lj7d86.jpg",
                 "4. 이문동커피집",
@@ -269,9 +270,9 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
                 2.7f,
                 true
         );
-        adapter.addRestaurantInfo(info3);
+        adapter.add(info3);
     }
-
+*/
     private void setView() {
         ConstraintLayout clCallRestaurant = findViewById(R.id.restaurant_detail_const_layout_call_restaurant);
         clCallRestaurant.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));

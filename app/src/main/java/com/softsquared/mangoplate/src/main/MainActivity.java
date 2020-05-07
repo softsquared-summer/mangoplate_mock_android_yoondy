@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         mainService.getMyInfo();
 
         // TODO: test code. erase later
-        GpsService gpsService = new GpsService(getApplicationContext());
+        GpsService gpsService = new GpsService(this);
         Log.d(TAG, "gps1: " + gpsService.getLongitude() + ", " + gpsService.getLatitude());
     }
 

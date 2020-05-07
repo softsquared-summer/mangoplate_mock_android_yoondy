@@ -3,48 +3,55 @@ package com.softsquared.mangoplate.src.main.tab_search_restaurant.models;
 import com.google.gson.annotations.SerializedName;
 
 public class RestaurantInfo {
-    // TODO: After completed API 4-1, These vars and funs must be changed. These are temp names.
-    @SerializedName("imageUrl") private String imageUrl;
-
-    @SerializedName("name") private String name;
+    @SerializedName("areaId") private int areaId;
 
     @SerializedName("area") private String area;
 
+    @SerializedName("restaurantId") private int restaurantId;
+
+    @SerializedName("lat") private float lat;
+
+    @SerializedName("lng") private float lng;
+
+    @SerializedName("img") private String img;
+
+    @SerializedName("star") private String star;
+
+    @SerializedName("title") private String title;
+
     @SerializedName("distance") private String distance;
 
-    @SerializedName("viewCount") private int viewCount;
+    @SerializedName("seenNum") private String seenNum;
 
-    @SerializedName("reviewCount") private int reviewCount;
+    @SerializedName("reviewNum") private String reviewNum;
 
-    @SerializedName("score") private float score;
+    @SerializedName("rating") private String rating;
 
-    @SerializedName("isWantToGo") private boolean isWantToGo;
+    @SerializedName("ratingColor") private String ratingColor;
 
-    public String getImageUrl() { return imageUrl; }
-
-    public String getName() { return name; }
+    public int getAreaId() { return areaId; }
 
     public String getArea() { return area; }
 
+    public int getRestaurantId() { return restaurantId; }
+
+    public float getLat() { return lat; }
+
+    public float getLng() { return lng; }
+
+    public String getImg() { return img; }
+
+    public String getStar() { return star; }
+
+    public String getTitle() { return title; }
+
     public String getDistance() { return distance; }
 
-    public int getViewCount() { return viewCount; }
+    public String getSeenNum() { return seenNum; }
 
-    public int getReviewCount() { return reviewCount; }
+    public String getReviewNum() { return reviewNum; }
 
-    public float getScore() { return score; }
+    public String getRating() { return rating; }
 
-    public boolean isWantToGo() { return isWantToGo; }
-
-    // TODO: test. It must be removed later.
-    public RestaurantInfo(String imageUrl, String name, String area, String distance, int viewCount, int reviewCount, float score, boolean isWantToGo) {
-        this.imageUrl = imageUrl;
-        this.name = name;
-        this.area = area;
-        this.distance = distance;
-        this.viewCount = viewCount;
-        this.reviewCount = reviewCount;
-        this.score = score;
-        this.isWantToGo = isWantToGo;
-    }
+    public String getRatingColor() { return ratingColor; }
 }

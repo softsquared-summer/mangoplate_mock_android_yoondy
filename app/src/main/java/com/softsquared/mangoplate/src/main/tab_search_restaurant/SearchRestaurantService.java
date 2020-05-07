@@ -5,6 +5,7 @@ import android.util.Log;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantRetrofitInterface;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdsResponse;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantListResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -48,6 +49,47 @@ class SearchRestaurantService {
             public void onFailure(@NotNull Call<BannerAdsResponse> call, @NotNull Throwable t) {
                 Log.d(TAG, "SearchRestaurantService::getBannerAd() Failure: " + t);
                 searchRestaurantFragmentView.onFailureGetBannerAd();
+            }
+        });
+    }
+
+    // API 4-1
+    void getRestaurantList(float lat, float lng,
+                           String area, String order, String category,
+                           String kind, String price, String parking,
+                           String radius, String page, String size) {
+        SearchRestaurantRetrofitInterface searchRestaurantRetrofitInterface = getRetrofit().create(SearchRestaurantRetrofitInterface.class);
+        searchRestaurantRetrofitInterface.getRestaurantList(
+                lat, lng, "main", // Mandatory
+                area, order, category,
+                kind, price, parking,
+                radius, page, size
+        ).enqueue(new Callback<RestaurantListResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<RestaurantListResponse> call, @NotNull Response<RestaurantListResponse> response) {
+                RestaurantListResponse restaurantListResponse = response.body();
+
+
+
+                if(restaurantListResponse == null) {
+                    Log.d(TAG, "SearchRestaurantService::getRestaurantList() Failure. restaurantListResponse is null");
+                    searchRestaurantFragmentView.onFailureGetRestaurantList();
+                    return;
+                }
+                else if(!restaurantListResponse.isSuccess()) {
+                    Log.d(TAG, "SearchRestaurantService::getRestaurantList() Failure. restaurantListResponse code: " + restaurantListResponse.getCode());
+                    Log.d(TAG, "SearchRestaurantService::getRestaurantList() Failure. restaurantListResponse message: " + restaurantListResponse.getMessage());
+                    searchRestaurantFragmentView.onFailureGetRestaurantList();
+                    return;
+                }
+
+                searchRestaurantFragmentView.onSuccessGetRestaurantList(restaurantListResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<RestaurantListResponse> call, @NotNull Throwable t) {
+                Log.d(TAG, "SearchRestaurantService::getRestaurantList() Failure: " + t);
+                searchRestaurantFragmentView.onFailureGetRestaurantList();
             }
         });
     }

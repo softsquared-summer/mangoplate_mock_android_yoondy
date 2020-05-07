@@ -201,6 +201,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         else Log.d(TAG, "LoginActivity::onSuccessLogin() loginInfo: " + loginInfo.toString());
 
         sSharedPreferences.edit().putString(X_ACCESS_TOKEN, loginInfo.getJwt()).apply();
+        Log.d(TAG, "LoginActivity::onSuccessLogin() jwt: " + sSharedPreferences.getString(X_ACCESS_TOKEN, ""));
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);

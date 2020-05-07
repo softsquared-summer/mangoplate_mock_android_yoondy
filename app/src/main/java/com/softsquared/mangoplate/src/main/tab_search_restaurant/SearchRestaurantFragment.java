@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
@@ -36,15 +36,22 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
+
 public class SearchRestaurantFragment extends Fragment implements SearchRestaurantFragmentView {
     private final int SEARCH = 1;
     private final int SELECT_AREA = 2;
     private final int SELECT_SORT_BY = 3;
     private final int SELECT_RADIUS = 4;
     private final int SELECT_FILTER = 5;
+    private final SearchRestaurantService searchRestaurantService = new SearchRestaurantService(this);
+
+    private GpsService gpsService;
+    private MainActivity mainActivity;
     private boolean isFadeAnimActivity = false;
     private boolean isReadyToVp2BannerAds = false;
     private ViewPager2 vp2BannerAds;
+    private RestaurantListRvAdapter rvRestaurantListAdapter;
     private BannerAdsVp2Adapter vp2BannerAdsAdapter;
     private TimerTask setNextBannerAd;
 
@@ -61,6 +68,10 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_restaurant, container, false);
 
+        Activity activity = getActivity();
+        if(activity instanceof MainActivity)
+            mainActivity = (MainActivity) activity;
+
         setVp2BannerAds(view);
         setRvRestaurantList(view);
         setBtnSearch(view);
@@ -70,13 +81,21 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         setBtnSelectRadius(view);
         setBtnSelectFilter(view);
 
+        gpsService = new GpsService(getContext());
+        Log.d(TAG, "lat: " + gpsService.getLatitude() + ", lng: " + gpsService.getLongitude());
+        searchRestaurantService.getRestaurantList(
+                (float) gpsService.getLatitude(), (float) gpsService.getLongitude(),
+                null, null, null,
+                null, null, null,
+                null, null, null
+        );
+        mainActivity.showProgressDialog();
+
         return view;
     }
 
     private void setVp2BannerAds(View view) {
-        Activity activity = getActivity();
-        if(activity instanceof MainActivity)
-            ((MainActivity) activity).showProgressDialog();
+        mainActivity.showProgressDialog();
 
         vp2BannerAdsAdapter = new BannerAdsVp2Adapter();
         vp2BannerAds = view.findViewById(R.id.sch_rest_vp2_banner_ads);
@@ -104,13 +123,9 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         RecyclerView rvRestaurantList = view.findViewById(R.id.sch_rest_rv_restaurants_list);
         rvRestaurantList.setHasFixedSize(true);
         rvRestaurantList.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-        RestaurantListRvAdapter rvRestaurantListAdapter = new RestaurantListRvAdapter();
+        rvRestaurantListAdapter = new RestaurantListRvAdapter();
         rvRestaurantList.setAdapter(rvRestaurantListAdapter);
 
-        // TODO: test. It must be removed later.
-        addToRvAdapter(rvRestaurantListAdapter);
-        addToRvAdapter(rvRestaurantListAdapter);
-        addToRvAdapter(rvRestaurantListAdapter);
     }
 
     private void setBtnSearch(View view) {
@@ -124,11 +139,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
     private void setBtnMap(View view) {
         FrameLayout flMap = view.findViewById(R.id.sch_rest_frame_layout_map);
-        flMap.setOnClickListener(v -> {
-            Activity activity = getActivity();
-            if(activity instanceof BaseActivity)
-                    ((BaseActivity) activity).showCustomToast(getString(R.string.notify_not_prepared));
-        });
+        flMap.setOnClickListener(v -> mainActivity.showCustomToast(getString(R.string.notify_not_prepared)));
     }
 
     private void setBtnSelectArea(View view) {
@@ -188,54 +199,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         new Timer().schedule(setNextBannerAd, 0, 2000);
     }
 
-    // TODO: test. It must be removed later.
-    private void addToRvAdapter(RestaurantListRvAdapter rvRestaurantListAdapter) {
-        RestaurantInfo info0 = new RestaurantInfo(
-                "https://i.imgur.com/OSupQAB.jpg",
-                "1. 시키카츠",
-                "동대문구",
-                "2.95 Km",
-                8945,
-                14,
-                4.7f,
-                false
-        );
-        rvRestaurantListAdapter.addRestaurantInfo(info0);
-        RestaurantInfo info1 = new RestaurantInfo(
-                "https://i.imgur.com/Im86J1J.jpg",
-                "2. 오관스시",
-                "동대문구",
-                "2.83 Km",
-                75394,
-                57,
-                4.3f,
-                false
-        );
-        rvRestaurantListAdapter.addRestaurantInfo(info1);
-        RestaurantInfo info2 = new RestaurantInfo(
-                "https://i.imgur.com/nwe2QFd.jpg",
-                "3. 회기왕족발보쌈",
-                "동대문구",
-                "2.54 Km",
-                147224,
-                103,
-                4.3f,
-                false
-        );
-        rvRestaurantListAdapter.addRestaurantInfo(info2);
-        RestaurantInfo info3 = new RestaurantInfo(
-                "https://i.imgur.com/7Lj7d86.jpg",
-                "4. 이문동커피집",
-                "동대문구",
-                "2.12 Km",
-                30293,
-                33,
-                2.7f,
-                true
-        );
-        rvRestaurantListAdapter.addRestaurantInfo(info3);
-    }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -271,15 +234,25 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         isReadyToVp2BannerAds = true;
         setCirculateBannerAds();
 
-        Activity activity = getActivity();
-        if(activity instanceof MainActivity)
-            ((MainActivity) activity).hideProgressDialog();
+        mainActivity.hideProgressDialog();
     }
 
     @Override
     public void onFailureGetBannerAd() {
-        Activity activity = getActivity();
-        if(activity instanceof MainActivity)
-            ((MainActivity) activity).hideProgressDialog();
+        mainActivity.hideProgressDialog();
+    }
+
+    @Override
+    public void onSuccessGetRestaurantList(ArrayList<RestaurantInfo> restaurantInfoList) {
+        for(RestaurantInfo restaurantInfo : restaurantInfoList)
+            rvRestaurantListAdapter.add(restaurantInfo);
+
+        rvRestaurantListAdapter.notifyDataSetChanged();
+        mainActivity.hideProgressDialog();
+    }
+
+    @Override
+    public void onFailureGetRestaurantList() {
+        mainActivity.hideProgressDialog();
     }
 }

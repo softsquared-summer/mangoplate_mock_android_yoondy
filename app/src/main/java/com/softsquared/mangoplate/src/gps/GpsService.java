@@ -15,7 +15,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.softsquared.mangoplate.src.ApplicationClass;
+import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 
 public class GpsService extends Service implements LocationListener {
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
@@ -40,7 +40,7 @@ public class GpsService extends Service implements LocationListener {
                 boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
                 boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
                 if (!isGpsEnabled && !isNetworkEnabled) {
-                    Log.d(ApplicationClass.TAG, "can't get location. GPS and network are all prevented.");
+                    Log.d(TAG, "can't get location. GPS and network are all prevented.");
                 } else {
                     int hasFineLocationPermission = ContextCompat.checkSelfPermission(context,
                             Manifest.permission.ACCESS_FINE_LOCATION);
@@ -49,9 +49,9 @@ public class GpsService extends Service implements LocationListener {
 
                     if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
                             hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
-                        Log.d(ApplicationClass.TAG, "fine and coarse location permission are granted.");
+                        Log.d(TAG, "fine and coarse location permission are granted.");
                     } else {
-                        Log.d(ApplicationClass.TAG, "can't get location. FineLocationPermission: "
+                        Log.d(TAG, "can't get location. FineLocationPermission: "
                                 + (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ? "true" : "false")
                                 + "CoarseLocationPermission: "
                                 + (hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED ? "true" : "false"));
@@ -88,7 +88,7 @@ public class GpsService extends Service implements LocationListener {
             }
         }
         catch (Exception e) {
-            Log.d(ApplicationClass.TAG, "GpsService::getLocation() exception: " + e.toString());
+            Log.d(TAG, "GpsService::getLocation() exception: " + e.toString());
         }
 
         return location;

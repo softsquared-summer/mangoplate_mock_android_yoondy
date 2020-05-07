@@ -16,7 +16,6 @@ import com.softsquared.mangoplate.R;
 import com.softsquared.mangoplate.src.main.restaurant_detail.RestaurantDetailActivity;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantListRvAdapter.RestaurantViewHolder> {
@@ -35,7 +34,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
         holder.bind(restaurantInfoArrayList.get(position));
     }
 
-    public void addRestaurantInfo(RestaurantInfo restaurantInfo) {
+    public void add(RestaurantInfo restaurantInfo) {
         restaurantInfoArrayList.add(restaurantInfo);
     }
 
@@ -71,22 +70,40 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
             });
 
             Glide.with(itemView.getContext())
-                    .load(restaurantInfo.getImageUrl())
+                    .load(restaurantInfo.getImg())
                     .into(ivPhoto);
 
-            ivStar.setImageResource(restaurantInfo.isWantToGo() ?
+            ivStar.setImageResource(restaurantInfo.getStar().equals("YES") ?
                     R.drawable.ic_star_filled_orange : R.drawable.ic_star_unfilled_white);
 
-            tvName.setText(restaurantInfo.getName());
+            tvName.setText(restaurantInfo.getTitle());
 
             String areaAndDistance = restaurantInfo.getArea() + " - " + restaurantInfo.getDistance();
             tvAreaDistance.setText(areaAndDistance);
 
-            tvViewCount.setText(NumberFormat.getInstance().format(restaurantInfo.getViewCount()));
-            tvReviewCount.setText(NumberFormat.getInstance().format(restaurantInfo.getReviewCount()));
+            tvViewCount.setText(restaurantInfo.getSeenNum());
+            tvReviewCount.setText(restaurantInfo.getReviewNum());
 
-            String score = Float.toString(restaurantInfo.getScore());
+            String score = restaurantInfo.getRating();
+            if(score.indexOf('.') < 0) score += ".0";
             tvScore.setText(score);
+
+            switch (restaurantInfo.getRatingColor()) {
+                case "orange": {
+                    tvScore.setVisibility(View.VISIBLE);
+                    tvScore.setTextColor(itemView.getResources().getColor(R.color.orange));
+                    break;
+                }
+                case "gray": {
+                    tvScore.setVisibility(View.VISIBLE);
+                    tvScore.setTextColor(itemView.getResources().getColor(R.color.middleBrightGray));
+                    break;
+                }
+                case "": {
+                    tvScore.setVisibility(View.INVISIBLE);
+                    break;
+                }
+            }
         }
     }
 }
