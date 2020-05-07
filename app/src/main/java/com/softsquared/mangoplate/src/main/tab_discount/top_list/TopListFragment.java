@@ -29,6 +29,7 @@ public class TopListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_list, container, false);
 
+        /*
         view.setOnTouchListener((v, event) -> {
             Context context = v.getContext();
             if (context instanceof MainActivity) {
@@ -38,6 +39,7 @@ public class TopListFragment extends Fragment {
             v.performClick();
             return false;
         });
+         */
 
         setRv(view);
 

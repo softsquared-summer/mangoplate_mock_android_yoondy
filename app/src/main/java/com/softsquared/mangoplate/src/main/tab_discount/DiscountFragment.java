@@ -15,6 +15,7 @@ import com.softsquared.mangoplate.src.main.MainActivity;
 import com.softsquared.mangoplate.src.main.tab_discount.models.DiscountFragmentStateAdapter;
 
 public class DiscountFragment extends Fragment {
+
     public DiscountFragment() {
         // Required empty public constructor
     }

@@ -62,11 +62,13 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         MainFragmentStateAdapter vp2MainScreenAdapter = new MainFragmentStateAdapter(this, 4);
         vp2MainScreen = findViewById(R.id.main_vp2_main_screen);
         vp2MainScreen.setAdapter(vp2MainScreenAdapter);
+        /*
         vp2MainScreen.setOnTouchListener((v, event) -> {
             vp2MainScreen.setUserInputEnabled(true);
             v.performClick();
             return false;
         });
+         */
         vp2MainScreen.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
