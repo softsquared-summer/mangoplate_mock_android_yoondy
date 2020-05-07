@@ -2,6 +2,7 @@ package com.softsquared.mangoplate.src.main.tab_search_restaurant;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -42,8 +44,9 @@ import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
 public class SearchRestaurantFragment extends Fragment implements SearchRestaurantFragmentView {
+    private final String AREA = "Area";
     private final String ORDER = "order";
-    private final String RADIUS = "RADIUS";
+    private final String RADIUS = "radius";
     private final int REQUEST = 12345;
     private final int SEARCH = 1;
     private final int SELECT_AREA = 2;
@@ -62,7 +65,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private TimerTask setNextBannerAd;
 
     private String sortBy, radius;
-    private TextView tvSortBy, tvRadius;
+    private TextView tvSortBy, tvRadius, tvArea;
 
     public SearchRestaurantFragment() {
         // Required empty public constructor
@@ -88,11 +91,12 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             sortBy = "평점순";
             sSharedPreferences.edit().putString(ORDER, sortBy).apply();
         }
-        radius = sSharedPreferences.getString(RADIUS, "");
-        if(radius.isEmpty()) {
+
+//        radius = sSharedPreferences.getString(RADIUS, "");
+//        if(radius.isEmpty()) {
             radius = "3";
             sSharedPreferences.edit().putString(RADIUS, radius).apply();
-        }
+//        }
 
         setVp2BannerAds(view);
         setRvRestaurantList(view);
@@ -104,7 +108,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         setBtnSelectFilter(view);
 
         gpsService = new GpsService(getContext());
-        updateRvRestaurantList();
+        updateRvRestaurantList(false);
 
         return view;
     }
@@ -157,6 +161,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     }
 
     private void setBtnSelectArea(View view) {
+        tvArea = view.findViewById(R.id.sch_rest_tv_location);
         ConstraintLayout clSelectArea = view.findViewById(R.id.sch_rest_const_layout_location_watch_now);
         Intent intent = new Intent(getContext(), SelectDistrictActivity.class);
         GpsService gpsService = new GpsService(getContext());
@@ -223,28 +228,43 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         new Timer().schedule(setNextBannerAd, 0, 2000);
     }
 
-    private void updateRvRestaurantList() {
+    private void updateRvRestaurantList(boolean areaMode) {
         Log.d(TAG, "lat: " + gpsService.getLatitude() + ", lng: " + gpsService.getLongitude());
         String order = sSharedPreferences.getString(ORDER, "");
         String radius = sSharedPreferences.getString(RADIUS, "");
+        String area = sSharedPreferences.getString(AREA, "");
         searchRestaurantService.getRestaurantList(
                 (float) gpsService.getLatitude(), (float) gpsService.getLongitude(),
-                null,
+                areaMode ? area.isEmpty() ? null : area : null,
                 order.isEmpty() ? null : order,
                 null,
                 null, null, null,
-                radius.isEmpty() ? null : radius,
+                areaMode ? null : radius.isEmpty() ? null : radius,
                 null, null
         );
         mainActivity.showProgressDialog();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST) {
+            boolean areaMode = true;
             switch (resultCode) {
                 case SELECT_AREA: {
+                    if(data != null) {
+                        ArrayList<String> areaList = data.getStringArrayListExtra(AREA);
+                        if(areaList != null) {
+                            if(areaList.size() > 0) {
+                                String text = areaList.get(0);
+                                if(areaList.size() > 1) text +=  " 외 " + (areaList.size() - 1) + " 곳";
+                                tvArea.setText(text);
+                                Log.d(TAG, "string joined: " + String.join(", ", areaList));
+                                sSharedPreferences.edit().putString(AREA, String.join(", ", areaList)).apply();
+                            }
+                        }
+                    }
                     break;
                 }
                 case SELECT_SORT_BY: {
@@ -261,6 +281,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                     if(data != null) {
                         String radius = data.getStringExtra(RADIUS);
                         if(radius != null) {
+                            areaMode = false;
                             sSharedPreferences.edit().putString(RADIUS, radius).apply();
                             String radiusText = "- km";
                             if(radius.equals("0.5")) radiusText = "500m";
@@ -276,7 +297,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                 }
             }
 
-            updateRvRestaurantList();
+            updateRvRestaurantList(areaMode);
         }
     }
 

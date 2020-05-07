@@ -12,7 +12,7 @@ import com.softsquared.mangoplate.src.BaseActivity;
 import static com.softsquared.mangoplate.src.ApplicationClass.sSharedPreferences;
 
 public class SelectRadiusActivity extends BaseActivity {
-    private final String RADIUS = "RADIUS";
+    private final String RADIUS = "radius";
     private final int SELECT_RADIUS = 4;
     private String radius;
 

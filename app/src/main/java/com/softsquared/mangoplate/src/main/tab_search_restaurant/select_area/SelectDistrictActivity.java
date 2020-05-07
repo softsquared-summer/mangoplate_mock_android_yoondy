@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import androidx.viewpager2.widget.ViewPager2;
@@ -18,14 +19,22 @@ import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.mod
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models.DistrictInfo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
 
 public class SelectDistrictActivity extends BaseActivity implements SelectDistrictFragmentView {
+    private final int SELECT_AREA = 2;
+    private final String AREA = "Area";
+
     private ViewPager2 vp2SelectDistrict;
     private SelectDistrictVp2Adapter vp2SelectDistrictAdapter;
     private Pair<String, ArrayList<String> >[] areaCategory = new Pair[50]; // Pair<districtName, areaList>
-    ArrayList<DistrictInfo> districtInfoList;
+    private ArrayList<DistrictInfo> districtInfoList;
+
+    public HashSet<String> selectedItems = new HashSet<>();
+    public Button btnApply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,17 @@ public class SelectDistrictActivity extends BaseActivity implements SelectDistri
     private void setViews() {
         FrameLayout flBgPanel = findViewById(R.id.sel_district_frame_layout_bg_panel);
         flBgPanel.setOnClickListener(v -> finish());
+
+        btnApply = findViewById(R.id.sel_district_btn_apply);
+        btnApply.setOnClickListener(v -> {
+            ArrayList<String> arrayList = new ArrayList<>(selectedItems);
+            if(arrayList.size() > 0) {
+                Intent intent = new Intent();
+                intent.putExtra(AREA, arrayList);
+                setResult(SELECT_AREA, intent);
+                finish();
+            }
+        });
     }
 
     private void setVp2DistrictSelectPage() {
@@ -73,7 +93,6 @@ public class SelectDistrictActivity extends BaseActivity implements SelectDistri
             areaList.add(area.getName());
 
         areaCategory[0] = new Pair<>("내 주변", areaList);
-        Log.d(TAG, "areaCategory[0]: 내 주변, " + areaList);
 
         final SelectDistrictService selectDistrictService = new SelectDistrictService(this);
         selectDistrictService.getDistrictList();
@@ -102,9 +121,6 @@ public class SelectDistrictActivity extends BaseActivity implements SelectDistri
 
     @Override
     public void onSuccessGetAreaList(int districtId, ArrayList<AreaInfo> areaInfoList) {
-        Log.d(TAG, "districtId: " + districtId);
-        Log.d(TAG, "areaInfoList: " + areaInfoList);
-
         ArrayList<String> areaNameList = new ArrayList<>();
         for(AreaInfo areaInfo : areaInfoList)
             areaNameList.add(areaInfo.getName());
@@ -112,7 +128,6 @@ public class SelectDistrictActivity extends BaseActivity implements SelectDistri
         for(int i=0; i<districtInfoList.size(); i++)
             if(districtInfoList.get(i).getDistinctsId() == districtId) {
                 areaCategory[i+1] = new Pair<>(districtInfoList.get(i).getName(), areaNameList);
-                Log.d(TAG, "areaCategory[" + i + "]: " + districtInfoList.get(i).getName() + ", " + areaNameList);
                 break;
             }
 

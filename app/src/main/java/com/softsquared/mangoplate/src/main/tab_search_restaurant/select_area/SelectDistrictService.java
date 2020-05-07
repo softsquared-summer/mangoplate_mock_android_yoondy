@@ -45,12 +45,6 @@ class SelectDistrictService {
                     return;
                 }
 
-                Log.d(TAG, "SelectDistrictService::getAreaNearMe() success. areaNearMeResponse code: " + areaNearMeResponse.getCode());
-                Log.d(TAG, "SelectDistrictService::getAreaNearMe() success. areaNearMeResponse message: " + areaNearMeResponse.getMessage());
-                ArrayList<AreaNearMeInfo> result = areaNearMeResponse.getResult();
-                for(AreaNearMeInfo area : result)
-                    Log.d(TAG, "SelectDistrictService::getAreaNearMe() success. areaNearMeResponse result: " + area.getName());
-
                 selectDistrictFragmentView.onSuccessGetAreaNearMe(areaNearMeResponse.getResult());
             }
 

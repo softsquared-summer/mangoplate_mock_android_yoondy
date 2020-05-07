@@ -58,6 +58,11 @@ class SearchRestaurantService {
                            String area, String order, String category,
                            String kind, String price, String parking,
                            String radius, String page, String size) {
+        Log.d(TAG, "SearchRestaurantService::getRestaurantList() lat: " + lat + ", lng: " + lng);
+        Log.d(TAG, "SearchRestaurantService::getRestaurantList() area: " + area + ", order: " + order + ", category: " + category);
+        Log.d(TAG, "SearchRestaurantService::getRestaurantList() kind: " + kind + ", price: " + price + ", parking: " + parking);
+        Log.d(TAG, "SearchRestaurantService::getRestaurantList() radius: " + radius + ", page: " + page + ", size: " + size);
+
         SearchRestaurantRetrofitInterface searchRestaurantRetrofitInterface = getRetrofit().create(SearchRestaurantRetrofitInterface.class);
         searchRestaurantRetrofitInterface.getRestaurantList(
                 lat, lng, "main", // Mandatory

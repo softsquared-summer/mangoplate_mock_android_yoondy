@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.mangoplate.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 class AreaListRvAdapter extends RecyclerView.Adapter<AreaListRvAdapter.AreaViewHolder> {
     private ArrayList<String> areaArrayList = new ArrayList<>();
@@ -45,8 +46,23 @@ class AreaListRvAdapter extends RecyclerView.Adapter<AreaListRvAdapter.AreaViewH
             btnArea.setText(areaName);
             btnArea.setSelected(false);
             btnArea.setOnClickListener(v -> {
-                // TODO: toggle this area
+                if(v.getContext() instanceof SelectDistrictActivity) {
+                    HashSet<String> hashSet = ((SelectDistrictActivity) v.getContext()).selectedItems;
+                    if(v.isSelected()) {
+                        hashSet.remove(areaName);
+                        if(hashSet.isEmpty())
+                            ((SelectDistrictActivity) v.getContext()).btnApply.setSelected(false);
+                    }
+                    else {
+                        hashSet.add(areaName);
+                        ((SelectDistrictActivity) v.getContext()).btnApply.setSelected(true);
+                    }
+                }
+                btnArea.setTextColor(itemView.getResources().getColor(v.isSelected() ?
+                        R.color.middleGray : R.color.orange));
+                v.setSelected(!v.isSelected());
             });
+
         }
     }
 }
