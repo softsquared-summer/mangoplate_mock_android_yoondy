@@ -4,8 +4,10 @@ import android.util.Log;
 
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.interfaces.SelectDistrictFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.interfaces.SelectDistrictRetrofitInterface;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models.AreaListResponse;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models.AreaNearMeInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models.AreaNearMeResponse;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.select_area.models.DistrictListResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,6 +58,64 @@ class SelectDistrictService {
             public void onFailure(@NotNull Call<AreaNearMeResponse> call, @NotNull Throwable t) {
                 Log.d(TAG, "SelectDistrictService::getAreaNearMe() fail : " + t);
                 selectDistrictFragmentView.onFailureGetAreaNearMe();
+            }
+        });
+    }
+
+    void getDistrictList() {
+        final SelectDistrictRetrofitInterface selectDistrictRetrofitInterface = getRetrofit().create(SelectDistrictRetrofitInterface.class);
+        selectDistrictRetrofitInterface.getDistrictList().enqueue(new Callback<DistrictListResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<DistrictListResponse> call, @NotNull Response<DistrictListResponse> response) {
+                DistrictListResponse districtListResponse = response.body();
+                if(districtListResponse == null) {
+                    Log.d(TAG, "SelectDistrictService::getDistrictList() fail. districtResponse is null");
+                    selectDistrictFragmentView.onFailureGetDistrictList();
+                    return;
+                }
+                else if(!districtListResponse.isSuccess()) {
+                    Log.d(TAG, "SelectDistrictService::getDistrictList() fail. districtResponse code: " + districtListResponse.getCode());
+                    Log.d(TAG, "SelectDistrictService::getDistrictList() fail. districtResponse message: " + districtListResponse.getMessage());
+                    selectDistrictFragmentView.onFailureGetDistrictList();
+                    return;
+                }
+
+                selectDistrictFragmentView.onSuccessGetDistrictList(districtListResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<DistrictListResponse> call, @NotNull Throwable t) {
+                Log.d(TAG, "SelectDistrictService::getDistrictList() fail : " + t);
+                selectDistrictFragmentView.onFailureGetDistrictList();
+            }
+        });
+    }
+
+    void getAreaList(int districtId) {
+        final SelectDistrictRetrofitInterface selectDistrictRetrofitInterface = getRetrofit().create(SelectDistrictRetrofitInterface.class);
+        selectDistrictRetrofitInterface.getAreaList(districtId).enqueue(new Callback<AreaListResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<AreaListResponse> call, @NotNull Response<AreaListResponse> response) {
+                AreaListResponse areaListResponse = response.body();
+                if(areaListResponse == null) {
+                    Log.d(TAG, "SelectDistrictService::getAreaList() fail. areaListResponse is null");
+                    selectDistrictFragmentView.onFailureGetAreaList();
+                    return;
+                }
+                else if(!areaListResponse.isSuccess()) {
+                    Log.d(TAG, "SelectDistrictService::getAreaList() fail. areaListResponse code: " + areaListResponse.getCode());
+                    Log.d(TAG, "SelectDistrictService::getAreaList() fail. areaListResponse message: " + areaListResponse.getMessage());
+                    selectDistrictFragmentView.onFailureGetAreaList();
+                    return;
+                }
+
+                selectDistrictFragmentView.onSuccessGetAreaList(districtId, areaListResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<AreaListResponse> call, @NotNull Throwable t) {
+                Log.d(TAG, "SelectDistrictService::getAreaList() fail : " + t);
+                selectDistrictFragmentView.onFailureGetAreaList();
             }
         });
     }

@@ -61,6 +61,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="15dp"
+            android:visibility="invisible"
             android:src="@drawable/ic_check_circle"/>
 
         <TextView
@@ -70,6 +71,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/sel_district_iv_edit_icon"
             app:layout_constraintStart_toEndOf="@+id/sel_district_iv_edit_icon"
             android:layout_marginStart="7dp"
+            android:visibility="invisible"
             android:text="@string/edit"/>
 
         <Button
@@ -94,6 +96,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/sel_district_btn_apply"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp"
+            android:visibility="invisible"
             android:textColor="@color/middleGray"
             android:textSize="13sp"
             android:text="@string/all_clear_selection"/>
