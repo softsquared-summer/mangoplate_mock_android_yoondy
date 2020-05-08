@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/review_iv_separator_top"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/orange"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/review_iv_separator_bottom"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/orange"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/review_iv_separator_start"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tint="@color/orange"
+        android:src="@drawable/separator_vertical_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/review_iv_separator_end"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tint="@color/orange"
+        android:src="@drawable/separator_vertical_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/review_iv_trophy_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_trophy_mark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/review_tv_review_of_today_phrase1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/review_iv_trophy_mark"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/orange"
+        android:textSize="11sp"
+        android:text="365일 매일매일 업데이트 되는"/>
+
+    <TextView
+        android:id="@+id/review_tv_review_of_today_phrase2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/review_tv_review_of_today_phrase1"
+        app:layout_constraintBottom_toBottomOf="@+id/review_tv_review_of_today_phrase1"
+        app:layout_constraintStart_toEndOf="@+id/review_tv_review_of_today_phrase1"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        android:textSize="11sp"
+        android:text="오늘의 리뷰"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_const_layout_contents"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:layout_goneMarginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/review_iv_trophy_mark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/review_iv_profile_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/review_tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:text="MIN-E"
+            android:textColor="@color/almostBlack"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/review_iv_profile_photo"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_profile_photo"
+            app:layout_constraintBottom_toTopOf="@+id/review_iv_ic_review_count"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <ImageView
+            android:id="@+id/review_iv_ic_review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintStart_toStartOf="@+id/review_tv_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/review_tv_nickname"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_profile_photo"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_pencil_gray"/>
+
+        <TextView
+            android:id="@+id/review_tv_review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_ic_review_count"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_ic_review_count"
+            app:layout_constraintStart_toEndOf="@+id/review_iv_ic_review_count"
+            android:layout_marginStart="5dp"
+            android:textSize="12sp"
+            android:text="10" />
+
+        <ImageView
+            android:id="@+id/review_iv_ic_follower_count"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintStart_toEndOf="@+id/review_tv_review_count"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_ic_review_count"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_ic_review_count"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_people_gray"/>
+
+        <TextView
+            android:id="@+id/review_tv_follower_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_ic_review_count"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_ic_review_count"
+            app:layout_constraintStart_toEndOf="@+id/review_iv_ic_follower_count"
+            android:layout_marginStart="5dp"
+            android:textSize="12sp"
+            android:text="358"/>
+
+        <ImageView
+            android:id="@+id/review_iv_ic_delicious_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_profile_photo"
+            app:layout_constraintBottom_toTopOf="@+id/review_tv_delicious_mark"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:src="@drawable/ic_yum_orange"/>
+
+        <TextView
+            android:id="@+id/review_tv_delicious_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/review_iv_ic_delicious_mark"
+            app:layout_constraintEnd_toEndOf="@+id/review_iv_ic_delicious_mark"
+            app:layout_constraintTop_toBottomOf="@+id/review_iv_ic_delicious_mark"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_profile_photo"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/orange"
+            android:textSize="10sp"
+            android:text="맛있다!"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/review_tv_restaurant_name_and_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/review_iv_profile_photo"
+            app:layout_constraintTop_toBottomOf="@+id/review_iv_profile_photo"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/orange"
+            android:text="\@ 광주통닭 - 광주 남구"/>
+
+        <TextView
+            android:id="@+id/review_tv_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="오래 산 동네 사람들만 아는 추억의 맛집\n정말 오랜만에 찾아갔다가 다른상호로 변경되어 있어서\n
+혹시 몰라 검색했는데 장소를 이전해서\n운영중이었다(배달엡에도 등록이 안되어 있어 정말 망한줄\n
+알았다ㅎ)..."
+            android:textAlignment="textStart"
+            android:textColor="@color/almostBlack"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_tv_restaurant_name_and_location" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/review_rv_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_tv_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"/>
+
+        <TextView
+            android:id="@+id/review_tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_rv_photo"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/middleGray"
+            android:textSize="10sp"
+            android:text="좋아요"/>
+
+        <TextView
+            android:id="@+id/review_tv_like_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/review_tv_like"
+            app:layout_constraintTop_toTopOf="@+id/review_tv_like"
+            app:layout_constraintBottom_toBottomOf="@+id/review_tv_like"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/middleGray"
+            android:textSize="10sp"
+            android:text="33개"/>
+
+        <TextView
+            android:id="@+id/review_tv_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/review_tv_like_count"
+            app:layout_constraintTop_toTopOf="@+id/review_tv_like"
+            app:layout_constraintBottom_toBottomOf="@+id/review_tv_like"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/middleGray"
+            android:textSize="10sp"
+            android:text="댓글"/>
+
+        <TextView
+            android:id="@+id/review_tv_reply_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/review_tv_reply"
+            app:layout_constraintTop_toTopOf="@+id/review_tv_like"
+            app:layout_constraintBottom_toBottomOf="@+id/review_tv_like"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/middleGray"
+            android:textSize="10sp"
+            android:text="3개"/>
+
+        <TextView
+            android:id="@+id/review_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/review_tv_like"
+            app:layout_constraintBottom_toBottomOf="@+id/review_tv_like"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/middleGray"
+            android:textSize="10sp"
+            android:text="1 일 전"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/review_iv_separator_contents"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:tint="@color/middleGray2"
+        android:src="@drawable/separator_horizontal_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_const_layout_contents"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_const_layout_wish_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_iv_separator_contents"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/review_iv_wish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_star_unfilled_gray"/>
+
+        <TextView
+            android:id="@+id/review_tv_wish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/review_iv_wish_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_wish_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_wish_btn"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:text="@string/wish"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_const_layout_like_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/review_const_layout_wish_btn"
+        app:layout_constraintTop_toTopOf="@+id/review_const_layout_wish_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/review_const_layout_wish_btn"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/review_iv_like_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_heart_unfilled_gray"/>
+
+        <TextView
+            android:id="@+id/review_tv_like_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/review_iv_like_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_like_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_like_btn"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:text="좋아요" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_const_layout_reply_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/review_const_layout_like_btn"
+        app:layout_constraintTop_toTopOf="@+id/review_const_layout_wish_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/review_const_layout_wish_btn"
+        android:padding="5dp"
+        android:layout_marginStart="5dp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/review_iv_reply_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_speech_bubble_unfilled_gray"/>
+
+        <TextView
+            android:id="@+id/review_tv_reply_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/review_iv_reply_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/review_iv_reply_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/review_iv_reply_btn"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:text="댓글"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_iv_more_info_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/review_const_layout_like_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/review_const_layout_like_btn"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:layout_marginEnd="10dp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_more_3_dot"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
