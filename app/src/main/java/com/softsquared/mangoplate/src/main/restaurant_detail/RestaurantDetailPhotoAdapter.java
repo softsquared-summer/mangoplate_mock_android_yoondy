@@ -39,6 +39,8 @@ public class RestaurantDetailPhotoAdapter extends RecyclerView.Adapter<Restauran
         photoInfoArrayList.add(info);
     }
 
+    public void clear() { photoInfoArrayList.clear(); }
+
     class RestaurantDetailPhotoViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPhoto;
 

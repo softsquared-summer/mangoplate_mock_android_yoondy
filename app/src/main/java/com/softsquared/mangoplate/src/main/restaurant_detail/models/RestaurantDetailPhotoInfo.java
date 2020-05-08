@@ -15,7 +15,6 @@ public class RestaurantDetailPhotoInfo {
         return imageUrl;
     }
 
-    // TODO: test. It must be removed later.
     public RestaurantDetailPhotoInfo(int imageId, String imageUrl) {
         this.imageId = imageId;
         this.imageUrl = imageUrl;

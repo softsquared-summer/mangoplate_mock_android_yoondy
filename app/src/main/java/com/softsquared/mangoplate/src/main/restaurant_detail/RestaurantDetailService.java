@@ -5,8 +5,9 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
+import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailRetrofitInterface;
+import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,6 +19,9 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
+import static com.softsquared.mangoplate.src.ApplicationClass.getRetrofit;
 
 class RestaurantDetailService {
     private final String NAVER_MAP_BASE_URI = "https://naveropenapi.apigw.ntruss.com";
@@ -38,9 +42,9 @@ class RestaurantDetailService {
         String markersQuery = "type:e|icon:" + customMarkerImgUrl + "|pos:" + longitude + "%20" + latitude;
         String query = "?w=" + width + "&h=" + height + "&scale=2&level=" + level
                 + "&center=" + longitude + "," + latitude + "&markers=" + markersQuery;
-        Log.d(ApplicationClass.TAG, "request: " + NAVER_MAP_BASE_URI + NAVER_MAP_STATIC_MAP_GET_URI + query);
-        Log.d(ApplicationClass.TAG, "NAVER_API_HEADER_NAME_CLIENT_ID: " + context.getResources().getString(R.string.naver_client_id));
-        Log.d(ApplicationClass.TAG, "NAVER_API_HEADER_NAME_CLIENT_SECRET: " + context.getResources().getString(R.string.naver_client_secret));
+        Log.d(TAG, "request: " + NAVER_MAP_BASE_URI + NAVER_MAP_STATIC_MAP_GET_URI + query);
+        Log.d(TAG, "NAVER_API_HEADER_NAME_CLIENT_ID: " + context.getResources().getString(R.string.naver_client_id));
+        Log.d(TAG, "NAVER_API_HEADER_NAME_CLIENT_SECRET: " + context.getResources().getString(R.string.naver_client_secret));
         okHttpClient.newCall(new Request.Builder()
                 .addHeader(NAVER_API_HEADER_NAME_CLIENT_ID,
                         context.getResources().getString(R.string.naver_client_id))
@@ -65,5 +69,33 @@ class RestaurantDetailService {
                                 BitmapFactory.decodeStream(Objects.requireNonNull(Objects.requireNonNull(response).body()).byteStream()));
                     }
                 });
+    }
+
+    void getRestaurantDetail(int restaurantId) {
+        final RestaurantDetailRetrofitInterface restaurantDetailRetrofitInterface = getRetrofit().create(RestaurantDetailRetrofitInterface.class);
+        restaurantDetailRetrofitInterface.getRestaurantDetail(restaurantId).enqueue(new retrofit2.Callback<RestaurantDetailResponse>() {
+            @Override
+            public void onResponse(retrofit2.Call<RestaurantDetailResponse> call, retrofit2.Response<RestaurantDetailResponse> response) {
+                RestaurantDetailResponse restaurantDetailResponse = response.body();
+                if(restaurantDetailResponse == null) {
+                    Log.d(TAG, "RestaurantDetailService::getRestaurantDetail() fail. restaurantDetailResponse is null");
+                    restaurantDetailActivityView.onFailureGetRestaurantDetail();
+                    return;
+                }
+                else if(!restaurantDetailResponse.isSuccess()) {
+                    Log.d(TAG, "RestaurantDetailService::getRestaurantDetail() fail. restaurantDetailResponse code: " + restaurantDetailResponse.getCode());
+                    Log.d(TAG, "RestaurantDetailService::getRestaurantDetail() fail. restaurantDetailResponse message: " + restaurantDetailResponse.getMessage());
+                    restaurantDetailActivityView.onFailureGetRestaurantDetail();
+                    return;}
+
+                restaurantDetailActivityView.onSuccessGetRestaurantDetail(restaurantDetailResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<RestaurantDetailResponse> call, Throwable t) {
+                Log.d(TAG, "RestaurantDetailService::getRestaurantDetail() fail : " + t);
+                restaurantDetailActivityView.onFailureGetRestaurantDetail();
+            }
+        });
     }
 }

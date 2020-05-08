@@ -98,7 +98,7 @@ public class SearchRestaurantService {
     }
 
     // API 11-1
-    void postWish(int restaurantId) {
+    public void postWish(int restaurantId) {
         SearchRestaurantRetrofitInterface searchRestaurantRetrofitInterface = getRetrofit().create(SearchRestaurantRetrofitInterface.class);
         searchRestaurantRetrofitInterface.postWish(restaurantId).enqueue(new Callback<WishResponse>() {
             @Override

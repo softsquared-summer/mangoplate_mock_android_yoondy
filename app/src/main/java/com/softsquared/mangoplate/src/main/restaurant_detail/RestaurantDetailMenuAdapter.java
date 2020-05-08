@@ -38,6 +38,8 @@ public class RestaurantDetailMenuAdapter extends RecyclerView.Adapter<Restaurant
         menuInfoArrayList.add(info);
     }
 
+    public void clear() { menuInfoArrayList.clear(); }
+
     class RestaurantDetailMenuViewHolder extends RecyclerView.ViewHolder {
         TextView tvMenuName;
         TextView tvMenuPrice;

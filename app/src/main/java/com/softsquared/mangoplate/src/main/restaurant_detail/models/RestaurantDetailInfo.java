@@ -25,7 +25,13 @@ public class RestaurantDetailInfo {
 
     @SerializedName("oldAddress") private String oldAddress;
 
+    @SerializedName("lat") private float lat;
+
+    @SerializedName("lng") private float lng;
+
     @SerializedName("phone") private String phone;
+
+    @SerializedName("userId") private int userId;
 
     @SerializedName("userName") private String userName;
 
@@ -47,105 +53,63 @@ public class RestaurantDetailInfo {
 
     @SerializedName("infoSite") private String infoSite;
 
-    @SerializedName("keywords") private ArrayList<String> keywords;
+    @SerializedName("keywords") private ArrayList<RestaurantDetailKeywordInfo> keywords;
 
     @SerializedName("menu") private ArrayList<RestaurantDetailMenuInfo> menu;
 
     @SerializedName("menuUpdate") private String menuUpdate;
 
-    public ArrayList<RestaurantDetailPhotoInfo> getImages() {
-        return images;
-    }
+    public ArrayList<RestaurantDetailPhotoInfo> getImages() { return images; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public String getSeenNum() {
-        return seenNum;
-    }
+    public String getSeenNum() { return seenNum; }
 
-    public String getReviewNum() {
-        return reviewNum;
-    }
+    public String getReviewNum() { return reviewNum; }
 
-    public String getStarNum() {
-        return starNum;
-    }
+    public String getStarNum() { return starNum; }
 
-    public String getRating() {
-        return rating;
-    }
+    public String getRating() { return rating; }
 
-    public String getRatingColor() {
-        return ratingColor;
-    }
+    public String getRatingColor() { return ratingColor; }
 
-    public String getUserStar() {
-        return userStar;
-    }
+    public String getUserStar() { return userStar; }
 
-    public String getAddress() {
-        return address;
-    }
+    public String getAddress() { return address; }
 
-    public String getOldAddress() {
-        return oldAddress;
-    }
+    public String getOldAddress() { return oldAddress; }
 
-    public String getPhone() {
-        return phone;
-    }
+    public float getLat() { return lat; }
 
-    public String getUserName() {
-        return userName;
-    }
+    public float getLng() { return lng; }
 
-    public String getUserProfileUrl() {
-        return userProfileUrl;
-    }
+    public String getPhone() { return phone; }
 
-    public String getInfoUpdate() {
-        return infoUpdate;
-    }
+    public int getUserId() { return userId; }
 
-    public String getInfoTime() {
-        return infoTime;
-    }
+    public String getUserName() { return userName; }
 
-    public String getInfoHoliday() {
-        return infoHoliday;
-    }
+    public String getUserProfileUrl() { return userProfileUrl; }
 
-    public String getInfoDescription() {
-        return infoDescription;
-    }
+    public String getInfoUpdate() { return infoUpdate; }
 
-    public String getInfoPrice() {
-        return infoPrice;
-    }
+    public String getInfoTime() { return infoTime; }
 
-    public String getInfoKind() {
-        return infoKind;
-    }
+    public String getInfoHoliday() { return infoHoliday; }
 
-    public String getInfoParking() {
-        return infoParking;
-    }
+    public String getInfoDescription() { return infoDescription; }
 
-    public String getInfoSite() {
-        return infoSite;
-    }
+    public String getInfoPrice() { return infoPrice; }
 
-    public ArrayList<String> getKeywords() {
-        return keywords;
-    }
+    public String getInfoKind() { return infoKind; }
 
-    public ArrayList<RestaurantDetailMenuInfo> getMenu() {
-        return menu;
-    }
+    public String getInfoParking() { return infoParking; }
 
-    public String getMenuUpdate() {
-        return menuUpdate;
-    }
+    public String getInfoSite() { return infoSite; }
+
+    public ArrayList<RestaurantDetailKeywordInfo> getKeywords() { return keywords; }
+
+    public ArrayList<RestaurantDetailMenuInfo> getMenu() { return menu; }
+
+    public String getMenuUpdate() { return menuUpdate; }
 }

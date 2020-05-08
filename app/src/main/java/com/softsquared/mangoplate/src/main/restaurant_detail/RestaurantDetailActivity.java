@@ -1,11 +1,14 @@
 package com.softsquared.mangoplate.src.main.restaurant_detail;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,30 +18,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amar.library.ui.StickyScrollView;
 import com.amar.library.ui.interfaces.IScrollViewListener;
 import com.softsquared.mangoplate.R;
-import com.softsquared.mangoplate.src.ApplicationClass;
 import com.softsquared.mangoplate.src.BaseActivity;
 import com.softsquared.mangoplate.src.gps.GpsService;
 import com.softsquared.mangoplate.src.main.restaurant_detail.interfaces.RestaurantDetailActivityView;
+import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailInfo;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailMenuInfo;
 import com.softsquared.mangoplate.src.main.restaurant_detail.models.RestaurantDetailPhotoInfo;
+import com.softsquared.mangoplate.src.main.tab_search_restaurant.RestaurantListRvAdapter;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.SearchRestaurantService;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.interfaces.SearchRestaurantFragmentView;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.BannerAdInfo;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.RestaurantInfo;
-import com.softsquared.mangoplate.src.main.tab_search_restaurant.RestaurantListRvAdapter;
 import com.softsquared.mangoplate.src.main.tab_search_restaurant.models.WishInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.softsquared.mangoplate.src.ApplicationClass.TAG;
+
 public class RestaurantDetailActivity extends BaseActivity implements RestaurantDetailActivityView, SearchRestaurantFragmentView {
     final private RestaurantDetailService restaurantDetailService = new RestaurantDetailService(this, this);
+    final private SearchRestaurantService searchRestaurantService = new SearchRestaurantService(this);
+    private RestaurantDetailPhotoAdapter restaurantDetailPhotoAdapter;
     private RestaurantListRvAdapter popularRestaurantNearbyAdapter;
+    private RestaurantDetailMenuAdapter restaurantDetailMenuAdapter;
+    private StickyScrollView stickyScrollView;
+    private int restaurantId;
+    private boolean isWish;
+    private ImageView ivWish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
+
+        Intent intent = getIntent();
+        if(intent != null) {
+            restaurantId = intent.getIntExtra("restaurantId", -1);
+            if (restaurantId >= 0) {
+                restaurantDetailService.getRestaurantDetail(restaurantId);
+                showProgressDialog();
+                Log.d(TAG, ">>> restaurantId: " + restaurantId);
+            }
+        }
 
         setTopBarAndStickyScrollView();
         setRestaurantBasicInfo();
@@ -50,10 +72,6 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         setRestaurantReview();
         setRvPopularRestaurantNearby();
         setView();
-
-        // TODO: test code. erase later
-        GpsService gpsService = new GpsService(getApplicationContext());
-        Log.d(ApplicationClass.TAG, "gps2: " + gpsService.getLongitude() + ", " + gpsService.getLatitude());
     }
 
     private void setTopBarAndStickyScrollView() {
@@ -66,7 +84,7 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         ImageView ivPhotoBtn = findViewById(R.id.restaurant_detail_iv_photo_btn);
         ImageView ivShareBtn = findViewById(R.id.restaurant_detail_iv_share_btn);
 
-        StickyScrollView stickyScrollView = findViewById(R.id.restaurant_detail_sticky_scroll_view);
+        stickyScrollView = findViewById(R.id.restaurant_detail_sticky_scroll_view);
         stickyScrollView.setScrollViewListener(new IScrollViewListener() {
             @Override
             public void onScrollChanged(int l, int t, int oldl, int oldt) {
@@ -103,20 +121,14 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
     }
 
     private void setRvRestaurantDetailPhoto() {
-        RestaurantDetailPhotoAdapter restaurantDetailPhotoAdapter = new RestaurantDetailPhotoAdapter();
+        restaurantDetailPhotoAdapter = new RestaurantDetailPhotoAdapter();
         RecyclerView rvRestaurantDetailPhoto = findViewById(R.id.restaurant_detail_rv_photos);
         rvRestaurantDetailPhoto.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rvRestaurantDetailPhoto.setAdapter(restaurantDetailPhotoAdapter);
 
-        // TODO: test
+        // for stickyHeader's bug, at least 1 item is need
         RestaurantDetailPhotoInfo info0 = new RestaurantDetailPhotoInfo(23, "https://i.imgur.com/OSupQAB.jpg");
         restaurantDetailPhotoAdapter.add(info0);
-        RestaurantDetailPhotoInfo info1 = new RestaurantDetailPhotoInfo(24, "https://i.imgur.com/Im86J1J.jpg");
-        restaurantDetailPhotoAdapter.add(info1);
-        RestaurantDetailPhotoInfo info2 = new RestaurantDetailPhotoInfo(25, "https://i.imgur.com/nwe2QFd.jpg");
-        restaurantDetailPhotoAdapter.add(info2);
-        restaurantDetailPhotoAdapter.add(info0);
-        restaurantDetailPhotoAdapter.add(info1);
     }
 
     private void setMenuForRecord() {
@@ -125,7 +137,13 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         ConstraintLayout clWriteReview = findViewById(R.id.restaurant_detail_const_layout_write_review);
         ConstraintLayout clMyList = findViewById(R.id.restaurant_detail_const_layout_my_list);
 
-        clWish.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
+        clWish.setOnClickListener(v -> {
+            searchRestaurantService.postWish(restaurantId);
+            ivWish.setImageResource(isWish ?
+                    R.drawable.ic_star_unfilled_orange : R.drawable.ic_star_filled_orange);
+
+            isWish = !isWish;
+        });
         clGone.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
         clWriteReview.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
         clMyList.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
@@ -143,12 +161,6 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         clNavigation.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
         clCallTaxi.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
         clCopyAddress.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
-
-        // TODO: test. It must be removed later.
-        double longitude = 127.07622041;
-        double latitude = 37.5959791;
-        restaurantDetailService.requestMapImage(500, 140, 17,
-                longitude, latitude);
     }
 
     private void setRestaurantServiceInfo() {
@@ -165,13 +177,10 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
     }
 
     private void setRvRestaurantDetailMenu() {
-        RestaurantDetailMenuAdapter restaurantDetailMenuAdapter = new RestaurantDetailMenuAdapter();
+        restaurantDetailMenuAdapter = new RestaurantDetailMenuAdapter();
         RecyclerView rvRestaurantDetailMenu = findViewById(R.id.restaurant_detail_rv_menu);
         rvRestaurantDetailMenu.setLayoutManager(new LinearLayoutManager(this));
         rvRestaurantDetailMenu.setAdapter(restaurantDetailMenuAdapter);
-
-        // TODO: test. It must be removed later.
-        addToRestaurantDetailMenuAdapter(restaurantDetailMenuAdapter);
     }
 
     // TODO: There is no photo of menu in API 4-3, so it doesn't work.
@@ -227,15 +236,6 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         );
     }
 
-    private void addToRestaurantDetailMenuAdapter(RestaurantDetailMenuAdapter adapter) {
-        RestaurantDetailMenuInfo info0 = new RestaurantDetailMenuInfo("아이들 돈가스", "7,500");
-        adapter.add(info0);
-        RestaurantDetailMenuInfo info1 = new RestaurantDetailMenuInfo("로스 가스", "8,000");
-        adapter.add(info1);
-        RestaurantDetailMenuInfo info2 = new RestaurantDetailMenuInfo("히레 가스", "8,500");
-        adapter.add(info2);
-    }
-
     private void setView() {
         ConstraintLayout clCallRestaurant = findViewById(R.id.restaurant_detail_const_layout_call_restaurant);
         clCallRestaurant.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
@@ -255,7 +255,90 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
 
     @Override
     public void onFailureGetNaverMap(IOException e) {
-        Log.e(ApplicationClass.TAG, "RestaurantDetailActivity::validateFailure(): " + e);
+        Log.e(TAG, "RestaurantDetailActivity::validateFailure(): " + e);
+    }
+
+    @Override
+    public void onSuccessGetRestaurantDetail(RestaurantDetailInfo restaurantDetailInfo) {
+        Log.d(TAG, ">>> restaurantDetailInfo: " + restaurantDetailInfo);
+        restaurantDetailPhotoAdapter.clear();
+        ArrayList<RestaurantDetailPhotoInfo> photoInfoList = restaurantDetailInfo.getImages();
+        for(RestaurantDetailPhotoInfo photoInfo : photoInfoList)
+            restaurantDetailPhotoAdapter.add(photoInfo);
+
+        restaurantDetailPhotoAdapter.notifyDataSetChanged();
+
+        TextView tvName = findViewById(R.id.restaurant_detail_tv_name);
+        tvName.setText(restaurantDetailInfo.getName());
+
+        TextView tvRating = findViewById(R.id.restaurant_detail_tv_rating);
+        tvRating.setText(restaurantDetailInfo.getRating());
+        switch (restaurantDetailInfo.getRatingColor()) {
+            case "orange": {
+                tvRating.setVisibility(View.VISIBLE);
+                tvRating.setTextColor(getResources().getColor(R.color.orange));
+                break;
+            }
+            case "gray": {
+                tvRating.setVisibility(View.VISIBLE);
+                tvRating.setTextColor(getResources().getColor(R.color.middleBrightGray));
+                break;
+            }
+            case "": {
+                tvRating.setVisibility(View.INVISIBLE);
+                break;
+            }
+        }
+
+        TextView tvViewCnt = findViewById(R.id.restaurant_detail_tv_view_count);
+        tvViewCnt.setText(restaurantDetailInfo.getSeenNum());
+        TextView tvReviewCnt = findViewById(R.id.restaurant_detail_tv_review_count);
+        tvReviewCnt.setText(restaurantDetailInfo.getReviewNum());
+        TextView tvWishCnt = findViewById(R.id.restaurant_detail_tv_wish_count);
+        tvWishCnt.setText(restaurantDetailInfo.getStarNum());
+
+        isWish = restaurantDetailInfo.getUserStar().equals("YES");
+        ivWish = findViewById(R.id.restaurant_detail_iv_wish);
+        ivWish.setImageResource(isWish ?
+                R.drawable.ic_star_filled_orange : R.drawable.ic_star_unfilled_orange);
+
+        TextView tvRoadAddress = findViewById(R.id.restaurant_detail_tv_road_address);
+        tvRoadAddress.setText(restaurantDetailInfo.getAddress());
+        TextView tvParcelAddress = findViewById(R.id.restaurant_detail_tv_parcel_address);
+        tvParcelAddress.setText(restaurantDetailInfo.getOldAddress());
+
+        restaurantDetailService.requestMapImage(500, 140, 17,
+                restaurantDetailInfo.getLng(), restaurantDetailInfo.getLat());
+
+        TextView tvServiceInfoUpdate = findViewById(R.id.restaurant_detail_tv_service_info_update_date);
+        tvServiceInfoUpdate.setText(restaurantDetailInfo.getInfoUpdate());
+        TextView tvServiceTime = findViewById(R.id.restaurant_detail_tv_service_time);
+        tvServiceTime.setText(restaurantDetailInfo.getInfoTime());
+        TextView tvDayOff = findViewById(R.id.restaurant_detail_tv_day_off);
+        tvDayOff.setText(restaurantDetailInfo.getInfoHoliday());
+        TextView tvPrice = findViewById(R.id.restaurant_detail_tv_price);
+        tvPrice.setText(restaurantDetailInfo.getInfoPrice());
+        TextView tvPriceInfo = findViewById(R.id.restaurant_detail_tv_price_info);
+        tvPriceInfo.setText(restaurantDetailInfo.getInfoDescription());
+
+        ArrayList<RestaurantDetailMenuInfo> menuInfoList = restaurantDetailInfo.getMenu();
+        restaurantDetailMenuAdapter.clear();
+        for(RestaurantDetailMenuInfo menuInfo : menuInfoList)
+            restaurantDetailMenuAdapter.add(menuInfo);
+
+        restaurantDetailMenuAdapter.notifyDataSetChanged();
+
+        TextView tvMenuUpdate = findViewById(R.id.restaurant_detail_tv_menu_update_date);
+        tvMenuUpdate.setText(restaurantDetailInfo.getMenuUpdate());
+
+        stickyScrollView.initHeaderView(R.id.restaurant_detail_const_layout_menu_for_record);
+
+        hideProgressDialog();
+    }
+
+    @Override
+    public void onFailureGetRestaurantDetail() {
+
     }
 
     @Override

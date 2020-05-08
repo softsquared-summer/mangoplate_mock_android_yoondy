@@ -471,6 +471,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
+                    android:id="@+id/restaurant_detail_tv_parcel_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@+id/restaurant_detail_const_layout_parcel_address_icon"

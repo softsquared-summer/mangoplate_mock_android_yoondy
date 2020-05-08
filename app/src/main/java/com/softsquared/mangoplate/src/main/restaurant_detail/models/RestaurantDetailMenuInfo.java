@@ -14,10 +14,4 @@ public class RestaurantDetailMenuInfo {
     public String getPrice() {
         return price;
     }
-
-    // TODO: test. It must be removed later.
-    public RestaurantDetailMenuInfo(String name, String price) {
-        this.name = name;
-        this.price = price;
-    }
 }

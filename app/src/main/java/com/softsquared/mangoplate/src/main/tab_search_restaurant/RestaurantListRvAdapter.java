@@ -75,6 +75,7 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
         void bind(SearchRestaurantFragmentView searchRestaurantFragmentView, RestaurantInfo restaurantInfo) {
             clWholeScreen.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), RestaurantDetailActivity.class);
+                intent.putExtra("restaurantId", restaurantInfo.getRestaurantId());
                 itemView.getContext().startActivity(intent);
             });
 
@@ -84,14 +85,14 @@ public class RestaurantListRvAdapter extends RecyclerView.Adapter<RestaurantList
 
             isWish = restaurantInfo.getStar().equals("YES");
             ivStar.setImageResource(isWish ?
-                    R.drawable.ic_star_filled_orange : R.drawable.ic_star_unfilled_white);
+                    R.drawable.ic_star_filled_orange_and_white_border : R.drawable.ic_star_unfilled_white);
 
             ivStar.setOnClickListener(v -> {
                 final SearchRestaurantService searchRestaurantService = new SearchRestaurantService(searchRestaurantFragmentView);
                 searchRestaurantService.postWish(restaurantInfo.getRestaurantId());
 
                 ivStar.setImageResource(isWish ?
-                        R.drawable.ic_star_unfilled_white : R.drawable.ic_star_filled_orange);
+                        R.drawable.ic_star_unfilled_white : R.drawable.ic_star_filled_orange_and_white_border);
 
                 isWish = !isWish;
             });
