@@ -2,6 +2,7 @@ package com.softsquared.mangoplate.src.main.restaurant_detail;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -236,9 +237,11 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
         );
     }
 
-    private void setView() {
-        ConstraintLayout clCallRestaurant = findViewById(R.id.restaurant_detail_const_layout_call_restaurant);
-        clCallRestaurant.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
+        private void setView() {
+            ConstraintLayout clCallRestaurant = findViewById(R.id.restaurant_detail_const_layout_call_restaurant);
+            clCallRestaurant.setOnClickListener(v -> {
+                //
+            });
 
         ConstraintLayout clRequestEditRestaurantInfo = findViewById(R.id.restaurant_detail_const_layout_request_edit_restaurant_info);
         clRequestEditRestaurantInfo.setOnClickListener(v -> showCustomToast(getString(R.string.notify_not_prepared)));
@@ -260,7 +263,6 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
 
     @Override
     public void onSuccessGetRestaurantDetail(RestaurantDetailInfo restaurantDetailInfo) {
-        Log.d(TAG, ">>> restaurantDetailInfo: " + restaurantDetailInfo);
         restaurantDetailPhotoAdapter.clear();
         ArrayList<RestaurantDetailPhotoInfo> photoInfoList = restaurantDetailInfo.getImages();
         for(RestaurantDetailPhotoInfo photoInfo : photoInfoList)
@@ -268,7 +270,9 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
 
         restaurantDetailPhotoAdapter.notifyDataSetChanged();
 
+        TextView tvTitle = findViewById(R.id.restaurant_detail_tv_name_top_bar);
         TextView tvName = findViewById(R.id.restaurant_detail_tv_name);
+        tvTitle.setText(restaurantDetailInfo.getName());
         tvName.setText(restaurantDetailInfo.getName());
 
         TextView tvRating = findViewById(R.id.restaurant_detail_tv_rating);
@@ -309,6 +313,11 @@ public class RestaurantDetailActivity extends BaseActivity implements Restaurant
 
         restaurantDetailService.requestMapImage(500, 140, 17,
                 restaurantDetailInfo.getLng(), restaurantDetailInfo.getLat());
+
+        ConstraintLayout clCallRestaurant = findViewById(R.id.restaurant_detail_const_layout_call_restaurant);
+        clCallRestaurant.setOnClickListener(v ->
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + restaurantDetailInfo.getPhone())))
+        );
 
         TextView tvServiceInfoUpdate = findViewById(R.id.restaurant_detail_tv_service_info_update_date);
         tvServiceInfoUpdate.setText(restaurantDetailInfo.getInfoUpdate());
